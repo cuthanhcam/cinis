@@ -18,4 +18,4 @@ During M0 inspect installed SDKs, choose versions, and commit rust-toolchain.tom
 
 ## Local input
 
-init.md is preserved historical planning input and intentionally ignored. English documents under docs/ are the maintained project baseline. The existing origin points to https://github.com/cuthanhcam/cinis.git; no push was performed during bootstrap. No cloud resources, runtime ports, or secrets were configured.
+init.md is preserved historical planning input and intentionally ignored. English documents under docs/ are the maintained project baseline. The existing origin points to https://github.com/cuthanhcam/cinis.git; main is published first, followed by integrated develop work. No cloud resources, runtime ports, or secrets were configured.
