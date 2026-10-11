@@ -1,0 +1,29 @@
+# Preserved local planning conversation
+/init.md
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+secrets/
+**/bin/
+**/obj/
+**/target/
+.vs/
+.idea/
+.vscode/
+artifacts/
+coverage/
+TestResults/
+**/__pycache__/
+*.pyc
+node_modules/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+/data/
+/temp/
+# Commit Cargo.lock for executable workspaces.
