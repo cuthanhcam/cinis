@@ -1,10 +1,10 @@
 # Trading rules
 
-Status: proposed v0.1 baseline. Policy changes require updated acceptance cases and an ADR when contracts change.
+Status: Accepted working specification; implementation coverage is tracked separately. Policy changes require updated acceptance cases and an ADR when contracts change.
 
 | ID | Rule |
 | --- | --- |
-| BR-001 | Positive integral ticks/lots; explicit market limits required before implementation acceptance. |
+| BR-001 | Positive integral ticks/lots; matching limits and units fixed in ADR-0002. |
 | BR-002 | Best price first; FIFO within a level uses execution acceptance sequence, never client clocks. |
 | BR-003 | Buy crosses asks at/below its limit; sell crosses bids at/above its limit. Execute at resting price. |
 | BR-004 | GTC remainder rests. No amendment; cancel/resubmit loses priority. |
@@ -18,3 +18,5 @@ Status: proposed v0.1 baseline. Policy changes require updated acceptance cases 
 | BR-012 | Check cancel ownership. Unknown order rejects; terminal owned order returns its terminal state without new effects. |
 
 Preflight and apply observe the same single-writer state. Deduplication precedes financial mutation and persists for the entire v0.1 journal history; expiry/compaction requires a future contract. Funding is a privileged synthetic adjustment command with idempotency and ledger entries. Trading-effective market configuration is immutable while active orders exist.
+
+See [ADR-0002](../architecture/decisions/0002-matching-baseline.md) for instrument limits, order-ID lifetime, event budgets, and non-durable matching behavior.

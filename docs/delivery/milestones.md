@@ -14,20 +14,8 @@ M0 in progress. Documentation bootstrap is a baseline; technical spikes and poli
 
 These inherited planning hypotheses are not commitments: 270-465 focused hours before contingency, approximately 338-581 with 25%. Weekly capacity is unconfirmed. Re-estimate after M0, M1, and M2; no fixed deadline.
 
-## Next M0 work
+## Current gate and work items
 
-Review self-trade, fee, deduplication, and funding policies. Run safe-Rust matching and .NET/Rust round-trip spikes, each timeboxed to 4-8 hours. Select/pin toolchains alongside real manifests and build/test jobs. Resolve numeric widths, market/account limits, framing bounds, errors, and capacity preflight semantics.
+The matching specification gate is accepted in [M0 review](m0-review.md); M0 as a whole remains open for the cross-language spike. The nearest outcome is a specified and correct matching core. First executable flow and fixture coverage do not close M1 until independent reference/generated tests and review are complete.
 
-## M1 backlog
-
-| ID | Work | Acceptance | Estimate |
-| --- | --- | --- | --- |
-| M1-01 | Typed prices, quantities, IDs, checked arithmetic | Zero/overflow/bounds reject tests | 3-6 h |
-| M1-02 | Orders and price levels | Stable FIFO/deterministic iteration | 4-8 h |
-| M1-03 | GTC insertion/crossing | SC-02/03/04/05 | 4-8 h |
-| M1-04 | Cancel/terminal lookup | SC-01/06 with quantity accounting | 3-6 h |
-| M1-05 | Self-trade/capacity preflight | SC-11/12 atomic rejects | 4-8 h |
-| M1-06 | CLI/reference model | First scenario and seeded generated cases | 4-8 h |
-| M1-07 | Review and limits | Reproduction guide, actual effort, re-estimate | 2-4 h |
-
-Task ranges exclude some learning/integration covered by the milestone envelope. Split tasks exceeding eight hours. Funding/reservation is M2; matching-only M1 fixtures must label their financial bypass and cannot claim the complete acceptance journey.
+[Backlog](backlog.md) is the sole work-item source, including dependencies, estimate ranges, acceptance evidence, and status. Do not duplicate detailed tasks here or in GitHub Issues.
