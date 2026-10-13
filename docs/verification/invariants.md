@@ -15,4 +15,13 @@
 
 Use table-driven unit tests, seeded generated sequences, a simple reference model, cross-process integration, then crash tests. Compare canonical logical state rather than memory layout. Replay includes funding, market-state changes, and deduplication.
 
-M1 proves matching; M2 financial and duplicate behavior; M3 authorization/protocol; M4 recovery. No engine tests have run yet.
+M1 proves matching; M2 financial and duplicate behavior; M3 authorization/protocol; M4 recovery. Matching evidence now exists in src/engine/tests/scenarios.rs and the shared MC fixtures. Financial, command-deduplication, and recovery invariants remain unverified.
+
+## Current matching evidence
+
+| Invariant | Implemented evidence | Remaining |
+| --- | --- | --- |
+| INV-003 | Quantity conservation checked after every fixture command | Generated streams, M1-04 |
+| INV-005 | MC-04/05/06/16 price/FIFO; MC-07 resting price | Independent reference comparison |
+| INV-008 | Engine snapshot equality on every rejected fixture command | Financial reject atomicity in M2 |
+| INV-001/002/004/006/007/009/010 | Not implemented | Financial, retry, recovery, projections |

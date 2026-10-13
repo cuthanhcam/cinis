@@ -9,3 +9,7 @@ One book, safe Rust, ordinary collections, limit GTC, partial fill, cancel. Demo
 ## .NET/Rust protocol
 
 One framed TCP loopback command/result. Test split/multiple frames, invalid lengths, disconnect before/after submission, timeout/retry IDs. Record serialization interoperability and explicit bounds. Shared memory is deferred.
+
+## Completed evidence
+
+[First matching baseline](matching-baseline.md) records the implemented flow and local checks. [Experiment template](experiment-template.md) is available for subsequent spikes. The cross-language spike remains pending.

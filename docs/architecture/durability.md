@@ -22,3 +22,7 @@ Snapshots include sequence, schema version, book, balances, holds, ledger state 
 | Corruption within committed history | Fail closed; preserve files and investigate |
 
 Power-loss guarantees depend on synchronization, filesystem, and hardware. Document and test the exact policy before claiming it. Disk loss, replication, and multi-host failover are outside v0.1. Journal format, sync APIs, snapshot layout, and retention need ADRs before M4.
+
+## Current matching contract
+
+The M1 core is volatile. Accepted means the in-memory transition completed; process exit loses everything. Do not issue or infer a durable ACK. ADR-0002 accepts this starting guarantee.
