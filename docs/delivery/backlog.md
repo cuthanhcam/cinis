@@ -6,11 +6,11 @@ This file is the single work-item source. GitHub Issues are not maintained in pa
 | --- | --- | --- | --- | --- | --- |
 | M0-01 | Review definition and decisions | none | M0 decision register and ADR-0002 | 2-4 h | Done (specification) |
 | M0-02 | Requirements and ownership | M0-01 | FR/QR acceptance and sole state owners | 3-6 h | Done (specification) |
-| M0-03 | Structured matching examples | M0-01 | Initial state, commands, events, final state in shared fixtures | 3-6 h | In progress |
+| M0-03 | Structured matching examples | M0-01 | Initial state, commands, events, final state in shared fixtures | 3-6 h | Done: 17 shared MC fixtures |
 | M0-04 | Cross-language spike | M0-01 | Framing/disconnect/correlation report; resolve protocol questions | 4-8 h | Todo |
-| M1-01 | Rust crate and pinned toolchain | M0-01 | Build, rustfmt, Clippy, tests, CI workflow | 2-4 h | In progress |
-| M1-02 | First matching flow | M1-01, M0-03 | Sell 10, buy 4, cancel 6; demo and invariant checks | 4-8 h | In progress |
-| M1-03 | Matching edge cases | M1-02 | Priority/FIFO/multifill/cancel/invalid/self-trade/capacity fixtures | 4-8 h | In progress |
+| M1-01 | Rust crate and pinned toolchain | M0-01 | Build, rustfmt, Clippy, tests, CI workflow | 2-4 h | Done: crate, pin, lockfile, workflow; local checks pass |
+| M1-02 | First matching flow | M1-01, M0-03 | Sell 10, buy 4, cancel 6; demo and invariant checks | 4-8 h | Done: fixture tests and CLI verified locally |
+| M1-03 | Matching edge cases | M1-02 | Priority/FIFO/multifill/cancel/invalid/self-trade/capacity fixtures | 4-8 h | Done: fixture tests and CLI verified locally |
 | M1-04 | Independent reference and generated streams | M1-03 | Reproducible seed; compare events and logical state | 4-8 h | Todo |
 | M1-05 | M1 review and estimate refresh | M1-04 | Evidence, limits, unresolved questions, actual effort | 2-4 h | Todo |
 | M2-01 | Ledger and financial limits | M1-03 | ledger.md with postings, funding source, reconciliation, account bounds | 3-6 h | Todo |
@@ -21,3 +21,5 @@ This file is the single work-item source. GitHub Issues are not maintained in pa
 | M6-01 | Full demo and baseline report | M5-01 | Full scope journey; benchmark-environment.md plus raw evidence | Refine at M6 | Todo |
 
 Actual focused effort has not been measured; do not substitute elapsed assistant runtime for engineering estimates. Financial and durability scenarios stay pending until those layers exist.
+
+M1-01 CI workflow is committed; local success is recorded in testing.md. Remote CI execution must be checked separately. M1 remains open for M1-04/05.

@@ -19,3 +19,7 @@ Reviewed 2026-10-13. Accepted means the working implementation baseline, not ext
 | Zero-allocation, advanced IPC, replication, blockchain | Deferred | Post-v0.1 research |
 
 M0 is not globally complete: the cross-language spike and later-stage contracts remain unresolved. The matching specification gate is accepted for starting M1. Weekly availability is still unconfirmed; retain estimate ranges without calendar promises.
+
+## Matching evidence
+
+The first Rust matching flow and 17 fixture tests are implemented; see [baseline report](../../research/matching-baseline.md). Rust is pinned to 1.95.0. This closes the small Rust feasibility question, not the cross-language spike or the full M1 correctness gate.

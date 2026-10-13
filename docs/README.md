@@ -26,7 +26,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Acceptance scenarios](verification/scenarios.md)
 - [Invariants](verification/invariants.md) and [strategy](verification/strategy.md)
 - [Benchmarks](verification/benchmarks.md)
-- [Setup](development/setup.md)
+- [Setup](development/setup.md) and [testing](development/testing.md)
 - [Runbook plan](operations/runbooks.md)
 - [Spikes](../research/README.md) and [experiment template](../research/experiment-template.md)
 

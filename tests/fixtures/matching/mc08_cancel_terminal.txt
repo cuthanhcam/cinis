@@ -1,0 +1,12 @@
+# Initial state: empty book; no balances, authentication, or persistence.
+# Defaults: tracked-order limit 10000, per-place event budget 1024.
+C 99 1 => ! UnknownOrder
+P 1 1 S 100 2 => A 1
+C 1 1 => C 1 2
+C 1 1 => X 1 Cancelled
+P 2 2 S 100 2 => A 2
+P 3 3 B 100 2 => A 3 | T 2 3 100 2
+C 2 2 => X 2 Filled
+S 1 1 Sell 100 2 0 0 2 Cancelled
+S 2 2 Sell 100 2 0 2 0 Filled
+S 3 3 Buy 100 2 0 2 0 Filled
