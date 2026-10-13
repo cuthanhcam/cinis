@@ -1,0 +1,10 @@
+# Initial state: empty book; no balances, authentication, or persistence.
+# Defaults: tracked-order limit 10000, per-place event budget 1024.
+P 1 1 B 0 1 => ! InvalidPrice
+P 1 1 B 1 0 => ! InvalidQuantity
+P 1 1 B 1000000001 1 => ! InvalidPrice
+P 1 1 B 1 1000000001 => ! InvalidQuantity
+P 0 1 B 1 1 => ! InvalidId
+P 1 0 B 1 1 => ! InvalidId
+P 1 1 B 1000000000 1000000000 => A 1
+S 1 1 Buy 1000000000 1000000000 1000000000 0 0 Open
