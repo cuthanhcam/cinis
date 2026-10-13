@@ -1,10 +1,12 @@
 # Financial model
 
+Status: Accepted financial semantics; no financial implementation yet.
+
 ## Units
 
 Integer price ticks, quantity lots, asset atoms. Demo fixture: one lot = one base atom; one tick = one quote atom per base atom. Quote notional = price ticks times quantity lots. Arbitrary decimal scales require an explicit conversion contract before use.
 
-Check all arithmetic, parsing, and conversion. Reject out-of-range values before mutation. No floating point or implicit rounding. Numeric widths and market/account limits remain M0 spike decisions, required before M1 acceptance.
+Check all arithmetic, parsing, and conversion. Reject out-of-range values before mutation. No floating point or implicit rounding. Matching widths and instrument limits are accepted in ADR-0002. Financial account limits, posting schema, and aggregate overflow behavior must be decided in ledger.md before M2 implementation.
 
 ## Reservation and settlement
 
