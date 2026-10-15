@@ -10,5 +10,9 @@ publish = false
 name = "cinis-demo"
 path = "src/main.rs"
 
+[[bin]]
+name = "cinis-matching-demo"
+path = "src/bin/matching_demo.rs"
+
 [lints.rust]
 unsafe_code = "forbid"
