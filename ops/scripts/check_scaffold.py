@@ -17,7 +17,7 @@ IGNORED = (".env", ".env.local", "artifacts/logs/example/run.json", "src/engine/
            "src/platform/Cinis.Gateway/bin/Debug/app.dll", "src/platform/Cinis.Gateway/obj/project.assets.json",
            "ops/scripts/__pycache__/example.pyc", ".venv/example", "private.key")
 TRACKABLE = (".env.example", ".vscode/settings.json", ".github/workflows/ops.yml",
-             "src/engine/Cargo.lock", "src/platform/Cinis.Gateway/appsettings.json",
+             "src/engine/Cargo.lock", "src/engine/src/bin/matching_demo.rs", "src/platform/Cinis.Gateway/appsettings.json",
              "src/platform/Cinis.Gateway/Migrations/Initial.cs", "deploy/compose.yaml")
 
 

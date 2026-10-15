@@ -1,6 +1,6 @@
 # Cinis repository instructions
 
-Read [AGENTS.md](../AGENTS.md), [documentation index](../docs/README.md), and the affected specifications. The current code is a volatile, matching-only Rust prototype. Do not imply financial, gateway, or recovery guarantees exist.
+Read [AGENTS.md](../AGENTS.md), [documentation index](../docs/README.md), and the affected specifications. The current Rust core implements volatile synthetic financial execution, ledger reconciliation, and in-memory command idempotency. Do not imply gateway authentication, persisted deduplication, or recovery guarantees exist.
 
 Use the naming policy and single state owner. Repository automation belongs under ops/scripts/; operational documentation belongs under docs/operations/. Keep the backlog canonical, preserve ignored init.md, and never commit generated logs or secrets.
 

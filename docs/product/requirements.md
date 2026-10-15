@@ -26,7 +26,7 @@ FR IDs retain their meanings from [scope](scope-v0.1.md).
 | FR-007 | Snapshot/deltas form a consistent stream; detect gaps and resync; isolate slow clients | Integration/failure tests; M5 |
 | FR-008 | Clean-start full journey and reproducible benchmark report with raw output | M6 |
 
-The first matching demo implements only part of FR-001/002. It does not reserve funds, authenticate clients, deduplicate command envelopes, or persist state. A duplicate order ID rejection is different from FR-005 retry behavior.
+M2 now implements in-process FR-001/002/003 and memory-only FR-005: synthetic funding, reservation/settlement/release, ledger reconciliation, and retained command outcomes. Trusted caller permissions are not FR-004 API-key authentication. Persistence/restart parts of FR-005/006 and all network/query projection behavior remain pending. A duplicate order ID rejection is different from command retry behavior.
 
 ## Quality requirements
 
@@ -41,4 +41,4 @@ The first matching demo implements only part of FR-001/002. It does not reserve 
 
 ## Full acceptance
 
-Use the funding-to-recovery journey in scope-v0.1.md. A matching-only demo is a prerequisite, not completion of that journey. Requirements are complete only when linked evidence exists; current delivery status lives in [backlog](../delivery/backlog.md).
+Use the funding-to-recovery journey in scope-v0.1.md. The funded M2 demo completes the volatile portion, not the restart/recovery portion. Requirements are complete only when linked evidence exists; current delivery status lives in [backlog](../delivery/backlog.md).

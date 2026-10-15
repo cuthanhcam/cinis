@@ -20,9 +20,9 @@ Status: Implemented repository foundation; application expansion gates remain ex
 
 ## Intentional application gates
 
-No .NET project, global.json, central package list, platform build workflow, container image, cloud resource, or database migration is fabricated for appearance. Introduce each with an actual executable responsibility, supported/pinned version, tests, configuration contract, and reproducible instructions. The current Rust crate remains the only application implementation.
+No .NET project, global.json, central package list, platform build workflow, container image, cloud resource, or database migration is fabricated for appearance. Introduce each with an actual executable responsibility, supported/pinned version, tests, configuration contract, and reproducible instructions. The current Rust crate remains the only application implementation, now with volatile financial execution.
 
-Before .NET gateway scaffolding: choose SDK, define protocol/ownership and independent startup, then add solution/project files, Directory.Build.props and package policy as needed, global.json, tests, and CI together. Before financial source work: finalize ledger/account limits and reconciliation cases. Before services: readiness/shutdown/log rotation and local binding policy. Before deploy: real image/manifest, volume/secret ownership, health checks, and cleanup/restore instructions.
+Before .NET gateway scaffolding: choose SDK, define protocol/ownership and independent startup, then add solution/project files, Directory.Build.props and package policy as needed, global.json, tests, and CI together. Financial source work now follows ledger.md and ADR-0005 with numerical/reconciliation tests. Before services: readiness/shutdown/log rotation and local binding policy. Before deploy: real image/manifest, volume/secret ownership, health checks, and cleanup/restore instructions.
 
 ## Maintainer checklist
 

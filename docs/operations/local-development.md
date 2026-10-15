@@ -1,6 +1,6 @@
 # Local development runbook
 
-Status: Implemented. Owner: repository maintainer. Last verified: 2026-10-15, Windows PowerShell 5.1. Scope: Rust matching-only job.
+Status: Implemented. Owner: repository maintainer. Last verified: 2026-10-15, Windows PowerShell 5.1. Scope: volatile synthetic-financial and matching-only Rust jobs.
 
 ## Prerequisites
 
@@ -22,7 +22,9 @@ Success: process exit 0 and run.json status Succeeded. Every completed step also
 powershell -NoProfile -File .\ops\scripts\Invoke-Cinis.ps1 -Task Run
 ```
 
-Expected stdout: sell order accepted; buy accepted; trade quantity 4 at 100; cancellation quantity 6; final book empty. Cargo build diagnostics appear in stderr even on success. No balances, persistent orders, background service, or listener is created. No shutdown/cleanup command is required after the job exits.
+Expected stdout: synthetic funding, sell 10/buy 4, fill 4, exact retry of the original sequence, cancel 6, final buyer base 4/quote 600 and seller base 6/quote 400, seven ledger transfers, and no remaining holds/book. Cargo build diagnostics appear in stderr even on success. Balances are volatile; no persistent orders, background service, or listener is created. No shutdown/cleanup command is required after the job exits.
+
+Use -Task RunMatching for the preserved matching-only demo; it intentionally bypasses financial state.
 
 ## Individual tasks and remote working directory
 

@@ -1,6 +1,6 @@
 # Acceptance scenarios
 
-Status: full-system scenarios planned; matching-only MC fixtures are executable. Fresh accounts, sufficient funding, zero fees, one atom per tick/lot unless stated. Makers and takers use different accounts except self-trade tests.
+Status: matching MC fixtures and in-process financial scenarios implemented; full network/restart journey remains planned. Fresh accounts, sufficient funding, zero fees, one atom per tick/lot unless stated. Makers and takers use different accounts except self-trade tests.
 
 | ID | Input | Expected result |
 | --- | --- | --- |
@@ -39,4 +39,4 @@ The [shared fixture format and files](../../tests/fixtures/matching/README.md) a
 | MC-12 atomic self-trade; MC-13 unreachable self-trade | BR-009; SC-11 |
 | MC-14 tracked capacity; MC-15 event budget; MC-17 zero event budget | BR-010; SC-12 |
 
-Insufficient funds (SC-07), transport-command retries (SC-08/09), pause (SC-13), financial release (SC-16), and recovery (SC-15) remain later-layer work.
+In-process financial tests now cover insufficient funds (SC-07), command retry/conflict (SC-08/09), pause (SC-13), financial release (SC-16), and the funded part of SC-01. Gateway authentication and transport behavior remain M3; recovery (SC-15) remains M4. See [financial evidence](financial-testing.md).

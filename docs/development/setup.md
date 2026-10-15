@@ -10,7 +10,7 @@ python ops/scripts/check_docs.py
 git diff --check
 ```
 
-The Rust crate at src/engine implements a matching-only CLI; see [testing](testing.md) for commands. There is no .NET solution, database deployment, network gateway, or durable application yet.
+The Rust crate at src/engine implements a synthetic financial CLI plus a preserved matching-only CLI; see [testing](testing.md) for commands. There is no .NET solution, database deployment, network gateway, or durable application yet.
 
 ## Toolchain baseline task
 
