@@ -21,7 +21,9 @@ M1 proves matching; M2 financial and duplicate behavior; M3 authorization/protoc
 
 | Invariant | Implemented evidence | Remaining |
 | --- | --- | --- |
-| INV-003 | Quantity conservation checked after every fixture command | Generated streams, M1-04 |
-| INV-005 | MC-04/05/06/16 price/FIFO; MC-07 resting price | Independent reference comparison |
+| INV-003 | Quantity conservation checked after every fixture command | Generated streams implemented; expand corpus as regressions arise |
+| INV-005 | MC-04/05/06/16 price/FIFO; MC-07 resting price | Reference comparison implemented; financial layers remain pending |
 | INV-008 | Engine snapshot equality on every rejected fixture command | Financial reject atomicity in M2 |
 | INV-001/002/004/006/007/009/010 | Not implemented | Financial, retry, recovery, projections |
+
+INV-003/005/008 also run against the [independent generated corpus](differential-testing.md). This is volatile matching determinism, not journal replay evidence for INV-007.

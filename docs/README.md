@@ -21,10 +21,10 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 
 ## Delivery and evidence
 
-- [Milestones](delivery/milestones.md), [backlog](delivery/backlog.md), and [M0 review](delivery/m0-review.md)
+- [Milestones](delivery/milestones.md), [backlog](delivery/backlog.md), [M0 review](delivery/m0-review.md), and [M1 review](delivery/m1-review.md)
 - [Risks](delivery/risks.md)
 - [Acceptance scenarios](verification/scenarios.md)
-- [Invariants](verification/invariants.md) and [strategy](verification/strategy.md)
+- [Invariants](verification/invariants.md), [strategy](verification/strategy.md), and [differential testing](verification/differential-testing.md)
 - [Benchmarks](verification/benchmarks.md)
 - [Setup](development/setup.md) and [testing](development/testing.md)
 - [Ops and runbooks](ops/README.md)

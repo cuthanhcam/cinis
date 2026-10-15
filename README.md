@@ -6,9 +6,9 @@ Cinis explores matching, pre-trade risk, financial state, durable execution, rec
 
 ## Status
 
-The first matching-only Rust core and CLI are implemented: limit GTC, price-time priority, resting-price fills, partial fills, cancellation, ownership validation, self-trade preflight, and bounded admission. Seventeen shared scenario fixtures are executable tests.
+The first matching-only Rust core and CLI are implemented: limit GTC, price-time priority, resting-price fills, partial fills, cancellation, ownership validation, self-trade preflight, and bounded admission. Seventeen shared scenario fixtures and nine independent-model/generated tests pass locally; the generated corpus covers 8,192 commands.
 
-This prototype is volatile and has no financial state, command-envelope deduplication, gateway, or recovery. M0 remains open for the cross-language spike; M1 remains open for independent reference/generated testing and review. Full v0.1 behavior below is still planned.
+This prototype is volatile and has no financial state, command-envelope deduplication, gateway, or recovery. M0 remains open for the cross-language spike; M1 has independent reference/generated evidence and remains open for maintainer review and effort calibration. Full v0.1 behavior below is still planned.
 
 ## v0.1 target
 
