@@ -1,0 +1,16 @@
+name: Question
+description: Ask about usage, specifications, or project direction.
+title: '[Question]: '
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question and context
+      description: Explain the goal and link the documentation you checked.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Revision and environment
+      description: Include OS/tool versions and exact command if relevant. Remove secrets.

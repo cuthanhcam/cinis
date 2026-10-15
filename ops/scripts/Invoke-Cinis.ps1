@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param(
     [ValidateSet('Engine')][string]$Project = 'Engine',
-    [ValidateSet('Build', 'Test', 'Run', 'Format', 'Lint', 'Docs', 'Verify')][string]$Task = 'Verify',
+    [ValidateSet('Build', 'Test', 'Run', 'Format', 'Lint', 'Docs', 'Workflows', 'Verify')][string]$Task = 'Verify',
     [ValidateRange(1, 86400)][int]$TimeoutSeconds = 600
 )
 Set-StrictMode -Version Latest

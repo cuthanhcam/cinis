@@ -1,0 +1,15 @@
+{
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": false,
+  "rust-analyzer.linkedProjects": ["src/engine/Cargo.toml"],
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "search.exclude": {
+    "**/target": true,
+    "**/artifacts": true,
+    "**/node_modules": true
+  }
+}

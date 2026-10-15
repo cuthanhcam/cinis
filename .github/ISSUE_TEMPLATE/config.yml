@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation and current scope
+    url: https://github.com/cuthanhcam/cinis/blob/develop/docs/README.md
+    about: Read specifications, setup, operational guides, and current limitations first.
+  - name: Security reporting policy
+    url: https://github.com/cuthanhcam/cinis/blob/develop/SECURITY.md
+    about: Do not disclose exploitable details or credentials in a public issue.

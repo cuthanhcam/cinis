@@ -1,0 +1,6 @@
+# Ownership review is enforced only when a hosting ruleset requires it.
+* @cuthanhcam
+/.github/ @cuthanhcam
+/ops/ @cuthanhcam
+/docs/architecture/ @cuthanhcam
+/docs/domain/ @cuthanhcam

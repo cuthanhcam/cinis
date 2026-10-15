@@ -1,5 +1,30 @@
+# Normalize maintained text for Windows/Linux contributors and hosted runners.
 * text=auto eol=lf
+*.md text diff=markdown
+*.rs text
+*.py text
+*.ps1 text
+*.psm1 text
+*.psd1 text
+*.cs text
+*.csproj text
+*.props text
+*.targets text
+*.json text
+*.yml text
+*.yaml text
+*.toml text
+*.sh text
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary artifacts must never undergo text normalization.
 *.png binary
 *.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
 *.pdf binary
 *.zip binary
+*.gz binary
+*.woff2 binary

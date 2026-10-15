@@ -12,11 +12,11 @@ DOTNET = re.compile(r"Cinis(?:\.[A-Z][A-Za-z0-9]*)+")
 ROOT_FILES = {
     "README.md", "AGENTS.md", "LICENSE", "CHANGELOG.md", "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md", "SECURITY.md", "GIT_GUIDELINES.md", "COMMIT_MESSAGE_GUIDELINES.md",
-    ".editorconfig", ".gitattributes", ".gitignore", "global.json", "NuGet.config",
+    ".editorconfig", ".gitattributes", ".gitignore", ".env.example", "global.json", "NuGet.config",
     "Directory.Build.props", "Directory.Build.targets", "Directory.Packages.props",
 }
 TOOL_FILES = {"Cargo.toml", "Cargo.lock", "lib.rs", "main.rs", "mod.rs", "__init__.py", "Dockerfile", "Makefile"}
-GITHUB_FILES = {"pull_request_template.md", "bug_report.md", "work_item.md"}
+GITHUB_FILES = {"CODEOWNERS", "SUPPORT.md", "pull_request_template.md", "bug_report.md", "work_item.md"}
 
 
 def validate_path(name):
@@ -26,7 +26,7 @@ def validate_path(name):
     if parts[0] == "scripts" or parts[:2] == ("docs", "ops"):
         errors.append("use ops/scripts/ for automation and docs/operations/ for operational docs")
     for index, folder in enumerate(parts[:-1]):
-        if folder == ".github" and index == 0:
+        if folder in {".github", ".vscode"} and index == 0:
             continue
         if folder == "ISSUE_TEMPLATE" and parts[0] == ".github":
             continue
