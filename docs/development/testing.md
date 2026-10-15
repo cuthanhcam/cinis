@@ -18,3 +18,13 @@ Matching fixtures live under tests/fixtures/matching. Every fixture starts empty
 Independent reference-model and seeded generated tests remain backlog M1-04. There is no claimed property-generator seed yet. Financial and crash tests must be added with their implementation layers, not simulated by matching fixtures.
 
 Fixtures cover both bid/ask price priority and FIFO, exact/partial/multiple fills, GTC remainder, terminal/unknown cancellation, bounds/invalid IDs, duplicate order IDs, cancel ownership, atomic self-trade rejection, unreachable self-trade, and tracked-order/event capacities. All fixtures rerun from the same empty state to check deterministic results.
+
+## Local ops automation
+
+See [ops runbook](../ops/local-development.md). On Windows PowerShell 5.1, the public Verify task runs format, lint, build, matching tests, and documentation checks with per-step logs. Run automation integration tests with:
+
+```sh
+python -m unittest discover -s ops/tests -v
+```
+
+On 2026-10-15, seven process tests passed: quoting/spaces/empty arguments, native nonzero code, missing executable, large dual-stream output, parent timeout, descendant timeout cleanup, and public fail-fast behavior. Verify and demo also completed locally. Hosted Windows CI is configured separately; no hosted outcome is inferred from local success.
