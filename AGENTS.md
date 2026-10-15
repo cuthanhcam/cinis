@@ -18,3 +18,6 @@ Read README.md, docs/README.md, and relevant specifications before editing.
 - For runner changes run python -m unittest discover -s ops/tests -v on Windows and the public Verify/Run tasks.
 
 Follow [naming conventions](docs/development/naming-conventions.md): shared paths use repository defaults, while C#, Rust, Python, and PowerShell keep their language-specific casing. Automation belongs under ops/scripts/; operational documentation belongs under docs/operations/.
+
+- Before updating remote develop, validate all four required hosted workflows for the exact integration SHA with ops/scripts/check_ci.py. Use a tested integration branch and fast-forward develop; local-only checks are insufficient.
+- Keep scaffold/ignore/workflow checks passing. Never skip/soften a failing required check or fabricate future .NET/deployment projects.
