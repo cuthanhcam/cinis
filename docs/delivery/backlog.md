@@ -13,14 +13,14 @@ This file is the single work-item source. GitHub Issues are not maintained in pa
 | M1-03 | Matching edge cases | M1-02 | Priority/FIFO/multifill/cancel/invalid/self-trade/capacity fixtures | 4-8 h | Done: fixture tests and CLI verified locally |
 | M1-04 | Independent reference and generated streams | M1-03 | differential.rs: 8,192 generated commands plus targeted reference test; verification report | 4-8 h | Done (local evidence) |
 | M1-05 | M1 review and estimate refresh | M1-04 | m1-review.md records local evidence/limits; maintainer review and effort calibration pending | 2-4 h | In progress |
-| M2-01 | Ledger and financial limits | M1-03 | ledger.md with postings, funding source, reconciliation, account bounds | 3-6 h | Todo |
-| M2-02 | Financial state and command deduplication | M2-01 | INV-001/002/004/006, insufficient funds and retry scenarios | Refine at M2 | Todo |
+| M2-01 | Ledger and financial limits | M1-03 | architecture/ledger.md and ADR-0005 | 3-6 h | Done (specification) |
+| M2-02 | Financial state and command deduplication | M2-01 | financial.rs, financial_properties.rs, core/demo, financial-testing.md; volatile INV-001/002/004/006 | Effort not measured | Done (in-memory implementation; hosted gate required for publication) |
 | M3-01 | Gateway/auth/query integration | M0-04, M2-02 | FR-004 and end-to-end orders; independent from Aegis | Refine at M3 | Todo |
 | M4-01 | Durability and crash recovery | M2-02 | Storage ADRs and crash matrix | Refine at M4 | Todo |
 | M5-01 | Market data and operations | M4-01 | Gap/resync, bounded clients, verified runbooks | Refine at M5 | Todo |
 | M6-01 | Full demo and baseline report | M5-01 | Full scope journey; benchmark-environment.md plus raw evidence | Refine at M6 | Todo |
 
-Actual focused effort has not been measured; do not substitute elapsed assistant runtime for engineering estimates. Financial and durability scenarios stay pending until those layers exist.
+Actual focused effort has not been measured; do not substitute elapsed assistant runtime for engineering estimates. Financial scenarios now have in-memory evidence; durability and network scenarios remain pending.
 
 M1-01 CI workflow is committed; local success is recorded in testing.md. Remote CI execution must be checked separately. M1-04 has local evidence; M1-05 remains open for maintainer review and effort calibration.
 

@@ -27,9 +27,9 @@ Product requirements describe desired behavior; domain specifications define exa
 
 ## Rust baseline
 
-The single src/engine crate is deliberately small. src/lib.rs exposes typed commands, ordered events, rejection, immutable order views, and invariant checks. src/main.rs is the demo. tests/scenarios.rs consumes shared matching fixtures; additional independent-model tests belong beside it. Split code into cohesive modules when responsibilities grow, not into empty architectural layers.
+The single src/engine crate is deliberately small. src/lib.rs exports the public API; matching.rs owns the primitive matcher; ledger.rs owns balanced transfers/reconciliation; execution/types.rs defines envelopes/results; execution/state.rs applies tentative financial transitions; execution/mod.rs owns sequencing/idempotency/commit. src/main.rs is the funded demo; src/bin/matching_demo.rs preserves the raw matching example. tests/scenarios.rs consumes shared matching fixtures; additional independent-model tests belong beside it. Split code into cohesive modules when responsibilities grow, not into empty architectural layers.
 
-The matcher currently uses Vec-backed scan/sort storage. Avoid calling it optimized or zero-allocation. Financial state must be designed before introducing its modules. A multi-crate workspace is justified only by real dependency/reuse boundaries.
+The matcher currently uses Vec-backed scan/sort storage. Avoid calling it optimized or zero-allocation. Financial state is implemented according to ledger.md and ADR-0005; whole-state copying/full reconciliation are a correctness baseline, not a low-latency design. A multi-crate workspace is justified only by real dependency/reuse boundaries.
 
 ## Evolution
 

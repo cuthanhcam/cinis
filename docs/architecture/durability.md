@@ -26,3 +26,7 @@ Power-loss guarantees depend on synchronization, filesystem, and hardware. Docum
 ## Current matching contract
 
 The M1 core is volatile. Accepted means the in-memory transition completed; process exit loses everything. Do not issue or infer a durable ACK. ADR-0002 accepts this starting guarantee.
+
+## M2 extension
+
+ExecutionCore now retains ledger, balances, holds, market state, and original command outcomes in memory. None survives process exit. Its committed response means atomic in-memory completion only; M2 does not upgrade the durability guarantee. A future snapshot/journal must include financial and deduplication state, not merely the book.

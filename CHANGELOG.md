@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Added ExecutionCore as the atomic financial entry point with synthetic funding, checked account/supply limits, reservations, settlement/release, balanced ledger, market pause, and account-scoped command idempotency.
+- Added 24 financial scenarios, four fixed-seed financial streams, two execution boundary tests, ledger/ADR/API documentation, and a funded default CLI with a preserved matching-only binary.
+- Split matching, ledger, execution contracts/state, and sequencing ownership into cohesive Rust modules; all state remains volatile.
+
 - Fixed the hosted pwsh-to-Windows-PowerShell module-resolution failure and added shadowed-module regression coverage.
 - Run required workflows on all pushed branches, test Rust on Linux/Windows, pin current Node 24 actions, and bound/consolidate CI runs.
 - Added pinned actionlint, scaffold/ignore checks, and a read-only exact-commit CI integration gate with regression tests.

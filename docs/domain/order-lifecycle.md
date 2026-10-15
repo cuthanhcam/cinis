@@ -28,4 +28,4 @@ Original quantity = filled + remaining + cancelled. Cancelled quantity is zero u
 | Cancel terminal owned order | Terminal status | Unchanged |
 | Invalid place/cancel | Rejection | Existing book unchanged |
 
-Accepted, Trade, Cancelled, and Terminal are matching-core event kinds. M1 rejections are return values, not stored rejected order records. Place order IDs are distinct from later command IDs. Financial reservation/release is not implemented in M1.
+Accepted, Trade, Cancelled, and Terminal are matching-core event kinds. M1 rejections are return values, not stored rejected order records. Place order IDs are distinct from later command IDs. M1 remains matching-only; M2 ExecutionCore now implements atomic reservation/settlement/release and retained command outcomes. See [ledger](../architecture/ledger.md).

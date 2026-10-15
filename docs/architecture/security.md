@@ -6,4 +6,4 @@ Store verifiable hashes for bearer secrets, display once, and support revocation
 
 Restrict engine/database access to trusted local services for the first deployment. Never expose the engine port publicly. Exclude credentials from logs. Validate lengths, bounds, and versions across process boundaries.
 
-Planned tests: wrong account cannot query/cancel; read key cannot trade; revoked key fails; trading key cannot fund; malformed input cannot mutate state. Identity-provider selection and Aegis integration remain deferred.
+Planned tests: wrong account cannot query/cancel; read key cannot trade; revoked key fails; trading key cannot fund; malformed input cannot mutate state. Identity-provider selection and Aegis integration remain deferred. M2 ExecutionCore enforces trusted caller permissions and account ownership, including permission checks before cached replies. This is not authentication; an untrusted client must never choose Permissions directly.

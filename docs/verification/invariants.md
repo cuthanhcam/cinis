@@ -1,29 +1,20 @@
-# Invariants and verification strategy
+# Invariants and current evidence
 
-| ID | Invariant | Planned evidence |
+Status: matching and volatile financial evidence implemented. Durable/network/projection guarantees remain planned.
+
+| ID | Invariant | Current verification |
 | --- | --- | --- |
-| INV-001 | Available/reserved balances never negative | Checked transitions and generated workloads |
-| INV-002 | Trades conserve assets; funding explicitly accounted | Per-asset ledger reconciliation |
-| INV-003 | Original = filled + remaining + cancelled | Lifecycle properties |
-| INV-004 | Holds equal remaining obligations | Partial fill/improvement/cancel tests |
-| INV-005 | Price-time priority and resting execution price | Reference model and SC-02/03/16 |
-| INV-006 | Duplicate command has at most one effect | Retry/conflict/crash tests |
-| INV-007 | Replay restores logical state/results | Snapshot/journal canonical comparison |
-| INV-008 | Rejects do not mutate financial/book state | Before/after state comparisons |
-| INV-009 | Durable result remains recoverable | Journal/apply/respond crash matrix |
-| INV-010 | Projections apply event effects once and expose lag | Duplicate delivery, gaps, restart |
+| INV-001 | Available/reserved balances never negative | Checked ledger debits; insufficient quote/base tests; generated financial streams |
+| INV-002 | Trades conserve assets; funding explicitly accounted | Ledger bucket aggregation, issuance source, independent funding totals, exact numerical cases |
+| INV-003 | Original = filled + remaining + cancelled | Matching checks after every fixture/generated command and financial commit |
+| INV-004 | Holds equal remaining obligations | ExecutionState order-obligation aggregation; partial/multifill/improvement/cancel cases |
+| INV-005 | Price-time priority and resting execution price | MC fixtures and independent matching oracle; funded execution price cases |
+| INV-006 | Duplicate command has at most one effect | Exact successful/rejected retries; full-core equality; conflicts; permission recheck; cache capacity |
+| INV-007 | Replay restores logical state/results | Pending M4; volatile duplicate runs are not persisted replay evidence |
+| INV-008 | Rejects do not mutate financial/book state | State equality on business reject, including late settlement failure; admission preserves entire core |
+| INV-009 | Durable result remains recoverable | Pending M4; no durable ACK exists |
+| INV-010 | Projections apply event effects once and expose lag | Pending consumers/M4/M5; stable IDs alone do not implement projections |
 
-Use table-driven unit tests, seeded generated sequences, a simple reference model, cross-process integration, then crash tests. Compare canonical logical state rather than memory layout. Replay includes funding, market-state changes, and deduplication.
+Business rejects intentionally retain one decision/cache entry and consume one command sequence; INV-008 excludes that metadata and applies to financial/order/ledger/market state. Admission errors and exact retries preserve the entire core. Event/posting identities are stable; returning historical events on retry does not authorize applying them twice.
 
-M1 proves matching; M2 financial and duplicate behavior; M3 authorization/protocol; M4 recovery. Matching evidence now exists in src/engine/tests/scenarios.rs and the shared MC fixtures. Financial, command-deduplication, and recovery invariants remain unverified.
-
-## Current matching evidence
-
-| Invariant | Implemented evidence | Remaining |
-| --- | --- | --- |
-| INV-003 | Quantity conservation checked after every fixture command | Generated streams implemented; expand corpus as regressions arise |
-| INV-005 | MC-04/05/06/16 price/FIFO; MC-07 resting price | Reference comparison implemented; financial layers remain pending |
-| INV-008 | Engine snapshot equality on every rejected fixture command | Financial reject atomicity in M2 |
-| INV-001/002/004/006/007/009/010 | Not implemented | Financial, retry, recovery, projections |
-
-INV-003/005/008 also run against the [independent generated corpus](differential-testing.md). This is volatile matching determinism, not journal replay evidence for INV-007.
+See [matching method](differential-testing.md), [financial method and test mapping](financial-testing.md), [ledger semantics](../architecture/ledger.md), and [testing commands](../development/testing.md). Matching and financial checks run together in cargo test. Correctness evidence does not imply low latency, exhaustive fuzzing, network security, or crash safety.

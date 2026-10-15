@@ -2,7 +2,7 @@
 
 ## Supported scope
 
-Cinis has no supported released version or production deployment. Current execution is a volatile matching-only prototype; v0.1 is a synthetic-funds sandbox. It does not provide custody, real-asset trading, production auth, or durable financial recovery.
+Cinis has no supported released version or production deployment. Current execution is a volatile synthetic financial prototype with trusted in-process permissions; v0.1 is a synthetic-funds sandbox. It does not provide custody, real-asset trading, production auth, or durable financial recovery.
 
 ## Private reporting
 

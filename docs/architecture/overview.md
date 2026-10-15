@@ -1,6 +1,6 @@
 # Architecture overview
 
-Status: intended architecture; no processes implemented.
+Status: Rust in-process execution and financial CLI implemented; .NET/consumer/database processes remain planned.
 
 ```mermaid
 flowchart LR

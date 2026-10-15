@@ -1,6 +1,6 @@
 # Protocol draft
 
-Status: spike contract; encoding/schema not frozen.
+Status: network spike contract; encoding/schema not frozen. In-process M2 envelopes and typed payload equality are implemented; wire canonicalization remains unimplemented.
 
 Start with bounded length-prefixed TCP loopback frames. Declare version, message type, and payload length. Reject unknown versions, malformed frames, and oversized payloads before allocation or mutation. Spike decisions: byte order, length encoding, maximum frame size, canonical payload hashing, and C#/Rust numeric serialization.
 

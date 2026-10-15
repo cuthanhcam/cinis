@@ -13,13 +13,13 @@ The project serves developers who want to study one coherent execution system, i
 
 | Area | Delivered | Remaining |
 | --- | --- | --- |
-| Execution | Safe-Rust GTC matching, price-time priority, resting execution price, partial fills, cancel, owner checks, atomic self-trade/capacity rejects | Financial state and command-envelope deduplication |
-| Verification | 17 exact fixtures; nine reference/generated tests; 8,192 fixed-seed generated commands | Financial invariants, network and recovery evidence |
+| Execution | GTC matching plus synthetic funding, reservations, settlement/release, balanced ledger, sequenced market state, and command idempotency | Durable recovery and network integration |
+| Verification | 56 Rust tests; matching reference corpus of 8,192 commands; financial corpus of 1,024 fresh attempts plus retries/conflicts | Network, persistence, and recovery evidence |
 | Developer operations | Windows task runner, unique-run logs/metadata, timeout/owned-process cleanup, portable repository checks | Persistent-service lifecycle with real gateway |
 | CI | Linux/Windows engine checks, Windows ops tests, documentation/naming, pinned workflow validation, exact-SHA integration gate | Hosting protections must be configured separately |
 | Management/deployment | Specifications and responsibility guides | No .NET solution, database stack, gateway, listener, or production deployment yet |
 
-The current CLI is volatile and matching-only. It has no funds, ledger, authentication, command retry guarantee, or restart recovery. A green matching test is not evidence of financial correctness or durability. No release, throughput, latency, or zero-allocation claim is made.
+The current CLI executes synthetic financial state in memory, with retained command results and reconciled balances/ledger. Permissions are a trusted local API contract, not network authentication. Restart loses everything; no persisted retry or recovery guarantee exists. No release, throughput, latency, or zero-allocation claim is made.
 
 ## Quick start
 
@@ -32,7 +32,7 @@ git switch develop
 cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-demo
 ```
 
-Expected flow: sell 10 at 100; buy 4 at 100; fill 4; cancel remaining 6; empty book. The command prints the orders and ordered events. All state disappears on process exit.
+Expected flow: fund buyer with 1,000 quote and seller with 10 base; sell 10 at 100; buy 4; retry without another financial effect; cancel 6. Final buyer has base 4/quote 600 and seller base 6/quote 400, with no holds and an empty book. The CLI prints stable event/posting IDs and checks reconciliation. All state disappears on process exit.
 
 For logged Windows verification and execution:
 
@@ -70,7 +70,7 @@ flowchart LR
     Consumers --> Database[(Future PostgreSQL read models)]
 ```
 
-Rust is intended to own sequenced orders, balances, reservations, settlement, ledger state, and deduplication. .NET owns identity, permissions, management, and gateway access. Read models never independently approve spending. See [architecture](docs/architecture/overview.md) and [state ownership](docs/architecture/state-ownership.md).
+ExecutionCore now owns in-memory sequenced orders, balances, reservations, settlement, ledger state, and deduplication. .NET owns identity, permissions, management, and gateway access. Read models never independently approve spending. See [architecture](docs/architecture/overview.md), [state ownership](docs/architecture/state-ownership.md), [ledger](docs/architecture/ledger.md), and [core API](docs/development/core-api.md).
 
 ## Repository map
 
@@ -94,7 +94,7 @@ See [layout](docs/development/repository-layout.md), [naming](docs/development/n
 
 Target: one spot market, synthetic funds, limit GTC, reservation/settlement, account-scoped API access, durable recovery, market data, and reproducible baseline reports. Full acceptance is funding -> sell -> partial fill -> retry without another effect -> restart/recover -> cancel remainder -> reconcile balances/ledger.
 
-Current matching checks do not complete that full journey. Next gates are M1 review and financial model/ledger specification before financial implementation. M0 cross-language discovery remains open. Advanced IPC, zero-allocation, replication, blockchain, and real assets remain deferred. [Scope](docs/product/scope-v0.1.md), [requirements](docs/product/requirements.md), and [backlog](docs/delivery/backlog.md) define the working plan.
+The in-memory financial journey is implemented, but the full restart journey remains incomplete. Next gates are the .NET/Rust protocol spike and gateway integration, followed by journal/recovery. M0 cross-language discovery remains open. Advanced IPC, zero-allocation, replication, blockchain, and real assets remain deferred. [Scope](docs/product/scope-v0.1.md), [requirements](docs/product/requirements.md), and [backlog](docs/delivery/backlog.md) define the working plan.
 
 ## Contributing, support, and licensing
 

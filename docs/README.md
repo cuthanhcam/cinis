@@ -14,18 +14,20 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 ## Architecture
 
 - [Overview](architecture/overview.md) and [state ownership](architecture/state-ownership.md)
+- [Ledger and financial execution](architecture/ledger.md)
 - [Durability](architecture/durability.md)
 - [Protocol draft](architecture/protocol.md)
 - [Security model](architecture/security.md)
-- [ADR-0001](architecture/decisions/0001-project-boundaries.md), [ADR-0002](architecture/decisions/0002-matching-baseline.md), and [ADR-0003](architecture/decisions/0003-repository-and-ops.md), and [ADR-0004](architecture/decisions/0004-naming-and-automation-layout.md)
+- [ADR-0001](architecture/decisions/0001-project-boundaries.md), [ADR-0002](architecture/decisions/0002-matching-baseline.md), and [ADR-0003](architecture/decisions/0003-repository-and-ops.md), and [ADR-0004](architecture/decisions/0004-naming-and-automation-layout.md), and [ADR-0005](architecture/decisions/0005-financial-execution.md)
 
 ## Delivery and evidence
 
 - [Milestones](delivery/milestones.md), [backlog](delivery/backlog.md), [M0 review](delivery/m0-review.md), and [M1 review](delivery/m1-review.md)
 - [Risks](delivery/risks.md)
-- [Acceptance scenarios](verification/scenarios.md)
+- [Acceptance scenarios](verification/scenarios.md) and [financial evidence](verification/financial-testing.md)
 - [Invariants](verification/invariants.md), [strategy](verification/strategy.md), and [differential testing](verification/differential-testing.md)
 - [Benchmarks](verification/benchmarks.md)
+- [Core API](development/core-api.md)
 - [Setup](development/setup.md), [testing](development/testing.md), [CI/integration](development/ci.md), and [scaffold readiness](development/scaffold.md)
 - [Ops and runbooks](operations/README.md)
 - [Repository layout](development/repository-layout.md) and [documentation standard](development/documentation-guide.md), and [naming conventions](development/naming-conventions.md)
@@ -34,4 +36,4 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 
 ## Review queue
 
-Matching policies and numeric/capacity limits are accepted in ADR-0002. Financial limits and cross-language framing remain open before M2/M3. Before M4: decide journal format, synchronization, snapshot publication, integrity, retention. Historical discussion has multiple milestone drafts; the delivery plan here is the working baseline.
+Matching policies and numeric/capacity limits are accepted in ADR-0002. Financial limits/ledger are implemented in ADR-0005; cross-language framing remains open before M3. Before M4: decide journal format, synchronization, snapshot publication, integrity, retention. Historical discussion has multiple milestone drafts; the delivery plan here is the working baseline.
