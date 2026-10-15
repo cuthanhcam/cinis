@@ -4,7 +4,7 @@ Status: Proposed extension contract; no persistent Cinis service exists. Updated
 
 ## Current behavior
 
-Engine Run is a finite CLI demonstration. It starts, emits output, and exits. It opens no network port and requires no separate stop operation. Process success means completion only; it says nothing about service readiness or financial durability.
+Engine Run is a finite synthetic-financial CLI demonstration; RunMatching retains the raw matching-only example. It starts, emits output, and exits. It opens no network port and requires no separate stop operation. Process success means completion only; it says nothing about service readiness or financial durability.
 
 ## Gate for the first gateway/execution service
 

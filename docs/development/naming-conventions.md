@@ -55,7 +55,7 @@ Use Id, Api, Http in composed identifiers: OrderId, ApiKey, HttpClient; avoid OR
 | Constants/statics | SCREAMING_SNAKE_CASE | MAX_QUANTITY |
 | Boolean methods | Predicate wording | is_open, has_remaining_quantity |
 
-Preserve conventional lib.rs, main.rs, mod.rs, Cargo.toml, and Cargo.lock. Cinis chooses kebab-case Cargo package names; Rust imports normalize hyphens to underscores. Use ordinary getters such as orders(), not get_orders(), where the method simply exposes a value. Follow [Rust API naming guidance](https://rust-lang.github.io/api-guidelines/naming.html). Do not add crate prefixes to every internal symbol.
+Preserve conventional lib.rs, main.rs, mod.rs, Cargo.toml, and Cargo.lock. Rust src/bin/ is maintained source and must remain trackable despite .NET bin/ ignore patterns. Cinis chooses kebab-case Cargo package names; Rust imports normalize hyphens to underscores. Use ordinary getters such as orders(), not get_orders(), where the method simply exposes a value. Follow [Rust API naming guidance](https://rust-lang.github.io/api-guidelines/naming.html). Do not add crate prefixes to every internal symbol.
 
 ## Python
 

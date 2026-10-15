@@ -1,6 +1,8 @@
 # Architecture overview
 
-Status: intended architecture; no processes implemented.
+Status: Rust in-process execution and financial CLI implemented; .NET/consumer/database processes remain planned.
+
+For the complete current/target design, read the [architecture blueprint](blueprint/README.md), [diagram catalog](blueprint/diagrams.md), and [offline interactive Atlas](blueprint/architecture-atlas.html). Technology choices, business questions and review gates are explicit in that package. The diagram and recovery/source column below describe the target; current authoritative execution state is memory only.
 
 ```mermaid
 flowchart LR

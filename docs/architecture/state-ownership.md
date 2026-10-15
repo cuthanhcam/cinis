@@ -1,10 +1,10 @@
 # State ownership
 
-Status: Accepted baseline, 2026-10-13. Components beyond matching remain planned.
+Status: Rust financial execution ownership implemented in memory, 2026-10-15. Management, projections, and durable recovery remain planned.
 
 | State | Sole authority / writer | Durable source / consumer |
 | --- | --- | --- |
-| Execution sequence and accepted order priority | Rust execution owner | Journal in M4; memory only in M1 |
+| Execution sequence and accepted order priority | Rust execution owner | Journal in M4; memory in current M2 |
 | Orders, remaining quantity, terminal lookup | Rust execution owner | Snapshot/journal; PostgreSQL query projection |
 | Available/reserved balances and reservation ownership | Rust execution owner | Snapshot/journal; balance projection |
 | Settlement and authoritative ledger postings | Rust execution owner | Deterministically replayed commands; ledger projection |
@@ -24,4 +24,4 @@ A projection consumer applies event IDs and advances its cursor atomically in it
 
 ## Trust and mutation boundaries
 
-Gateway authentication does not replace engine ownership validation. The gateway cannot read a balance and approve spending independently. Admin funding and market changes also enter the sequencer. No two components may independently mutate one financial state. M1 exposes a trusted in-process API only and provides no network security guarantee.
+Gateway authentication does not replace engine ownership validation. The gateway cannot read a balance and approve spending independently. Admin funding and market changes also enter the sequencer. No two components may independently mutate one financial state. Current M2 exposes a trusted in-process API with explicit permissions and provides no network authentication guarantee. ExecutionCore privately owns its matcher/ledger; Engine remains a separate financial-bypass primitive for matching research.

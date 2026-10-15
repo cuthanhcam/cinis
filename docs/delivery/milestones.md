@@ -19,3 +19,7 @@ These inherited planning hypotheses are not commitments: 270-465 focused hours b
 The matching specification gate is accepted in [M0 review](m0-review.md); M0 as a whole remains open for the cross-language spike. The nearest outcome is a specified and correct matching core. First executable flow and fixture coverage do not close M1 until independent reference/generated tests and review are complete.
 
 [Backlog](backlog.md) is the sole work-item source, including dependencies, estimate ranges, acceptance evidence, and status. Do not duplicate detailed tasks here or in GitHub Issues.
+
+## Current M2 delivery
+
+Ledger limits/contracts are accepted in ADR-0005 and volatile financial execution is implemented. Numeric and generated tests cover funding, holds, settlement/release, reconciliation, pause, and retained outcomes. See the canonical backlog and financial-testing.md. M0 protocol discovery/M3 gateway and M4 recovery remain separate open gates; focused effort has not been measured and no new calendar forecast is claimed.

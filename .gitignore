@@ -33,6 +33,9 @@ appsettings.*.local.json
 
 # .NET generated build, publish, package, test, and coverage output
 **/bin/
+# Rust src/bin contains maintained binary entry points, not .NET build output.
+!**/src/bin/
+!**/src/bin/**
 **/obj/
 **/publish/
 **/TestResults/
