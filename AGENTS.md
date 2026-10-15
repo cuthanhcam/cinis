@@ -12,3 +12,7 @@ Read README.md, docs/README.md, and relevant specifications before editing.
 - Never commit credentials, generated output, or unsupported benchmark claims.
 - Run python scripts/check_docs.py and git diff --check for docs changes. Add actual build/test checks when application projects exist.
 - Follow GIT_GUIDELINES.md. Do not invent remote configuration or publish without authorization.
+
+- Use docs/ as the single documentation root and ops/ for process automation; follow docs/development/repository-layout.md.
+- Keep artifacts/logs ignored. Never log environment dumps or credentials; diagnostic logs are not execution journals.
+- For runner changes run python -m unittest discover -s ops/tests -v on Windows and the public Verify/Run tasks.

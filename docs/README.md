@@ -17,7 +17,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Durability](architecture/durability.md)
 - [Protocol draft](architecture/protocol.md)
 - [Security model](architecture/security.md)
-- [ADR-0001](architecture/decisions/0001-project-boundaries.md) and [ADR-0002](architecture/decisions/0002-matching-baseline.md)
+- [ADR-0001](architecture/decisions/0001-project-boundaries.md), [ADR-0002](architecture/decisions/0002-matching-baseline.md), and [ADR-0003](architecture/decisions/0003-repository-and-ops.md)
 
 ## Delivery and evidence
 
@@ -27,7 +27,9 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Invariants](verification/invariants.md) and [strategy](verification/strategy.md)
 - [Benchmarks](verification/benchmarks.md)
 - [Setup](development/setup.md) and [testing](development/testing.md)
-- [Runbook plan](operations/runbooks.md)
+- [Ops and runbooks](ops/README.md)
+- [Repository layout](development/repository-layout.md) and [documentation standard](development/documentation-guide.md)
+- [Document templates](templates/README.md)
 - [Spikes](../research/README.md) and [experiment template](../research/experiment-template.md)
 
 ## Review queue

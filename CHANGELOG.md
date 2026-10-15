@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added ops/ Windows automation for build/test/run, per-run diagnostic logs and metadata, timeout/owned-process cleanup, and seven process integration tests.
+- Added Windows ops CI, repository/documentation conventions, templates, and detailed local operations/debugging guides.
+
 - Added Cinis project definition, domain baseline, architecture, verification strategy, and delivery plan.
 - Added repository conventions, contribution templates, documentation checks, and local branch workflow.
 

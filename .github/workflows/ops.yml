@@ -1,0 +1,37 @@
+name: Ops
+
+on:
+  push:
+    branches: [main, develop, 'chore/**', 'feature/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Windows ops checks
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned Rust components
+        run: rustup show
+      - name: Test process runner
+        run: python -m unittest discover -s ops/tests -v
+      - name: Verify engine through public runner
+        shell: powershell
+        run: ./ops/scripts/Invoke-Cinis.ps1 -Task Verify
+      - name: Run matching demo with logs
+        shell: powershell
+        run: ./ops/scripts/Invoke-Cinis.ps1 -Task Run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ops-logs
+          path: artifacts/logs/
+          if-no-files-found: ignore
+          retention-days: 7

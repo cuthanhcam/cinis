@@ -19,3 +19,7 @@ Rust 1.95.0 and components are pinned in rust-toolchain.toml; Cargo.lock is comm
 ## Local input
 
 init.md is preserved historical planning input and intentionally ignored. English documents under docs/ are the maintained project baseline. The existing origin points to https://github.com/cuthanhcam/cinis.git; main is published first, followed by integrated develop work. No cloud resources, runtime ports, or secrets were configured.
+
+## Automated local commands
+
+Use [ops/](../../ops/README.md) on Windows for logged Build/Test/Run/Verify. The runner resolves the repository from its own path and does not require a particular caller working directory. Detailed layout and naming are defined in [repository layout](repository-layout.md).

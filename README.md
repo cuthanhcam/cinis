@@ -36,7 +36,18 @@ Acceptance journey: funding -> place sell 10 at 100 -> buy 4 -> verify partial f
 | tests/ | Shared executable matching fixtures |
 | deploy/ | Future local orchestration |
 | research/ | Timeboxed spikes and reports |
-| scripts/ | Repository checks |
+| scripts/ | Portable repository checks |
+| ops/ | Local build/test/run automation and diagnostic logs |
+
+## Local automation (Windows)
+
+```powershell
+powershell -NoProfile -File .\ops\scripts\Invoke-Cinis.ps1 -Task Verify
+powershell -NoProfile -File .\ops\scripts\Invoke-Cinis.ps1 -Task Run
+powershell -NoProfile -File .\ops\scripts\Get-CinisLogs.ps1
+```
+
+Every run writes separate stdout/stderr and JSON metadata under ignored artifacts/logs/. See [ops guide](ops/README.md), [repository layout](docs/development/repository-layout.md), and [debugging](docs/ops/logging.md). The current Run task is a finite demo, not a persistent service.
 
 ## Run the first flow
 

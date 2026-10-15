@@ -23,3 +23,11 @@ This file is the single work-item source. GitHub Issues are not maintained in pa
 Actual focused effort has not been measured; do not substitute elapsed assistant runtime for engineering estimates. Financial and durability scenarios stay pending until those layers exist.
 
 M1-01 CI workflow is committed; local success is recorded in testing.md. Remote CI execution must be checked separately. M1 remains open for M1-04/05.
+
+## Developer operations
+
+| ID | Work item | Evidence | Status |
+| --- | --- | --- | --- |
+| OPS-01 | Local task runner and diagnostic logs | ops/scripts, seven integration tests; Verify/Run pass locally | Done |
+| OPS-02 | Structure, documentation standard, runbooks, Windows CI | ADR-0003, docs/ops and ops workflow; hosted result tracked separately | Done (implementation) |
+| OPS-03 | Persistent service lifecycle, readiness, shutdown, rotation | Add with actual gateway/execution service; docs/ops/service-lifecycle.md | Deferred to M3/M4 |
