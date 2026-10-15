@@ -1,14 +1,24 @@
 """Check local Markdown file targets and basic text hygiene."""
 from pathlib import Path
+import os
 import re
 import sys
 from urllib.parse import unquote, urlsplit
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 errors = []
-for path in ROOT.rglob("*"):
-    if not path.is_file() or ".git" in path.relative_to(ROOT).parts or path.name == "init.md":
-        continue
+SKIP_DIRECTORIES = {".git", "artifacts", "target", "bin", "obj", "node_modules", "__pycache__", ".vs", ".idea", ".vscode"}
+
+
+def maintained_files():
+    for directory, folders, files in os.walk(ROOT):
+        folders[:] = [name for name in folders if name not in SKIP_DIRECTORIES]
+        for name in files:
+            if name != "init.md":
+                yield Path(directory) / name
+
+
+for path in maintained_files():
     if path.suffix not in {".md", ".py", ".yml"}:
         continue
     text = path.read_text(encoding="utf-8")

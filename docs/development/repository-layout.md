@@ -11,16 +11,15 @@ Status: Accepted convention, 2026-10-15. Owner: repository maintainer.
 | tests/fixtures/ | Shared versioned acceptance input/expected output | Generated test output |
 | tools/ | Product-adjacent CLI/load/replay tools as they appear | Repository maintenance wrappers |
 | ops/config/ | Trusted local task registry | Secrets or trading business configuration |
-| ops/scripts/ | Build/test/run/log automation | Financial matching or durable execution |
+| ops/scripts/ | Build/test/run/log automation and portable quality checks | Financial matching or durable execution |
 | ops/tests/ | Native process/automation integration tests | Matching business tests |
-| scripts/ | Portable repository quality checks | Service orchestration |
 | docs/ | Maintained English specifications, guides, decisions, runbooks | Executables or a second backlog |
 | deploy/ | Future actual deployment manifests/IaC | Hypothetical environments |
 | research/ | Timeboxed experiments and reproducible findings | Unverified performance claims |
 | .github/ | CI and review/issue templates | Local log files |
 | artifacts/ | Ignored build/diagnostic evidence | Source, secrets, or authoritative execution data |
 
-Use docs/ rather than document/ or documents/; use ops/ rather than operation/ or operations/. This keeps one documentation tree and one executable automation tree. Do not create empty production/cloud/service folders before they have a concrete responsibility.
+Use docs/ rather than document/ or documents/; use ops/ rather than operation/ or operations/. Documentation topics use full names, including docs/operations/. Root scripts/ is consolidated into ops/scripts/. This keeps one documentation tree and one executable automation tree. Do not create empty production/cloud/service folders before they have a concrete responsibility.
 
 ## Documentation taxonomy
 
@@ -34,4 +33,4 @@ The matcher currently uses Vec-backed scan/sort storage. Avoid calling it optimi
 
 ## Evolution
 
-When .NET appears, add solution/project files and global.json together; introduce runtime configuration/deployment docs with an actual service. Keep source and CI commands linked. Changes to ownership or major directory responsibilities require an ADR and link updates; generated directories remain ignored. Existing root scripts/check_docs.py remains stable so current CI and contributor commands do not break.
+When .NET appears, add solution/project files and global.json together; introduce runtime configuration/deployment docs with an actual service. Keep source and CI commands linked. Changes to ownership or major directory responsibilities require an ADR and link updates; generated directories remain ignored. Portable checks live under ops/scripts/; any move updates CI, registry arguments, script-relative roots, and documentation together. See [naming conventions](naming-conventions.md) for language-specific path and identifier rules.

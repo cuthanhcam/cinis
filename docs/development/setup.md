@@ -6,7 +6,7 @@ Git, Python 3.11 or later, and rustup. The repository pins Rust 1.95.0 with rust
 
 ```sh
 git status --short --branch
-python scripts/check_docs.py
+python ops/scripts/check_docs.py
 git diff --check
 ```
 

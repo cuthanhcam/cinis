@@ -29,5 +29,6 @@ M1-01 CI workflow is committed; local success is recorded in testing.md. Remote 
 | ID | Work item | Evidence | Status |
 | --- | --- | --- | --- |
 | OPS-01 | Local task runner and diagnostic logs | ops/scripts, seven integration tests; Verify/Run pass locally | Done |
-| OPS-02 | Structure, documentation standard, runbooks, Windows CI | ADR-0003, docs/ops and ops workflow; hosted result tracked separately | Done (implementation) |
-| OPS-03 | Persistent service lifecycle, readiness, shutdown, rotation | Add with actual gateway/execution service; docs/ops/service-lifecycle.md | Deferred to M3/M4 |
+| OPS-02 | Structure, documentation standard, runbooks, Windows CI | ADR-0003, docs/operations and ops workflow; hosted result tracked separately | Done (implementation) |
+| OPS-03 | Persistent service lifecycle, readiness, shutdown, rotation | Add with actual gateway/execution service; docs/operations/service-lifecycle.md | Deferred to M3/M4 |
+| OPS-04 | Language-aware naming and unified automation paths | ADR-0004, naming-conventions.md, check_naming.py, updated task/CI callers | Done (implementation; local verification recorded with change) |

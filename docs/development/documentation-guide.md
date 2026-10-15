@@ -25,6 +25,8 @@ Use [templates](../templates/README.md) for new ADRs, feature briefs, and runboo
 
 ## Review and validation
 
-Update affected documents with code changes. Run python scripts/check_docs.py and git diff --check. The checker validates local file links, UTF-8, and final newlines; it does not verify heading anchors, external websites, domain correctness, or whether commands are truthful. Review those manually and execute runnable procedures before labeling Verified.
+Update affected documents with code changes. Run python ops/scripts/check_docs.py and git diff --check. The checker validates local file links, UTF-8, and final newlines; it does not verify heading anchors, external websites, domain correctness, or whether commands are truthful. Review those manually and execute runnable procedures before labeling Verified.
 
 Maintain docs/README.md as the navigation entry point. Avoid duplicated tutorials or renamed document directories with conflicting versions. Retain historical local init.md unchanged and ignored; it is input, not the maintained specification.
+
+Path and language names follow [naming conventions](naming-conventions.md). Run python ops/scripts/check_naming.py for maintained path checks; source identifiers and serialized contracts still require language-specific checks and review.

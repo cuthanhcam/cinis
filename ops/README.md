@@ -21,9 +21,11 @@ Scripts also work when called by absolute path from a different directory. They 
 | config/projects.psd1 | Trusted registry of implemented projects and fixed task arguments |
 | scripts/Invoke-Cinis.ps1 | Public entry point: Build, Test, Run, Format, Lint, Docs, Verify |
 | scripts/Cinis.Operations.psm1 | Internal process launch, argument quoting, timeout, stream capture, metadata |
+| scripts/check_docs.py | Portable local documentation validation |
+| scripts/check_naming.py | Maintained-path naming validation |
 | scripts/Get-CinisLogs.ps1 | Inspect latest or specific run without modifying files |
 | tests/test_runner.py | Windows process integration tests, standard-library Python |
 
-Generated output lives under artifacts/logs/<run-id>, which Git ignores. Documentation lives in [docs/ops](../docs/ops/README.md). Do not create an alternative operation/operations folder or a duplicate document tree.
+Generated output lives under artifacts/logs/<run-id>, which Git ignores. Documentation lives in [docs/operations](../docs/operations/README.md). Do not create an alternative operation/operations folder or a duplicate document tree.
 
-Current registered project: Engine, a finite matching-only CLI job. There is no running network service, database, gateway, service manager, or production deployment. See [service lifecycle](../docs/ops/service-lifecycle.md) before adding one.
+Current registered project: Engine, a finite matching-only CLI job. There is no running network service, database, gateway, service manager, or production deployment. See [service lifecycle](../docs/operations/service-lifecycle.md) before adding one.

@@ -1,6 +1,6 @@
 # ADR-0003: One documentation tree and explicit local automation
 
-Date: 2026-10-15. Status: Accepted baseline.
+Date: 2026-10-15. Status: Partially superseded by ADR-0004 for path naming and script placement; process/logging decisions retained.
 
 ## Context and alternatives
 
@@ -15,3 +15,5 @@ Implement a Windows PowerShell 5.1 runner for actual Engine jobs now, with separ
 ## Consequences and revisit
 
 Current Windows developers share build/test/run commands; Linux engine CI keeps direct Cargo checks. Logs are diagnostic, never authoritative financial records. Runner tests and Windows CI are needed because shell argument/exit behavior differs from direct application calls. Revisit cross-platform automation or production supervision when a real requirement exists.
+
+See [ADR-0004](0004-naming-and-automation-layout.md): current documentation uses docs/operations/ and portable checks now live under ops/scripts/. The scripts/ decision above is historical.
