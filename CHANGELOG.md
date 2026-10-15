@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added an independent map-based matching oracle, eight fixed-seed generated tests (8,192 commands), and targeted cancellation/terminal differential checks.
+
 - Added ops/ Windows automation for build/test/run, per-run diagnostic logs and metadata, timeout/owned-process cleanup, and seven process integration tests.
 - Added Windows ops CI, repository/documentation conventions, templates, and detailed local operations/debugging guides.
 
