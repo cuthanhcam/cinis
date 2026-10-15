@@ -2,9 +2,12 @@ name: Documentation
 
 on:
   push:
-    branches: [main, develop]
   pull_request:
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -12,12 +15,15 @@ permissions:
 jobs:
   checks:
     name: Documentation checks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.12'
-      - run: python scripts/check_docs.py
+      - run: python ops/scripts/check_docs.py
+      - run: python ops/scripts/check_naming.py
+      - run: python -m unittest discover -s ops/tests -p test_naming.py -v
       - name: Check whitespace
         run: git show --format= --check HEAD

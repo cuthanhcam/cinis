@@ -12,3 +12,5 @@ cargo test --locked --manifest-path src/engine/Cargo.toml
 Core API: Engine::execute(Command) returns ordered events or a rejection. Engine::orders exposes immutable tracked state; Engine::check_invariants checks matching consistency. Price/quantity are bounded integer ticks/lots. Rejections do not consume order IDs or acceptance sequence. Duplicate order IDs reject even after cancellation; command retries are future M2 behavior.
 
 Tests consume [shared fixtures](../../tests/fixtures/matching/README.md). [ADR-0002](../../docs/architecture/decisions/0002-matching-baseline.md) defines units, policies, capacity, and limitations. Accepted means volatile completion only. Financial risk, ledger, journal/replay, market pause, protocol, and authentication are not implemented.
+
+The test-only map-based model in tests/differential.rs exercises 8,192 fixed-seed generated commands and a targeted cancellation sequence. See [method and seeds](../../docs/verification/differential-testing.md). It is independent of the core scan/sort algorithm and adds no production dependencies.

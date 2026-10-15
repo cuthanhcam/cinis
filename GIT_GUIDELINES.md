@@ -23,7 +23,13 @@ git diff --cached
 git commit -m "feat(engine): describe delivered behavior"
 ```
 
-With a configured remote, fetch and update develop using `git pull --ff-only` before branching. Rebase private work as needed; coordinate before rewriting shared history. Use reviewed squash merges or deliberate merge commits. Never force-push main or develop.
+With a configured remote, fetch and update develop using git pull --ff-only before branching. Rebase private work as needed; coordinate before rewriting shared history. Never force-push main or develop.
+
+## Exact-commit integration gate
+
+All four required workflows run on work branches. Push the work branch, then validate an integration/<description> branch containing the intended merge. Require hosted Documentation, Engine, Ops, and Repository success for exactly that candidate SHA using python ops/scripts/check_ci.py --wait. Missing, pending, skipped, or failed workflows do not pass.
+
+Fast-forward develop to the tested candidate SHA; do not create another untested merge commit on develop after checking a different SHA. Rebuild/retest if develop or the candidate changes. Push develop only after the gate succeeds, then observe its own workflows. Detailed commands and status meanings are in [CI procedure](docs/development/ci.md). main remains a separate maintainer PR; do not merge it automatically.
 
 ## Releases
 

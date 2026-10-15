@@ -1,29 +1,90 @@
-# Preserved local planning conversation
+# Local planning input and private overrides
 /init.md
 .env
 .env.*
 !.env.example
+!.env.*.example
+secrets/
+secrets.json
+appsettings.Local.json
+appsettings.*.Local.json
+appsettings.*.local.json
 *.pem
 *.key
 *.pfx
 *.p12
-secrets/
-**/bin/
-**/obj/
-**/target/
+
+# Shared source/tool configuration is tracked; personal editor state is not.
 .vs/
 .idea/
-.vscode/
-artifacts/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.iml
+
+# Rust: application Cargo.lock is intentionally tracked.
+**/target/
+**/*.rs.bk
+
+# .NET generated build, publish, package, test, and coverage output
+**/bin/
+**/obj/
+**/publish/
+**/TestResults/
+*.nupkg
+*.snupkg
+*.coverage
+*.coveragexml
 coverage/
-TestResults/
+
+# Python caches, isolated environments, and packaging output
 **/__pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+*.egg-info/
+
+# Frontend/generated tool output (dependency lockfiles stay tracked)
 node_modules/
-*.log
-*.tmp
-.DS_Store
-Thumbs.db
+**/dist/
+.vite/
+*.tsbuildinfo
+
+# Local logs, diagnostics, generated evidence, runtime state
+/artifacts/
 /data/
 /temp/
-# Commit Cargo.lock for executable workspaces.
+*.log
+*.tmp
+*.pid
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+
+# Future local infrastructure state; source manifests/migrations remain tracked
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+!*.example.tfvars
+override.tf
+override.tf.json
+
+# OS/editor backup noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo

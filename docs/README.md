@@ -17,17 +17,19 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Durability](architecture/durability.md)
 - [Protocol draft](architecture/protocol.md)
 - [Security model](architecture/security.md)
-- [ADR-0001](architecture/decisions/0001-project-boundaries.md) and [ADR-0002](architecture/decisions/0002-matching-baseline.md)
+- [ADR-0001](architecture/decisions/0001-project-boundaries.md), [ADR-0002](architecture/decisions/0002-matching-baseline.md), and [ADR-0003](architecture/decisions/0003-repository-and-ops.md), and [ADR-0004](architecture/decisions/0004-naming-and-automation-layout.md)
 
 ## Delivery and evidence
 
-- [Milestones](delivery/milestones.md), [backlog](delivery/backlog.md), and [M0 review](delivery/m0-review.md)
+- [Milestones](delivery/milestones.md), [backlog](delivery/backlog.md), [M0 review](delivery/m0-review.md), and [M1 review](delivery/m1-review.md)
 - [Risks](delivery/risks.md)
 - [Acceptance scenarios](verification/scenarios.md)
-- [Invariants](verification/invariants.md) and [strategy](verification/strategy.md)
+- [Invariants](verification/invariants.md), [strategy](verification/strategy.md), and [differential testing](verification/differential-testing.md)
 - [Benchmarks](verification/benchmarks.md)
-- [Setup](development/setup.md) and [testing](development/testing.md)
-- [Runbook plan](operations/runbooks.md)
+- [Setup](development/setup.md), [testing](development/testing.md), [CI/integration](development/ci.md), and [scaffold readiness](development/scaffold.md)
+- [Ops and runbooks](operations/README.md)
+- [Repository layout](development/repository-layout.md) and [documentation standard](development/documentation-guide.md), and [naming conventions](development/naming-conventions.md)
+- [Document templates](templates/README.md)
 - [Spikes](../research/README.md) and [experiment template](../research/experiment-template.md)
 
 ## Review queue
