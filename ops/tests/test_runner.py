@@ -1,6 +1,7 @@
 """Integration tests of process logging/failure behavior on Windows; no third-party packages."""
 import base64
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -119,10 +120,18 @@ class RunnerTests(unittest.TestCase):
             + ")})}}}"
         )
         (config / "projects.psd1").write_text(registry, encoding="utf-8")
+        # Reproduce hosted pwsh -> Windows PowerShell module-path shadowing.
+        shadow = directory / "shadow-modules" / "Microsoft.PowerShell.Utility"
+        shadow.mkdir(parents=True)
+        (shadow / "Microsoft.PowerShell.Utility.psd1").write_text(
+            "@{ModuleVersion='1.0.0';PowerShellVersion='99.0'}", encoding="utf-8"
+        )
+        environment = os.environ.copy()
+        environment["PSMODULEPATH"] = str(shadow.parent) + ";" + environment.get("PSMODULEPATH", "")
         result = subprocess.run(
             ["powershell", "-NoProfile", "-NonInteractive", "-File",
              str(scripts / "Invoke-Cinis.ps1"), "-Task", "Verify"],
-            cwd=directory.parent, capture_output=True, text=True, timeout=30,
+            cwd=directory.parent, env=environment, capture_output=True, text=True, timeout=30,
         )
         self.assertEqual(result.returncode, 9, result.stdout + result.stderr)
         runs = list((directory / "artifacts" / "logs").glob("*/run.json"))
