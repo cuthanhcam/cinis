@@ -61,6 +61,8 @@ Windows-only process tests explicitly skip on other hosts; portable naming/CI-ga
 
 ## System direction
 
+Start with the [architecture blueprint](docs/architecture/blueprint/README.md) and its [offline interactive Atlas](docs/architecture/blueprint/architecture-atlas.html): current/target views, authority boundaries, order/ledger/recovery flows, technology trade-offs, and business/technical decisions awaiting review.
+
 ```mermaid
 flowchart LR
     User[Developer / bot / CLI] --> Gateway[Future .NET access and management]
