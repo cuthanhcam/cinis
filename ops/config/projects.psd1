@@ -9,13 +9,17 @@
             Run = @(@{ Tool = 'cargo'; Arguments = @('run', '--locked', '--manifest-path', 'src/engine/Cargo.toml', '--bin', 'cinis-demo') })
             Format = @(@{ Tool = 'cargo'; Arguments = @('fmt', '--manifest-path', 'src/engine/Cargo.toml', '--check') })
             Lint = @(@{ Tool = 'cargo'; Arguments = @('clippy', '--locked', '--manifest-path', 'src/engine/Cargo.toml', '--all-targets', '--', '-D', 'warnings') })
-            Docs = @(@{ Tool = 'python'; Arguments = @('scripts/check_docs.py') })
+            Docs = @(
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_docs.py') }
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_naming.py') }
+            )
             Verify = @(
                 @{ Tool = 'cargo'; Arguments = @('fmt', '--manifest-path', 'src/engine/Cargo.toml', '--check') }
                 @{ Tool = 'cargo'; Arguments = @('clippy', '--locked', '--manifest-path', 'src/engine/Cargo.toml', '--all-targets', '--', '-D', 'warnings') }
                 @{ Tool = 'cargo'; Arguments = @('build', '--locked', '--manifest-path', 'src/engine/Cargo.toml') }
                 @{ Tool = 'cargo'; Arguments = @('test', '--locked', '--manifest-path', 'src/engine/Cargo.toml') }
-                @{ Tool = 'python'; Arguments = @('scripts/check_docs.py') }
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_docs.py') }
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_naming.py') }
             )
         }
     }

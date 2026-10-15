@@ -18,6 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python scripts/check_docs.py
+      - run: python ops/scripts/check_docs.py
+      - run: python ops/scripts/check_naming.py
       - name: Check whitespace
         run: git show --format= --check HEAD

@@ -36,8 +36,7 @@ Acceptance journey: funding -> place sell 10 at 100 -> buy 4 -> verify partial f
 | tests/ | Shared executable matching fixtures |
 | deploy/ | Future local orchestration |
 | research/ | Timeboxed spikes and reports |
-| scripts/ | Portable repository checks |
-| ops/ | Local build/test/run automation and diagnostic logs |
+| ops/ | All repository automation, portable quality checks, and diagnostic logs |
 
 ## Local automation (Windows)
 
@@ -47,7 +46,7 @@ powershell -NoProfile -File .\ops\scripts\Invoke-Cinis.ps1 -Task Run
 powershell -NoProfile -File .\ops\scripts\Get-CinisLogs.ps1
 ```
 
-Every run writes separate stdout/stderr and JSON metadata under ignored artifacts/logs/. See [ops guide](ops/README.md), [repository layout](docs/development/repository-layout.md), and [debugging](docs/ops/logging.md). The current Run task is a finite demo, not a persistent service.
+Every run writes separate stdout/stderr and JSON metadata under ignored artifacts/logs/. See [ops guide](ops/README.md), [repository layout](docs/development/repository-layout.md), and [debugging](docs/operations/logging.md). The current Run task is a finite demo, not a persistent service.
 
 ## Run the first flow
 
@@ -56,6 +55,6 @@ cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-demo
 cargo test --locked --manifest-path src/engine/Cargo.toml
 ```
 
-Rust is pinned to 1.95.0. See [testing](docs/development/testing.md) for format/lint commands and [requirements](docs/product/requirements.md) for acceptance boundaries. Run `python scripts/check_docs.py` with Python 3.11+ for documentation checks. Origin: https://github.com/cuthanhcam/cinis.git. Main holds foundation files; develop integrates specifications and tooling for pull request review.
+Rust is pinned to 1.95.0. See [testing](docs/development/testing.md) for format/lint commands and [requirements](docs/product/requirements.md) for acceptance boundaries. Run `python ops/scripts/check_docs.py` with Python 3.11+ for documentation checks. Origin: https://github.com/cuthanhcam/cinis.git. Main holds foundation files; develop integrates specifications and tooling for pull request review.
 
 Licensed under [MIT](LICENSE).

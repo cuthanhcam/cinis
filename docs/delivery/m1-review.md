@@ -8,7 +8,7 @@ Safe-Rust GTC matching, price-time priority, resting execution price, partial fi
 
 ## Evidence and structure
 
-See [testing commands](../development/testing.md), [differential method](../verification/differential-testing.md), [ops runbook](../ops/local-development.md), and [ADR-0002](../architecture/decisions/0002-matching-baseline.md). Production matching code is unchanged by the independent reference test. No throughput or latency conclusion was drawn from test duration.
+See [testing commands](../development/testing.md), [differential method](../verification/differential-testing.md), [ops runbook](../operations/local-development.md), and [ADR-0002](../architecture/decisions/0002-matching-baseline.md). Production matching code is unchanged by the independent reference test. No throughput or latency conclusion was drawn from test duration.
 
 ## Limits and unresolved questions
 

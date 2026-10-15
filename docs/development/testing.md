@@ -9,7 +9,8 @@ cargo fmt --manifest-path src/engine/Cargo.toml --check
 cargo clippy --locked --manifest-path src/engine/Cargo.toml --all-targets -- -D warnings
 cargo test --locked --manifest-path src/engine/Cargo.toml
 cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-demo
-python scripts/check_docs.py
+python ops/scripts/check_docs.py
+python ops/scripts/check_naming.py
 git diff --check
 ```
 
@@ -21,7 +22,7 @@ Fixtures cover both bid/ask price priority and FIFO, exact/partial/multiple fill
 
 ## Local ops automation
 
-See [ops runbook](../ops/local-development.md). On Windows PowerShell 5.1, the public Verify task runs format, lint, build, matching tests, and documentation checks with per-step logs. Run automation integration tests with:
+See [ops runbook](../operations/local-development.md). On Windows PowerShell 5.1, the public Verify task runs format, lint, build, matching tests, and documentation checks with per-step logs. Run automation integration tests with:
 
 ```sh
 python -m unittest discover -s ops/tests -v
@@ -30,3 +31,5 @@ python -m unittest discover -s ops/tests -v
 On 2026-10-15, seven process tests passed: quoting/spaces/empty arguments, native nonzero code, missing executable, large dual-stream output, parent timeout, descendant timeout cleanup, and public fail-fast behavior. Verify and demo also completed locally. Hosted Windows CI is configured separately; no hosted outcome is inferred from local success.
 
 On 2026-10-15, the Rust suite passed 26 integration tests (17 fixtures, eight generated-seed tests, one targeted reference test), with rustfmt and Clippy passing. This adds bounded generated properties and differential evidence; it does not claim exhaustive fuzzing.
+
+The naming/layout migration adds four portable path-policy regression tests. The ops unittest suite now has 11 tests total (seven process tests plus four naming tests), passing locally on 2026-10-15. Verify also executes both documentation and naming checks from ops/scripts/.
