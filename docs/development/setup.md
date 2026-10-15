@@ -23,3 +23,7 @@ init.md is preserved historical planning input and intentionally ignored. Englis
 ## Automated local commands
 
 Use [ops/](../../ops/README.md) on Windows for logged Build/Test/Run/Verify. The runner resolves the repository from its own path and does not require a particular caller working directory. Detailed layout and naming are defined in [repository layout](repository-layout.md).
+
+## Scaffold tooling and environment
+
+Shared editor suggestions live under .vscode/; private editor state remains ignored. .env.example is reference documentation for GH_TOKEN and RUST_BACKTRACE, not an automatically loaded environment file. First workflow validation downloads checksum-pinned actionlint for Windows/Linux x86_64. See [scaffold readiness](scaffold.md) and [hosted CI gate](ci.md).

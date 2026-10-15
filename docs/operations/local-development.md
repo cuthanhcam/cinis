@@ -4,7 +4,7 @@ Status: Implemented. Owner: repository maintainer. Last verified: 2026-10-15, Wi
 
 ## Prerequisites
 
-Git, rustup with pinned Rust 1.95.0/rustfmt/Clippy, MSVC build tools, and Python 3.11+. Run from a checkout with the toolchain installed. No database, cloud account, credentials, or .env file is required. The runner intentionally does not install prerequisites.
+Git, rustup with pinned Rust 1.95.0/rustfmt/Clippy, MSVC build tools, and Python 3.11+. Run from a checkout with the toolchain installed. No database, cloud account, credentials, or .env file is required. The runner does not install language prerequisites. Workflow validation downloads a checksum-pinned actionlint tool on first use and requires internet access.
 
 ## Verify
 
@@ -12,7 +12,7 @@ Git, rustup with pinned Rust 1.95.0/rustfmt/Clippy, MSVC build tools, and Python
 powershell -NoProfile -File .\ops\scripts\Invoke-Cinis.ps1 -Project Engine -Task Verify
 ```
 
-Verify performs format check, Clippy with warnings denied, locked build, locked tests, then documentation and path-naming checks. It stops at the first failed step. Each step has a 600-second default timeout. Override explicitly for a slow first build with -TimeoutSeconds 1800. The timeout is per step, not the total workflow.
+Verify performs format check, Clippy with warnings denied, locked build, locked tests, then documentation, path-naming, workflow, and scaffold checks. It stops at the first failed step. Each step has a 600-second default timeout. Override explicitly for a slow first build with -TimeoutSeconds 1800. The timeout is per step, not the total workflow.
 
 Success: process exit 0 and run.json status Succeeded. Every completed step also has exit 0. Failure: nonzero exit, remaining steps not started, available output and metadata retained. Inspect logs before rerunning; every invocation creates a new directory.
 

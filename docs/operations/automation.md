@@ -33,3 +33,7 @@ Direct engine CI remains on Linux; ops automation is separately verified on Wind
 - [Cargo run](https://doc.rust-lang.org/cargo/commands/cargo-run.html): locked execution and separation of application and Cargo output.
 
 Local precedents inspected: Aegis/eng/verify-backend.ps1, Aegis/eng/migrate-database.ps1, and learn-dotnet/scripts/Test-SolutionInventory.ps1. Reused principles: script-relative repository paths, explicit error handling, locked tool commands, and fail-fast verification. The log/timeout/metadata implementation is specific to Cinis.
+
+## Hosted Windows compatibility regression
+
+Built-ins are imported from the current PSHOME in public scripts and the process module. This avoids inherited PowerShell 7 module paths shadowing Windows PowerShell 5.1 modules. The public fail-fast test injects an incompatible Utility module into PSModulePath. Verify additionally validates workflows and scaffold contracts; exact-commit hosted success is a separate publication gate. See [CI procedure](../development/ci.md).

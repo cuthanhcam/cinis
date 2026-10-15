@@ -26,7 +26,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Acceptance scenarios](verification/scenarios.md)
 - [Invariants](verification/invariants.md), [strategy](verification/strategy.md), and [differential testing](verification/differential-testing.md)
 - [Benchmarks](verification/benchmarks.md)
-- [Setup](development/setup.md) and [testing](development/testing.md)
+- [Setup](development/setup.md), [testing](development/testing.md), [CI/integration](development/ci.md), and [scaffold readiness](development/scaffold.md)
 - [Ops and runbooks](operations/README.md)
 - [Repository layout](development/repository-layout.md) and [documentation standard](development/documentation-guide.md), and [naming conventions](development/naming-conventions.md)
 - [Document templates](templates/README.md)

@@ -32,3 +32,4 @@ M1-01 CI workflow is committed; local success is recorded in testing.md. Remote 
 | OPS-02 | Structure, documentation standard, runbooks, Windows CI | ADR-0003, docs/operations and ops workflow; hosted result tracked separately | Done (implementation) |
 | OPS-03 | Persistent service lifecycle, readiness, shutdown, rotation | Add with actual gateway/execution service; docs/operations/service-lifecycle.md | Deferred to M3/M4 |
 | OPS-04 | Language-aware naming and unified automation paths | ADR-0004, naming-conventions.md, check_naming.py, updated task/CI callers | Done (implementation; local verification recorded with change) |
+| OPS-05 | Hosted CI repair and comprehensive repository scaffold | Host-native module imports, CI regression/gate tests, workflow/scaffold validation, GitHub/community/config enhancements | Implementation complete; hosted exact-SHA gate required before develop |

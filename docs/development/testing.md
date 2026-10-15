@@ -33,3 +33,7 @@ On 2026-10-15, seven process tests passed: quoting/spaces/empty arguments, nativ
 On 2026-10-15, the Rust suite passed 26 integration tests (17 fixtures, eight generated-seed tests, one targeted reference test), with rustfmt and Clippy passing. This adds bounded generated properties and differential evidence; it does not claim exhaustive fuzzing.
 
 The naming/layout migration adds four portable path-policy regression tests. The ops unittest suite now has 11 tests total (seven process tests plus four naming tests), passing locally on 2026-10-15. Verify also executes both documentation and naming checks from ops/scripts/.
+
+## Hosted CI and scaffold gates
+
+The ops test suite now includes five exact-commit CI-gate regression tests (16 tests total on Windows). The public Verify task also checks pinned actionlint and scaffold/ignore contracts. See [CI procedure](ci.md) for the separate hosted gate; passing locally does not authorize an untested develop update. Host-native PowerShell module loading is regression-tested with an incompatible Utility module in the inherited module path.

@@ -25,7 +25,7 @@ Apply, in order: fixed tool/framework filenames; versioned external contracts; t
 
 Use docs/operations/ for operational documentation and ops/ for executable automation. There is no root scripts/ directory: both Python quality checks and PowerShell task runners belong under ops/scripts/. Keep tools/ for application-facing research tools rather than repository wrappers.
 
-Do not create paths distinguished only by case, spaces, unexplained abbreviations, timestamps for source versions, or names such as final, final2, new, misc, common, and helpers without a precise responsibility. Established short roots src/ops/docs and standard technical terms API, CLI, HTTP, TCP, UUID, GTC are explicit exceptions to the abbreviation rule. Existing root community files keep their standard uppercase filenames, including GIT_GUIDELINES.md and COMMIT_MESSAGE_GUIDELINES.md.
+Do not create paths distinguished only by case, spaces, unexplained abbreviations, timestamps for source versions, or names such as final, final2, new, misc, common, and helpers without a precise responsibility. Established short roots src/ops/docs and standard technical terms API, CLI, HTTP, TCP, UUID, GTC are explicit exceptions to the abbreviation rule. Existing root community files keep their standard uppercase filenames, including GIT_GUIDELINES.md and COMMIT_MESSAGE_GUIDELINES.md. Standard GitHub CODEOWNERS/SUPPORT.md and explicitly shared .vscode settings/extensions files are also recognized exceptions.
 
 ## .NET / C# (when projects exist)
 
