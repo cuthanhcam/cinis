@@ -13,6 +13,9 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 
 ## Architecture
 
+- [Solution architecture blueprint](architecture/blueprint/README.md), [interactive Atlas](architecture/blueprint/architecture-atlas.html), and [diagram catalog](architecture/blueprint/diagrams.md)
+- [Technology and algorithms](architecture/blueprint/technology-and-algorithms.md), [business/technical decision register](architecture/blueprint/decision-register.md), and [quality gates](architecture/blueprint/quality-and-gates.md)
+
 - [Overview](architecture/overview.md) and [state ownership](architecture/state-ownership.md)
 - [Ledger and financial execution](architecture/ledger.md)
 - [Durability](architecture/durability.md)
@@ -35,5 +38,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Spikes](../research/README.md) and [experiment template](../research/experiment-template.md)
 
 ## Review queue
+
+The [architecture decision register](architecture/blueprint/decision-register.md) prioritizes account/access, revocation, exact wire representation and complete event batches before M3; durability/capacity/retention before M4. New recommendations remain Proposed until explicitly accepted.
 
 Matching policies and numeric/capacity limits are accepted in ADR-0002. Financial limits/ledger are implemented in ADR-0005; cross-language framing remains open before M3. Before M4: decide journal format, synchronization, snapshot publication, integrity, retention. Historical discussion has multiple milestone drafts; the delivery plan here is the working baseline.

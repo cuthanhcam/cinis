@@ -33,3 +33,13 @@ M1-01 CI workflow is committed; local success is recorded in testing.md. Remote 
 | OPS-03 | Persistent service lifecycle, readiness, shutdown, rotation | Add with actual gateway/execution service; docs/operations/service-lifecycle.md | Deferred to M3/M4 |
 | OPS-04 | Language-aware naming and unified automation paths | ADR-0004, naming-conventions.md, check_naming.py, updated task/CI callers | Done (implementation; local verification recorded with change) |
 | OPS-05 | Hosted CI repair and comprehensive repository scaffold | Host-native module imports, CI regression/gate tests, workflow/scaffold validation, GitHub/community/config enhancements | Implementation complete; hosted exact-SHA gate required before develop |
+
+## Architecture review before further implementation
+
+| ID | Work item | Dependencies | Acceptance / evidence | Estimate | Status |
+| --- | --- | --- | --- | --- | --- |
+| ARCH-01 | High-level solution architecture package | Existing M2 contracts | [Blueprint](../architecture/blueprint/README.md): current/target diagrams, offline Atlas, technology/algorithm options, authority/failure boundaries | Effort not measured | Done (documentation; new recommendations Proposed) |
+| ARCH-02 | Accept business/access and wire-contract choices | ARCH-01, M0-04 spike evidence | Close BD-01/02/03 and TD-01/02/03/04 in [decision register](../architecture/blueprint/decision-register.md); canonical contracts/ADRs and acceptance cases updated | Refine after review | Todo; gates expanded M3 implementation |
+| ARCH-03 | Accept durability, capacity and feed choices | ARCH-01, M2-02 | Close BD-04/05 and TD-06/07/08 with storage/feed spike and crash acceptance matrix | Refine after review | Todo; gates M4 implementation |
+
+The architecture register records decision options/status; this backlog remains the only implementation work-item tracker. Publishing the package does not accept new business or technical policies.
