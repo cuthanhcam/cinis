@@ -52,3 +52,13 @@ The architecture register records decision options/status; this backlog remains 
 | CORE-02 | New/retained invocation metadata for future adapters | CORE-01 | execute_with_outcome, five outcomes.rs tests, compiled example, financial demo; existing execute behavior preserved | Effort not measured | Done (in-process only; no publisher/outbox) |
 
 The next functional gate remains M0-04/ARCH-02 before the full M3 gateway. These internal/API changes do not accept unresolved business policies or claim network/durable behavior.
+
+## .NET architecture planning
+
+| ID | Work item | Dependencies | Acceptance / evidence | Estimate | Status |
+| --- | --- | --- | --- | --- | --- |
+| NET-01 | Define platform patterns, boundaries and evolution plan | ARCH-01, CORE-01/02 | [Platform architecture](../architecture/platform-architecture.md), dependency/flow diagrams, [phase gates](../architecture/platform-implementation-plan.md), Proposed ADR-0007 | Effort not measured | Done (plan only) |
+| NET-02 | Review platform architecture baseline | NET-01 | Close TD-13 explicitly in ADR-0007; agree module/project graph, transaction authority, worker roles and extraction criteria | Refine after review | Todo; gates long-lived .NET solution |
+| NET-03 | Implement actual .NET baseline and architecture checks | NET-02, M0-04, ARCH-02 | P2 evidence: real projects/SDK/dependencies, forbidden-reference tests, host/configuration, actual Linux/Windows CI and logged ops tasks | Refine after protocol spike | Todo |
+
+P0-P5 describe implementation order and acceptance gates; this table and existing M0/M3/M4 work items remain the single tracker. No .NET source is created until the requested architecture review and relevant contracts are ready.
