@@ -27,7 +27,7 @@ Product requirements describe desired behavior; domain specifications define exa
 
 ## Rust baseline
 
-The single src/engine crate is deliberately small. src/lib.rs exports the public API; matching.rs owns the primitive matcher; ledger.rs owns balanced transfers/reconciliation; execution/types.rs defines envelopes/results; execution/state.rs applies tentative financial transitions; execution/mod.rs owns sequencing/idempotency/commit. src/main.rs is the funded demo; src/bin/matching_demo.rs preserves the raw matching example. tests/scenarios.rs consumes shared matching fixtures; additional independent-model tests belong beside it. Split code into cohesive modules when responsibilities grow, not into empty architectural layers.
+The single src/engine crate uses private cohesive matching/, ledger/ and execution/ modules. Module roots hold owned fields and explicit exports; mutation, settlement and audit implementations are separate children. execution composes matching and ledger; ledger errors are mapped at the orchestration boundary without importing execution. Binaries remain at src/main.rs and src/bin/matching_demo.rs. Integration tests exercise the public facade, including outcome classification. See the [Rust engine guide](rust-engine.md) for the complete tree and extension recipes, and [ADR-0006](../architecture/decisions/0006-rust-module-boundaries.md) for rationale.
 
 The matcher currently uses Vec-backed scan/sort storage. Avoid calling it optimized or zero-allocation. Financial state is implemented according to ledger.md and ADR-0005; whole-state copying/full reconciliation are a correctness baseline, not a low-latency design. A multi-crate workspace is justified only by real dependency/reuse boundaries.
 

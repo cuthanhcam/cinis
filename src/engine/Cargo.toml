@@ -16,3 +16,6 @@ path = "src/bin/matching_demo.rs"
 
 [lints.rust]
 unsafe_code = "forbid"
+
+[lints.rustdoc]
+broken_intra_doc_links = "deny"

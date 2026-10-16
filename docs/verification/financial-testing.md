@@ -1,6 +1,6 @@
 # Financial execution verification
 
-Status: Verified locally, 2026-10-15, Rust 1.95.0 on Windows/MSVC. Hosted validation is required separately for the exact integration commit. Owner: repository maintainer.
+Status: Verified locally, 2026-10-16, Rust 1.95.0 on Windows/MSVC. Hosted validation is required separately for the exact integration commit. Owner: repository maintainer.
 
 ## Evidence layers
 
@@ -8,10 +8,12 @@ Status: Verified locally, 2026-10-15, Rust 1.95.0 on Windows/MSVC. Hosted valida
 | --- | --- |
 | tests/financial.rs | 24 numeric/scenario/regression tests for funding, reservation, settlement/release, capacity, authorization, retries, market state |
 | tests/financial_properties.rs | Four fixed seeds, 256 generated commands each, plus eight initialization funding commands per seed |
+| tests/outcomes.rs | Five adapter-facing outcome tests: new/retained success/reject, authorization/conflict, capacity and compatibility |
+| Crate Rustdoc example | Executable trusted funding/retry example |
 | execution module unit tests | Sequence exhaustion and event/posting ordinal capacity bounds |
 | Existing matching suites | 17 exact MC fixtures and nine independent model tests remain intact |
 
-Total: 56 Rust tests (54 integration and two unit tests). Generated financial corpus: 1,024 new request attempts, plus retries/conflicts and 32 initial funding commands. Seeds: 11, 29, 2026, 3735928559. Generator uses the fixed SplitMix64 algorithm in the test source. No shrinking/exhaustive fuzzing claim.
+Total: 61 Rust tests (59 integration and two unit tests), plus one compiled Rustdoc example. Generated financial corpus: 1,024 new request attempts, plus retries/conflicts and 32 initial funding commands. Seeds: 11, 29, 2026, 3735928559. Generator uses the fixed SplitMix64 algorithm in the test source. No shrinking/exhaustive fuzzing claim.
 
 ## Numeric acceptance
 
