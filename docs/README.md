@@ -30,6 +30,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Acceptance scenarios](verification/scenarios.md) and [financial evidence](verification/financial-testing.md)
 - [Invariants](verification/invariants.md), [strategy](verification/strategy.md), and [differential testing](verification/differential-testing.md)
 - [Benchmarks](verification/benchmarks.md)
+- [Rust engine development architecture](development/rust-engine.md) and [ADR-0006](architecture/decisions/0006-rust-module-boundaries.md)
 - [Core API](development/core-api.md)
 - [Setup](development/setup.md), [testing](development/testing.md), [CI/integration](development/ci.md), and [scaffold readiness](development/scaffold.md)
 - [Ops and runbooks](operations/README.md)

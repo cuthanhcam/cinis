@@ -14,7 +14,7 @@ The project serves developers who want to study one coherent execution system, i
 | Area | Delivered | Remaining |
 | --- | --- | --- |
 | Execution | GTC matching plus synthetic funding, reservations, settlement/release, balanced ledger, sequenced market state, and command idempotency | Durable recovery and network integration |
-| Verification | 56 Rust tests; matching reference corpus of 8,192 commands; financial corpus of 1,024 fresh attempts plus retries/conflicts | Network, persistence, and recovery evidence |
+| Verification | 61 Rust tests plus one doctest; matching reference corpus of 8,192 commands; financial corpus of 1,024 fresh attempts plus retries/conflicts | Network, persistence, and recovery evidence |
 | Developer operations | Windows task runner, unique-run logs/metadata, timeout/owned-process cleanup, portable repository checks | Persistent-service lifecycle with real gateway |
 | CI | Linux/Windows engine checks, Windows ops tests, documentation/naming, pinned workflow validation, exact-SHA integration gate | Hosting protections must be configured separately |
 | Management/deployment | Specifications and responsibility guides | No .NET solution, database stack, gateway, listener, or production deployment yet |
@@ -90,7 +90,7 @@ ExecutionCore now owns in-memory sequenced orders, balances, reservations, settl
 | .github/ | Workflows, code ownership, dependency updates, issue/PR templates, support |
 | artifacts/ | Ignored local/CI diagnostics and downloaded verification tools |
 
-See [layout](docs/development/repository-layout.md), [naming](docs/development/naming-conventions.md), and [documentation standard](docs/development/documentation-guide.md). There is one docs/ tree, full documentation topic names such as operations/, and one short ops/ automation root.
+See the [Rust engine development guide](docs/development/rust-engine.md), [layout](docs/development/repository-layout.md), [naming](docs/development/naming-conventions.md), and [documentation standard](docs/development/documentation-guide.md). There is one docs/ tree, full documentation topic names such as operations/, and one short ops/ automation root.
 
 ## v0.1 acceptance and roadmap
 

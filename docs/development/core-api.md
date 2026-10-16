@@ -1,6 +1,6 @@
 # Core API guide
 
-Status: Implemented in-process M2 baseline. Updated: 2026-10-15.
+Status: Implemented in-process M2 baseline. Updated: 2026-10-16.
 
 ## Choose the right entry point
 
@@ -39,6 +39,12 @@ Both successful and rejected admitted decisions count toward the bounded instanc
 Effects contains ordered ExecutionEvent values and the command's LedgerTransfer values, each with stable typed sequence/ordinal identity. A cached response repeats historical values. Never apply its postings again or infer current order status from an old acceptance; query the immutable current state instead. A future event consumer must deduplicate IDs.
 
 state().account(id), accounts(), orders(), ledger(), issued(asset), is_market_open(), and resting_count() inspect current state. They provide no mutable references or persistence format. check_invariants validates matching, financial conservation, ledger reconstruction, holds, and receipt identity.
+
+## Classify a new decision versus a retained response
+
+execute_with_outcome accepts the same request/permissions and returns ExecutionOutcome { source, response }. DecisionSource::New means this call admitted a decision, including a business rejection with no events. Retained means it retrieved an original authorized receipt without changing financial state, history or sequence. The response itself stays identical across retries. Admission failures return Err without an outcome.
+
+Use this metadata in a future adapter instead of guessing whether a response's events are new. It is not a publication receipt or durable outbox: a crash after execution but before publication still requires M4 history/catch-up. execute remains a compatible wrapper returning only response. The complete [crate example](../../src/engine/src/lib.rs) is compiled as a doctest; [outcome tests](../../src/engine/tests/outcomes.rs) verify compatibility and rejection/retry boundaries. Read the [Rust engine guide](rust-engine.md) for module ownership and extension rules.
 
 ## Configuration and lifetime
 
