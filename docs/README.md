@@ -13,6 +13,8 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 
 ## Architecture
 
+- [.NET platform architecture and patterns](architecture/platform-architecture.md), [implementation sequence](architecture/platform-implementation-plan.md), and [Proposed ADR-0007](architecture/decisions/0007-platform-architecture.md)
+
 - [Solution architecture blueprint](architecture/blueprint/README.md), [interactive Atlas](architecture/blueprint/architecture-atlas.html), and [diagram catalog](architecture/blueprint/diagrams.md)
 - [Technology and algorithms](architecture/blueprint/technology-and-algorithms.md), [business/technical decision register](architecture/blueprint/decision-register.md), and [quality gates](architecture/blueprint/quality-and-gates.md)
 
@@ -30,6 +32,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Acceptance scenarios](verification/scenarios.md) and [financial evidence](verification/financial-testing.md)
 - [Invariants](verification/invariants.md), [strategy](verification/strategy.md), and [differential testing](verification/differential-testing.md)
 - [Benchmarks](verification/benchmarks.md)
+- [Rust engine development architecture](development/rust-engine.md) and [ADR-0006](architecture/decisions/0006-rust-module-boundaries.md)
 - [Core API](development/core-api.md)
 - [Setup](development/setup.md), [testing](development/testing.md), [CI/integration](development/ci.md), and [scaffold readiness](development/scaffold.md)
 - [Ops and runbooks](operations/README.md)

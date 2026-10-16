@@ -30,3 +30,7 @@ Order flow: authenticate -> authorize -> validate -> deduplicate/sequence -> jou
 Recovery: validate a compatible snapshot, replay journal suffix, verify invariants, restore deduplication/counters, reopen ingress. See [durability](durability.md) and [protocol](protocol.md).
 
 Local target: .NET process, Rust process, PostgreSQL, CLI/consumers. Use framed TCP loopback for the Windows-friendly first spike. Ports, versions, database schema, and orchestration remain open tasks. Slow market-data clients use bounded queues and resync; execution never waits directly for WebSocket clients. Shared memory and multi-writer matching are deferred.
+
+## Platform architecture review
+
+Before creating .NET projects, review the [platform architecture plan](platform-architecture.md) and [phased implementation sequence](platform-implementation-plan.md). Proposed approach: modular monolith, consumer-owned ports/adapters, vertical use-case slices and CQRS across execution/query boundaries. [ADR-0007](decisions/0007-platform-architecture.md) remains Proposed; this documentation does not accept access/protocol policies or implement a gateway.

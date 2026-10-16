@@ -1,5 +1,6 @@
 //! Requests, permissions, results, event identities, and bounded execution configuration.
-use crate::{Asset, Event, LedgerTransfer, Reject, Side};
+use crate::ledger::{Asset, LedgerError, LedgerTransfer};
+use crate::matching::{Event, Reject, Side};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 /// Permissions supplied by a trusted in-process caller; not a network authentication mechanism.
@@ -105,6 +106,29 @@ pub struct ExecutionResponse {
     pub sequence: u64,
     pub result: Result<Effects, ExecutionReject>,
 }
+/// Whether this call admitted a new decision or retrieved an existing receipt.
+/// Neither variant promises durable storage or successful business execution.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum DecisionSource {
+    /// A fresh admitted command, including a retained business rejection.
+    New,
+    /// An authorized same-payload retry; no new transition or sequence.
+    Retained,
+}
+
+/// Invocation metadata kept separate from the stable original response.
+///
+/// A future adapter can distinguish historical retries from new decisions without
+/// guessing from sequence numbers. This is not a durable event delivery mechanism.
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[must_use = "inspect decision source before treating historical effects as new"]
+pub struct ExecutionOutcome {
+    /// Classification of this invocation, not of the original business result.
+    pub source: DecisionSource,
+    /// Original response; identical for a fresh decision and its authorized retry.
+    pub response: ExecutionResponse,
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 /// Instance-lifetime capacities; terminal orders and rejected decisions count as history.
 pub struct Limits {
@@ -122,6 +146,21 @@ impl Default for Limits {
             max_accounts: 10_000,
             max_ledger_transfers: 100_000,
             max_commands: 10_000,
+        }
+    }
+}
+
+impl From<LedgerError> for ExecutionReject {
+    fn from(error: LedgerError) -> Self {
+        match error {
+            LedgerError::UnknownAccount => Self::UnknownAccount,
+            LedgerError::InsufficientFunds => Self::InsufficientFunds,
+            LedgerError::AccountCapacity => Self::AccountCapacity,
+            LedgerError::BalanceLimit => Self::BalanceLimit,
+            LedgerError::SupplyLimit => Self::SupplyLimit,
+            LedgerError::LedgerCapacity => Self::LedgerCapacity,
+            LedgerError::ArithmeticOverflow => Self::ArithmeticOverflow,
+            LedgerError::InvariantViolation => Self::InvariantViolation,
         }
     }
 }

@@ -13,6 +13,10 @@ Owner: project maintainer. Reviewed: 2026-10-15. Implementation baseline: develo
 5. Close the [decision register](decision-register.md) in priority order. It identifies business questions as well as technical choices; no new policy is accepted by publishing this package.
 6. Use [quality and delivery gates](quality-and-gates.md) to judge whether a design is ready to implement or expand.
 
+## Before .NET implementation
+
+Review the [platform architecture/pattern plan](../platform-architecture.md), [phased implementation sequence](../platform-implementation-plan.md), and [Proposed ADR-0007](../decisions/0007-platform-architecture.md). They refine the existing target modular host into concrete dependency boundaries and scaling gates without creating .NET source or accepting unresolved business policies.
+
 ## Reading the status
 
 | Label | Meaning |

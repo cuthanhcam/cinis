@@ -8,11 +8,12 @@ Status: current volatile M2 baseline, verified locally with Rust 1.95.0 on Windo
 cargo fmt --manifest-path src/engine/Cargo.toml --check
 cargo clippy --locked --manifest-path src/engine/Cargo.toml --all-targets -- -D warnings
 cargo test --locked --manifest-path src/engine/Cargo.toml
+cargo doc --locked --manifest-path src/engine/Cargo.toml --no-deps
 cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-demo
 cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-matching-demo
 ```
 
-Current suite: 56 Rust tests, comprising 17 shared matching fixtures, nine independent matching tests, 24 financial scenarios, four generated financial seed tests, and two execution boundary unit tests. All language/toolchain checks and both demos must pass. The default demo is funded; matching-only mode intentionally bypasses financial state.
+Current suite: 61 unit/integration Rust tests plus one compiled Rustdoc example, comprising 17 shared matching fixtures, nine independent matching tests, 24 financial scenarios, four generated financial seed tests, five outcome contract tests, and two execution boundary unit tests. All language/toolchain checks and both demos must pass. The default demo is funded; matching-only mode intentionally bypasses financial state.
 
 [Matching fixtures](../../tests/fixtures/matching/README.md) define exact events/final state. The matching oracle covers 8,192 generated commands. [Financial verification](../verification/financial-testing.md) covers numeric holds/settlement/retries/capacity and 1,024 fresh generated financial attempts plus initialization, retries, and conflicts. Seeds and reproduction commands are in the respective reports. This is bounded deterministic generation, not exhaustive fuzzing/shrinking.
 

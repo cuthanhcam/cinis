@@ -43,3 +43,22 @@ M1-01 CI workflow is committed; local success is recorded in testing.md. Remote 
 | ARCH-03 | Accept durability, capacity and feed choices | ARCH-01, M2-02 | Close BD-04/05 and TD-06/07/08 with storage/feed spike and crash acceptance matrix | Refine after review | Todo; gates M4 implementation |
 
 The architecture register records decision options/status; this backlog remains the only implementation work-item tracker. Publishing the package does not accept new business or technical policies.
+
+## Rust engine maintainability and adapter preparation
+
+| ID | Work item | Dependencies | Acceptance / evidence | Estimate | Status |
+| --- | --- | --- | --- | --- | --- |
+| CORE-01 | Cohesive private Rust modules and one-way dependency flow | M2-02, ARCH-01 | [Rust engine guide](../development/rust-engine.md), ADR-0006; private ledger state/errors; existing 56 tests unchanged | Effort not measured | Done (implementation; hosted publication gate required) |
+| CORE-02 | New/retained invocation metadata for future adapters | CORE-01 | execute_with_outcome, five outcomes.rs tests, compiled example, financial demo; existing execute behavior preserved | Effort not measured | Done (in-process only; no publisher/outbox) |
+
+The next functional gate remains M0-04/ARCH-02 before the full M3 gateway. These internal/API changes do not accept unresolved business policies or claim network/durable behavior.
+
+## .NET architecture planning
+
+| ID | Work item | Dependencies | Acceptance / evidence | Estimate | Status |
+| --- | --- | --- | --- | --- | --- |
+| NET-01 | Define platform patterns, boundaries and evolution plan | ARCH-01, CORE-01/02 | [Platform architecture](../architecture/platform-architecture.md), dependency/flow diagrams, [phase gates](../architecture/platform-implementation-plan.md), Proposed ADR-0007 | Effort not measured | Done (plan only) |
+| NET-02 | Review platform architecture baseline | NET-01 | Close TD-13 explicitly in ADR-0007; agree module/project graph, transaction authority, worker roles and extraction criteria | Refine after review | Todo; gates long-lived .NET solution |
+| NET-03 | Implement actual .NET baseline and architecture checks | NET-02, M0-04, ARCH-02 | P2 evidence: real projects/SDK/dependencies, forbidden-reference tests, host/configuration, actual Linux/Windows CI and logged ops tasks | Refine after protocol spike | Todo |
+
+P0-P5 describe implementation order and acceptance gates; this table and existing M0/M3/M4 work items remain the single tracker. No .NET source is created until the requested architecture review and relevant contracts are ready.

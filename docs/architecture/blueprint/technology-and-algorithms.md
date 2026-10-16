@@ -40,7 +40,7 @@ Let N be retained orders (including terminal records in the current bounded desi
 | Ledger aggregate and hold equality | Implemented checked postings plus independent per-asset aggregation and order-hold checks | Optimize incrementally only while retaining a separate full audit oracle and deterministic evidence |
 | Receipt map keyed by (account, command) | Implemented BTreeMap, O(log R) key lookup, stored original typed payload/result | No expiry today. Payload/result copies and global checks add cost; M4 must preserve receipts across restart |
 
-The standard library documents [collection behavior and operation costs](https://doc.rust-lang.org/std/collections/index.html). The costs above are architectural analysis for Cinis, not benchmark results. Actual financial transitions perform additional cloning, scanning, posting and validation. Inspect [matching.rs](../../../src/engine/src/matching.rs) and [execution](../../../src/engine/src/execution/mod.rs) before interpreting a microbenchmark.
+The standard library documents [collection behavior and operation costs](https://doc.rust-lang.org/std/collections/index.html). The costs above are architectural analysis for Cinis, not benchmark results. Actual financial transitions perform additional cloning, scanning, posting and validation. Inspect [matching book](../../../src/engine/src/matching/book.rs) and [execution](../../../src/engine/src/execution/mod.rs) before interpreting a microbenchmark.
 
 ## Deterministic algorithms and financial rules
 

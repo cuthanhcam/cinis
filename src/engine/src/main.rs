@@ -1,5 +1,6 @@
 use cinis_engine::{
-    Asset, Balance, ExecutionCommand as Command, ExecutionCore, ExecutionRequest, Permissions, Side,
+    Asset, Balance, DecisionSource, ExecutionCommand as Command, ExecutionCore, ExecutionRequest,
+    Permissions, Side,
 };
 
 fn main() {
@@ -48,8 +49,10 @@ fn main() {
     for request in &requests {
         println!("Request: {request:?}");
         let response = core
-            .execute(request.clone(), Permissions::ADMIN)
+            .execute_with_outcome(request.clone(), Permissions::ADMIN)
             .expect("admitted demo request");
+        assert_eq!(response.source, DecisionSource::New);
+        let response = response.response;
         println!(
             "Sequence {}: {:?}",
             response.sequence,
@@ -59,12 +62,13 @@ fn main() {
     }
     let before_retry = core.clone();
     let retry = core
-        .execute(requests[3].clone(), Permissions::TRADER)
+        .execute_with_outcome(requests[3].clone(), Permissions::TRADER)
         .expect("authorized retry");
     assert_eq!(core, before_retry);
+    assert_eq!(retry.source, DecisionSource::Retained);
     println!(
         "Retry returned original sequence {}; no additional financial effect.",
-        retry.sequence
+        retry.response.sequence
     );
     let cancel = ExecutionRequest {
         account_id: 2,
