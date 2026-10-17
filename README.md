@@ -2,6 +2,7 @@
 
 [![Documentation](https://github.com/cuthanhcam/cinis/actions/workflows/documentation.yml/badge.svg?branch=develop)](https://github.com/cuthanhcam/cinis/actions/workflows/documentation.yml)
 [![Engine](https://github.com/cuthanhcam/cinis/actions/workflows/engine.yml/badge.svg?branch=develop)](https://github.com/cuthanhcam/cinis/actions/workflows/engine.yml)
+[![Platform](https://github.com/cuthanhcam/cinis/actions/workflows/platform.yml/badge.svg?branch=develop)](https://github.com/cuthanhcam/cinis/actions/workflows/platform.yml)
 [![Ops](https://github.com/cuthanhcam/cinis/actions/workflows/ops.yml/badge.svg?branch=develop)](https://github.com/cuthanhcam/cinis/actions/workflows/ops.yml)
 [![Repository](https://github.com/cuthanhcam/cinis/actions/workflows/repository.yml/badge.svg?branch=develop)](https://github.com/cuthanhcam/cinis/actions/workflows/repository.yml)
 
@@ -17,7 +18,7 @@ The project serves developers who want to study one coherent execution system, i
 | Verification | 61 Rust tests plus one doctest; matching reference corpus of 8,192 commands; financial corpus of 1,024 fresh attempts plus retries/conflicts | Network, persistence, and recovery evidence |
 | Developer operations | Windows task runner, unique-run logs/metadata, timeout/owned-process cleanup, portable repository checks | Persistent-service lifecycle with real gateway |
 | CI | Linux/Windows engine checks, Windows ops tests, documentation/naming, pinned workflow validation, exact-SHA integration gate | Hosting protections must be configured separately |
-| Management/deployment | Specifications and responsibility guides | No .NET solution, database stack, gateway, listener, or production deployment yet |
+| Platform | .slnx with five production/five test projects; trusted local grant/cancel use cases, experimental framing, health host, 37 .NET tests | API-key authentication, Rust transport, database/projections and financial HTTP endpoints |
 
 The current CLI executes synthetic financial state in memory, with retained command results and reconciled balances/ledger. Permissions are a trusted local API contract, not network authentication. Restart loses everything; no persisted retry or recovery guarantee exists. No release, throughput, latency, or zero-allocation claim is made.
 
@@ -43,6 +44,8 @@ powershell -NoProfile -File .\ops\scripts\Get-CinisLogs.ps1 -Tail 50
 ```
 
 Scripts resolve the repository from their own location and can be called by absolute path from another directory. Logs live under ignored artifacts/logs/<run-id>/, with separate stdout/stderr, step metadata, and run.json. See [setup](docs/development/setup.md), [local runbook](docs/operations/local-development.md), and [debugging](docs/operations/logging.md).
+
+For .NET, use the [platform guide](docs/development/platform.md) or `powershell -NoProfile -File ops/scripts/Invoke-Cinis.ps1 -Project Platform -Task Verify`. Platform Run is a finite smoke; Serve runs a bounded foreground host with logs. Readiness stays false until Rust integration. SDK 10.0.301 is declared in global.json with same-band patch roll-forward.
 
 ## Direct verification
 
@@ -79,7 +82,7 @@ ExecutionCore now owns in-memory sequenced orders, balances, reservations, settl
 | Path | Responsibility |
 | --- | --- |
 | src/engine/ | Implemented Rust library, demo binary, and core integration runners |
-| src/platform/ | Future real .NET projects, with toolchain/build baseline added together |
+| src/platform/ | Implemented .NET solution/modules/tests and health-only scaffold host |
 | tests/fixtures/ | Shared versioned command/event/final-state examples |
 | ops/config/, ops/scripts/, ops/tests/ | Task registry, all repository automation, and automation tests |
 | docs/product/, docs/domain/, docs/architecture/ | Requirements, exact semantics, ownership/contracts, ADRs |

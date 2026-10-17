@@ -11,7 +11,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
-REQUIRED = ("Documentation", "Engine", "Ops", "Repository")
+REQUIRED = ("Documentation", "Engine", "Platform", "Ops", "Repository")
 
 
 def assess(runs, revision, required=REQUIRED):

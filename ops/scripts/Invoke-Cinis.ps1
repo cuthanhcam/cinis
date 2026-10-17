@@ -1,8 +1,8 @@
 #Requires -Version 5.1
 [CmdletBinding()]
 param(
-    [ValidateSet('Engine')][string]$Project = 'Engine',
-    [ValidateSet('Build', 'Test', 'Run', 'RunMatching', 'Format', 'Lint', 'Docs', 'Workflows', 'Verify')][string]$Task = 'Verify',
+    [ValidateSet('Engine', 'Platform')][string]$Project = 'Engine',
+    [ValidateSet('Build', 'Test', 'Run', 'Serve', 'RunMatching', 'Format', 'Lint', 'Docs', 'Workflows', 'Verify')][string]$Task = 'Verify',
     [ValidateRange(1, 86400)][int]$TimeoutSeconds = 600
 )
 Set-StrictMode -Version Latest
@@ -34,6 +34,7 @@ $summaryFile = Join-Path $directory 'run.json'
 $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $summaryFile -Encoding UTF8
 $exitCode = 1
 try {
+    if (-not $definition.Tasks.ContainsKey($Task)) { throw "Task is not supported by this project." }
     $index = 0
     foreach ($step in $definition.Tasks[$Task]) {
         $index++

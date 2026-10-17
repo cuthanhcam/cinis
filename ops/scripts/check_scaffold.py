@@ -5,6 +5,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 REQUIRED = (
+    "global.json", "Directory.Build.props", "Directory.Packages.props", "NuGet.config",
+    "src/platform/Cinis.Platform.slnx", ".github/workflows/platform.yml",
     "README.md", "LICENSE", "AGENTS.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md",
     "SECURITY.md", "GIT_GUIDELINES.md", "COMMIT_MESSAGE_GUIDELINES.md", "CHANGELOG.md",
     ".gitignore", ".gitattributes", ".editorconfig", ".env.example",

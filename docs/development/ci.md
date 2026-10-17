@@ -1,6 +1,6 @@
 # Continuous integration and tested integration commits
 
-Status: Implemented configuration and read-only gate. Owner: repository maintainer. Updated: 2026-10-15. Hosted results are verified per SHA rather than inferred from this status.
+Status: Implemented configuration and read-only gate. Owner: repository maintainer. Updated: 2026-10-17. Hosted results are verified per SHA rather than inferred from this status.
 
 ## Required workflows
 
@@ -8,6 +8,7 @@ Status: Implemented configuration and read-only gate. Owner: repository maintain
 | --- | --- | --- |
 | Documentation | Ubuntu 24.04; links/text, path naming, portable naming tests, whitespace | Whole workflow success |
 | Engine | Ubuntu 24.04 and Windows 2025; pinned Rust, format, Clippy, tests, demo | Both matrix jobs succeed |
+| Platform | Ubuntu 24.04 and Windows 2025; locked restore, format, warnings-as-errors build, unit/integration/architecture tests and smoke | Both matrix jobs succeed |
 | Ops | Windows 2025; automation tests, public Verify and Run; diagnostic artifact upload | Tests and runs succeed; upload is not a substitute |
 | Repository | Ubuntu 24.04; pinned/checksum-verified actionlint and CI-gate tests | Syntax/expressions and fail-closed gate verified |
 
@@ -16,9 +17,9 @@ All run on every pushed branch, pull request, and manual dispatch. No path filte
 ## Before publishing develop
 
 1. Run local Verify and ops unit/integration tests; inspect the staged diff.
-2. Push the work branch. Check all four workflows on its exact SHA.
+2. Push the work branch. Check all five workflows on its exact SHA.
 3. Create integration/<description> from latest develop and merge the work branch there. Push this candidate; it contains the merge commit develop would receive.
-4. Run `python ops/scripts/check_ci.py --wait` while on the candidate. The script only reads GitHub; it never merges or pushes. It requires all four named push workflows for exactly HEAD. Exit 0 means all succeeded; exit 1 means a failed/skipped/cancelled result; exit 2 means missing/pending/timeout. Evidence is saved to ignored artifacts/ci/<sha>.json.
+4. Run `python ops/scripts/check_ci.py --wait` while on the candidate. The script only reads GitHub; it never merges or pushes. It requires all five named push workflows for exactly HEAD. Exit 0 means all succeeded; exit 1 means a failed/skipped/cancelled result; exit 2 means missing/pending/timeout. Evidence is saved to ignored artifacts/ci/<sha>.json.
 5. Recheck that develop has not advanced. Switch to develop and `git merge --ff-only integration/<description>`. Verify HEAD is the tested SHA, then `git push origin develop`.
 6. Observe develop's own runs too. A failure on that ref still requires investigation; do not assume tests eliminate all platform or network variability.
 
@@ -34,7 +35,7 @@ No local script installs hosting protections. The maintainer should require the 
 
 Ops run 38759169205 failed because a Python test launched Windows PowerShell 5.1 from a PowerShell 7 environment; inherited PSModulePath resolved built-in modules incorrectly, making Import-PowerShellDataFile unavailable. Public scripts and the process module now import the running host's built-ins by full PSHOME path. The regression test shadows the Utility module with an incompatible one. This fixes the actual host interaction rather than skipping the test or relying on a different shell.
 
-The initial fix was verified on work-branch hosted runs 38760612316 (Documentation), 38760612279 (Engine), and 38760612236 (Ops). Those results validate that earlier SHA only; the final scaffold/integration SHA must independently pass all four workflows.
+The initial fix was verified on work-branch hosted runs 38760612316 (Documentation), 38760612279 (Engine), and 38760612236 (Ops). Those results validate that earlier SHA only; the final scaffold/integration SHA must independently pass all five workflows.
 
 ## Workflow lint tooling
 

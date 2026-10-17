@@ -7,7 +7,7 @@ Status: Accepted convention, 2026-10-15. Owner: repository maintainer.
 | Path | Owns | Does not own |
 | --- | --- | --- |
 | src/engine/ | Rust execution crate, its unit/integration runners, Cargo.lock | Operational process management |
-| src/platform/ | Future .NET gateway/management projects | Independent financial authority |
+| src/platform/ | Implemented modular .NET scaffold and its self-contained tests | Independent financial authority |
 | tests/fixtures/ | Shared versioned acceptance input/expected output | Generated test output |
 | tools/ | Product-adjacent CLI/load/replay tools as they appear | Repository maintenance wrappers |
 | ops/config/ | Trusted local task registry | Secrets or trading business configuration |
@@ -33,4 +33,8 @@ The matcher currently uses Vec-backed scan/sort storage. Avoid calling it optimi
 
 ## Evolution
 
-When .NET appears, add solution/project files and global.json together; introduce runtime configuration/deployment docs with an actual service. Keep source and CI commands linked. Changes to ownership or major directory responsibilities require an ADR and link updates; generated directories remain ignored. Portable checks live under ops/scripts/; any move updates CI, registry arguments, script-relative roots, and documentation together. See [naming conventions](naming-conventions.md) for language-specific path and identifier rules.
+The .NET solution, SDK pin, central package/build policy and CI now exist together; introduce runtime configuration/deployment docs with an actual service. Keep source and CI commands linked. Changes to ownership or major directory responsibilities require an ADR and link updates; generated directories remain ignored. Portable checks live under ops/scripts/; any move updates CI, registry arguments, script-relative roots, and documentation together. See [naming conventions](naming-conventions.md) for language-specific path and identifier rules.
+
+## Platform baseline
+
+Host, Modules and Tests solution folders contain five production/five test projects. See [platform guide](platform.md). Root global.json, Directory.Build.props, Directory.Packages.props and NuGet.config own shared .NET build/package policy; project packages.lock.json files are source. Add persistence/worker modules with actual features.

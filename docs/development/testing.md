@@ -28,7 +28,7 @@ python ops/scripts/check_scaffold.py
 git diff --check
 ```
 
-Ops has 16 tests on Windows: seven process behavior tests, four path policy tests, five hosted gate tests. Non-Windows discovery explicitly skips the Windows process class. Process coverage includes spaces/quotes/empty arguments, nonzero exit, missing tool, large dual streams, timeout of owned process/descendants, and public fail-fast with shadowed PowerShell modules.
+Ops has 18 tests on Windows: eight process/public-runner tests, four path policy tests, six hosted gate tests. Non-Windows discovery explicitly skips the Windows process class. Process coverage includes spaces/quotes/empty arguments, nonzero exit, missing tool, large dual streams, timeout of owned process/descendants, unsupported task metadata, and public fail-fast with shadowed PowerShell modules.
 
 Windows public runner Verify executes format, lint, build, full Rust tests, documentation/naming, pinned actionlint, and scaffold/ignore checks with logs. Run uses the funded demo; RunMatching preserves the raw matcher. See [runbook](../operations/local-development.md).
 
@@ -36,4 +36,8 @@ Windows public runner Verify executes format, lint, build, full Rust tests, docu
 
 Financial API tests use trusted in-process Permissions, not API-key authentication. Idempotency/cache and ledger are volatile, not durable. State copying is not a storage snapshot. Journal/crash/replay, client disconnect outcomes, and consumers require their own M3/M4/M5 tests.
 
-[CI procedure](ci.md) requires all four named workflows to pass the exact integration commit before develop is advanced. Linux/Windows engine jobs run both demos. Local pass is necessary but insufficient hosted evidence.
+[CI procedure](ci.md) requires all five named workflows to pass the exact integration commit before develop is advanced. Linux/Windows engine jobs run both demos. Local pass is necessary but insufficient hosted evidence.
+
+## .NET baseline
+
+The [platform guide](platform.md) documents locked restore, Release build, format, tests and finite smoke. Current suite: 37 cases across Access (8), Trading (7), ExecutionClient (11), host integration (5), and architecture (6). Both Platform matrix jobs and Windows ops verification must pass. These tests do not establish real authentication, TCP Rust interop or database guarantees.

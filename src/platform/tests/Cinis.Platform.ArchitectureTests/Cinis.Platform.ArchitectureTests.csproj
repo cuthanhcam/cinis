@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><IsTestProject>true</IsTestProject><IsPackable>false</IsPackable></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Cinis.Platform/Cinis.Platform.csproj" />
+    <ProjectReference Include="../../Cinis.Access/Cinis.Access.csproj" />
+    <ProjectReference Include="../../Cinis.Access.Infrastructure/Cinis.Access.Infrastructure.csproj" />
+    <ProjectReference Include="../../Cinis.Trading/Cinis.Trading.csproj" />
+    <ProjectReference Include="../../Cinis.ExecutionClient/Cinis.ExecutionClient.csproj" />
+  </ItemGroup>
+</Project>

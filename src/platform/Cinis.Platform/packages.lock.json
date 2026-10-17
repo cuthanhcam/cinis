@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dependencies": {
+    "net10.0": {
+      "cinis.access": {
+        "type": "Project"
+      },
+      "cinis.access.infrastructure": {
+        "type": "Project",
+        "dependencies": {
+          "Cinis.Access": "[1.0.0, )"
+        }
+      },
+      "cinis.executionclient": {
+        "type": "Project",
+        "dependencies": {
+          "Cinis.Trading": "[1.0.0, )"
+        }
+      },
+      "cinis.trading": {
+        "type": "Project"
+      }
+    }
+  }
+}
