@@ -62,7 +62,7 @@ Use p50/p95/p99 and worst observed samples with sample counts/raw data, not only
 | F: reproducible baseline | Clean-start funding/partial-fill/retry/restart/cancel/reconcile; workload/environment/raw reports; limitations | v0.1 review and optimization claims |
 | G: expansion | Business need and measured constraint; financial-authority/failure model; migration/replay compatibility | Sharding, replication, fees, external settlement |
 
-The chart is a review dependency model, not a new milestone numbering system. [Delivery backlog](../../delivery/backlog.md) remains canonical. On any implementation change use existing format/lint/tests, document checks and four-workflow exact-SHA integration gate; this architecture package does not relax CI.
+The chart is a review dependency model, not a new milestone numbering system. [Delivery backlog](../../delivery/backlog.md) remains canonical. On any implementation change use existing format/lint/tests, document checks and five-workflow exact-SHA integration gate; this architecture package does not relax CI.
 
 ## Current evidence and limits
 

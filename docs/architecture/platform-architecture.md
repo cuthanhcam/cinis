@@ -1,7 +1,7 @@
 # .NET platform architecture plan
 
 Purpose: select an understandable architecture, dependency model and scaling path before .NET source is created.
-Status: Proposed for review, 2026-10-16. Owner/approver: project maintainer. Implementation baseline: 8270c4a; there are no .NET application projects yet.
+Status: Architecture baseline accepted and scaffold implemented, 2026-10-17; network/data capabilities remain planned. Owner/approver: project maintainer. The scaffold now contains the five production projects and five test projects; see the platform development guide for delivered limits.
 
 ## Recommendation
 
@@ -9,7 +9,7 @@ Use a **modular monolith for the .NET management platform**, **ports and adapter
 
 These patterns answer different questions. Modular monolith defines deployment and module ownership. Ports and adapters define dependency direction. Vertical slices define how related feature code is grouped. CQRS defines command/query responsibilities. They are complementary, not four competing frameworks.
 
-This is a recommended design, not acceptance of unresolved business/access/protocol decisions. No project, package, service, endpoint, database or performance guarantee is delivered by this plan. [ADR-0007](decisions/0007-platform-architecture.md) records alternatives and review status; the [implementation sequence](platform-implementation-plan.md) defines readiness gates.
+The architecture baseline is accepted, while unresolved business/access/protocol decisions remain open. The architecture plan itself does not establish a financial gateway, database or performance guarantee; delivered bootstrap capabilities are tracked separately. [ADR-0007](decisions/0007-platform-architecture.md) records alternatives and acceptance scope; the [implementation sequence](platform-implementation-plan.md) defines readiness gates.
 
 ## Pattern portfolio and limits
 

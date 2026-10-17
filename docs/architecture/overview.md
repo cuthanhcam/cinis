@@ -1,6 +1,6 @@
 # Architecture overview
 
-Status: Rust in-process execution and financial CLI implemented; .NET/consumer/database processes remain planned.
+Status: Rust financial execution and .NET health-only scaffold implemented; authenticated Rust gateway, consumers and database remain planned.
 
 For the complete current/target design, read the [architecture blueprint](blueprint/README.md), [diagram catalog](blueprint/diagrams.md), and [offline interactive Atlas](blueprint/architecture-atlas.html). Technology choices, business questions and review gates are explicit in that package. The diagram and recovery/source column below describe the target; current authoritative execution state is memory only.
 
@@ -33,4 +33,4 @@ Local target: .NET process, Rust process, PostgreSQL, CLI/consumers. Use framed 
 
 ## Platform architecture review
 
-Before creating .NET projects, review the [platform architecture plan](platform-architecture.md) and [phased implementation sequence](platform-implementation-plan.md). Proposed approach: modular monolith, consumer-owned ports/adapters, vertical use-case slices and CQRS across execution/query boundaries. [ADR-0007](decisions/0007-platform-architecture.md) remains Proposed; this documentation does not accept access/protocol policies or implement a gateway.
+For further .NET implementation, review the [platform architecture plan](platform-architecture.md) and [phased implementation sequence](platform-implementation-plan.md). Proposed approach: modular monolith, consumer-owned ports/adapters, vertical use-case slices and CQRS across execution/query boundaries. [ADR-0007](decisions/0007-platform-architecture.md) is accepted for the project graph. [ADR-0008](decisions/0008-platform-bootstrap.md) limits bootstrap to trusted local use cases, disabled execution and health routes; access/protocol and financial gateway work remains open.

@@ -1,6 +1,6 @@
 # ADR-0007: Modular .NET platform with explicit adapter boundaries
 
-Date: 2026-10-16. Status: Proposed; not implemented. Owner/approver: project maintainer.
+Date: 2026-10-16. Status: Accepted architecture baseline, 2026-10-17; scaffold implementation underway. Owner/approver: project maintainer.
 
 ## Context
 
@@ -29,6 +29,6 @@ More projects than a single Web API increase wiring, but isolate real applicatio
 
 ## Approval and implementation gates
 
-This ADR remains Proposed pending review of the [architecture plan](../platform-architecture.md). No business/access/protocol choice is implicitly accepted. Resolve BD-01/02/03 and relevant TD-01/02/03/04/05 decisions with spike evidence before the production gateway contract is implemented. Follow the [implementation sequence](../platform-implementation-plan.md); do not create hypothetical scaffolding now.
+The maintainer authorized the planned solution/projects and sequential implementation on 2026-10-17. This accepts the modular architecture and initial dependency graph in the [architecture plan](../platform-architecture.md). No business/access/protocol choice is implicitly accepted. Resolve BD-01/02/03 and relevant TD-01/02/03/04/05 decisions with spike evidence before the production gateway contract is implemented. Follow the [implementation sequence](../platform-implementation-plan.md); the authorized fail-closed bootstrap may precede the protocol spike, but financial endpoints/transport still require those decisions.
 
 Verify architecture-test negative cases, policy/authorization, protocol failure/unknown outcomes, real database transactions/cursors, role isolation, logs/readiness/shutdown and all hosted checks. Revisit topology when measurement or business needs justify isolation, not simply because more modules exist.

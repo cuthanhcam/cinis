@@ -15,7 +15,7 @@ Owner: project maintainer. Reviewed: 2026-10-15. Implementation baseline: develo
 
 ## Before .NET implementation
 
-Review the [platform architecture/pattern plan](../platform-architecture.md), [phased implementation sequence](../platform-implementation-plan.md), and [Proposed ADR-0007](../decisions/0007-platform-architecture.md). They refine the existing target modular host into concrete dependency boundaries and scaling gates without creating .NET source or accepting unresolved business policies.
+Review the [platform architecture/pattern plan](../platform-architecture.md), [phased implementation sequence](../platform-implementation-plan.md), and [Accepted ADR-0007](../decisions/0007-platform-architecture.md). They refine the existing target modular host into concrete dependency boundaries and scaling gates and the .NET scaffold now follows that graph. Business policies remain open; see the [current platform guide](../../development/platform.md).
 
 ## Reading the status
 
