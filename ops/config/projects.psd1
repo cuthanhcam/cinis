@@ -27,4 +27,34 @@
             )
         }
     }
+    Platform = @{
+        Kind = 'Application'
+        Description = 'Fail-closed platform scaffold; Run is a finite smoke; Serve is bounded foreground debugging.'
+        Tasks = @{
+            Build = @(
+                @{ Tool = 'dotnet'; Arguments = @('restore', 'src/platform/Cinis.Platform.slnx', '--locked-mode') }
+                @{ Tool = 'dotnet'; Arguments = @('build', 'src/platform/Cinis.Platform.slnx', '--no-restore', '-c', 'Release') }
+            )
+            Test = @(@{ Tool = 'dotnet'; Arguments = @('test', 'src/platform/Cinis.Platform.slnx', '--no-restore', '-c', 'Release') })
+            Run = @(@{ Tool = 'dotnet'; Arguments = @('run', '--project', 'src/platform/Cinis.Platform', '--no-launch-profile', '-c', 'Release', '--', '--smoke-test') })
+            Serve = @(@{ Tool = 'dotnet'; Arguments = @('run', '--project', 'src/platform/Cinis.Platform', '--no-launch-profile', '-c', 'Release', '--', '--urls', 'http://127.0.0.1:5080') })
+            Format = @(@{ Tool = 'dotnet'; Arguments = @('format', 'src/platform/Cinis.Platform.slnx', 'whitespace', '--no-restore', '--verify-no-changes') })
+            Lint = @(@{ Tool = 'dotnet'; Arguments = @('build', 'src/platform/Cinis.Platform.slnx', '--no-restore', '-c', 'Release') })
+            Docs = @(
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_docs.py') }
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_naming.py') }
+            )
+            Workflows = @(@{ Tool = 'python'; Arguments = @('ops/scripts/check_workflows.py') })
+            Verify = @(
+                @{ Tool = 'dotnet'; Arguments = @('restore', 'src/platform/Cinis.Platform.slnx', '--locked-mode') }
+                @{ Tool = 'dotnet'; Arguments = @('format', 'src/platform/Cinis.Platform.slnx', 'whitespace', '--no-restore', '--verify-no-changes') }
+                @{ Tool = 'dotnet'; Arguments = @('build', 'src/platform/Cinis.Platform.slnx', '--no-restore', '-c', 'Release') }
+                @{ Tool = 'dotnet'; Arguments = @('test', 'src/platform/Cinis.Platform.slnx', '--no-build', '--no-restore', '-c', 'Release') }
+                @{ Tool = 'dotnet'; Arguments = @('run', '--project', 'src/platform/Cinis.Platform', '--no-build', '--no-restore', '-c', 'Release', '--', '--smoke-test') }
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_docs.py') }
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_naming.py') }
+                @{ Tool = 'python'; Arguments = @('ops/scripts/check_scaffold.py') }
+            )
+        }
+    }
 }

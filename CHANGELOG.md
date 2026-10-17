@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added the .NET 10 platform .slnx with five production/five test projects, central locked package/build policy, 37 tests, health-only host, local grant/cancel application slice and experimental bounded framing.
+- Added Platform Linux/Windows CI as a required fifth workflow, logged platform Verify/Run/Serve tasks, deny-by-default bootstrap documentation and architecture approval scope.
+
 - Added ExecutionCore as the atomic financial entry point with synthetic funding, checked account/supply limits, reservations, settlement/release, balanced ledger, market pause, and account-scoped command idempotency.
 - Added 24 financial scenarios, four fixed-seed financial streams, two execution boundary tests, ledger/ADR/API documentation, and a funded default CLI with a preserved matching-only binary.
 - Split matching, ledger, execution contracts/state, and sequencing ownership into cohesive Rust modules; all state remains volatile.
@@ -25,4 +28,4 @@
 - Added requirements, state ownership, M0 decision review, explicit matching policy, verification strategy, and a single backlog.
 - Added a pinned safe-Rust matching-only crate, CLI demo, 17 shared executable scenario fixtures, and engine CI.
 
-No financial, gateway, or recovery implementation and no release has been delivered.
+Financial execution is volatile. Authenticated network trading, database projections and durable recovery remain undelivered; no release is claimed.

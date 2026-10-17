@@ -1,0 +1,33 @@
+name: Platform
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Platform (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          global-json-file: global.json
+      - run: dotnet restore src/platform/Cinis.Platform.slnx --locked-mode
+      - run: dotnet format src/platform/Cinis.Platform.slnx whitespace --no-restore --verify-no-changes
+      - run: dotnet build src/platform/Cinis.Platform.slnx --no-restore -c Release
+      - run: dotnet test src/platform/Cinis.Platform.slnx --no-build --no-restore -c Release
+      - run: dotnet run --project src/platform/Cinis.Platform --no-build --no-restore -c Release -- --smoke-test

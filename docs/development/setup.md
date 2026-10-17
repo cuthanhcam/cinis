@@ -10,15 +10,15 @@ python ops/scripts/check_docs.py
 git diff --check
 ```
 
-The Rust crate at src/engine implements a synthetic financial CLI plus a preserved matching-only CLI; see [testing](testing.md) for commands. There is no .NET solution, database deployment, network gateway, or durable application yet.
+The Rust crate implements a synthetic financial CLI and matching-only CLI. The .NET [platform solution](../../src/platform/Cinis.Platform.slnx) now builds and runs a health-only scaffold; see the [platform guide](platform.md). Install SDK 10.0.301 or a permitted same-band patch from global.json. Database deployment, authenticated financial gateway and durable execution remain pending.
 
 ## Toolchain baseline task
 
-Rust 1.95.0 and components are pinned in rust-toolchain.toml; Cargo.lock is committed for this application crate. Engine CI runs format, Clippy, tests, and demo. During the .NET spike inspect installed SDKs and introduce global.json, actual solution/projects, and build/test CI together. No placeholder platform workflow or environment file is needed yet.
+Rust is pinned in rust-toolchain.toml with committed Cargo.lock. .NET global.json, shared build/central package policy, per-project package locks and the Platform workflow are implemented together. Locked restore, Release build, format, tests and smoke are documented in the platform guide. Both engine and platform run on Linux/Windows CI.
 
 ## Local input
 
-init.md is preserved historical planning input and intentionally ignored. English documents under docs/ are the maintained project baseline. The existing origin points to https://github.com/cuthanhcam/cinis.git; main is published first, followed by integrated develop work. No cloud resources, runtime ports, or secrets were configured.
+init.md remains ignored historical input. English docs are maintained specifications. The existing origin is https://github.com/cuthanhcam/cinis.git; develop receives only tested integration commits. No cloud resources or secrets are provisioned. The local platform health host defaults to loopback port 5080.
 
 ## Automated local commands
 

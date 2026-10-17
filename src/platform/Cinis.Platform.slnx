@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/Host/">
+    <Project Path="Cinis.Platform/Cinis.Platform.csproj" />
+  </Folder>
+  <Folder Name="/Modules/">
+    <Project Path="Cinis.Access.Infrastructure/Cinis.Access.Infrastructure.csproj" />
+    <Project Path="Cinis.Access/Cinis.Access.csproj" />
+    <Project Path="Cinis.ExecutionClient/Cinis.ExecutionClient.csproj" />
+    <Project Path="Cinis.Trading/Cinis.Trading.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/Cinis.Access.Tests/Cinis.Access.Tests.csproj" />
+    <Project Path="tests/Cinis.ExecutionClient.Tests/Cinis.ExecutionClient.Tests.csproj" />
+    <Project Path="tests/Cinis.Platform.ArchitectureTests/Cinis.Platform.ArchitectureTests.csproj" />
+    <Project Path="tests/Cinis.Platform.IntegrationTests/Cinis.Platform.IntegrationTests.csproj" />
+    <Project Path="tests/Cinis.Trading.Tests/Cinis.Trading.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -132,6 +132,6 @@ cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-demo
 cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-matching-demo
 ```
 
-The engine workflow runs these checks on Linux/Windows, including doctests and Rustdoc generation. Verify logs the existing format/lint/build/test/repository checks; cargo doc is also a direct documented check. Hosted four-workflow integration gating remains mandatory.
+The engine workflow runs these checks on Linux/Windows, including doctests and Rustdoc generation. Verify logs the existing format/lint/build/test/repository checks; cargo doc is also a direct documented check. Hosted five-workflow integration gating remains mandatory.
 
 When a real boundary warrants more crates, follow [Cargo workspace guidance](https://doc.rust-lang.org/cargo/reference/workspaces.html): keep dependency flow explicit, shared toolchain/lock decisions deliberate, and CI/tasks updated together. Do not move the manifest merely to create a workspace-shaped scaffold. The next planned functional step remains the cross-language spike and business/protocol decisions in the [architecture register](../architecture/blueprint/decision-register.md).

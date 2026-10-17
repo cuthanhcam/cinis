@@ -34,3 +34,7 @@ Generated output lives under artifacts/logs/<run-id>, which Git ignores. Documen
 Current registered project: Engine, with finite synthetic-financial (Run) and matching-only (RunMatching) CLI jobs. There is no running network service, database, gateway, service manager, or production deployment. See [service lifecycle](../docs/operations/service-lifecycle.md) before adding one.
 
 Verify now also checks workflows and scaffold contracts. First workflow validation needs internet access to download pinned actionlint. Hosted integration requirements are documented in [CI procedure](../docs/development/ci.md); check_ci.py never pushes or merges.
+
+## Platform tasks
+
+Use Invoke-Cinis.ps1 -Project Platform -Task Verify or Run for locked verification/finite smoke. Serve is bounded foreground debugging at http://127.0.0.1:5080 with captured logs; it is not a supervisor and reaches timeout exit 124 at its configured deadline. Readiness stays 503. See [platform guide](../docs/development/platform.md).

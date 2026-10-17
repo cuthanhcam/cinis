@@ -1,6 +1,6 @@
 # Service lifecycle requirements
 
-Status: Proposed extension contract; no persistent Cinis service exists. Updated: 2026-10-15.
+Status: Production lifecycle contract remains Proposed; a health-only .NET host and bounded foreground debug runner exist. Updated: 2026-10-17.
 
 ## Current behavior
 
@@ -24,3 +24,7 @@ Engine Run is a finite synthetic-financial CLI demonstration; RunMatching retain
 Do not reuse a stale PID file as sole proof of ownership. A background mode needs verified process identity and explicit stop/status semantics. Production hosting should use the intended operating-system/container supervisor, not a PowerShell terminal kept open indefinitely.
 
 Aegis integration remains optional and contract-based. Cinis must start independently for local verification. Detailed commands are added when the executable services exist; this page is not an executable service runbook.
+
+## Implemented scaffold host
+
+[Platform Serve](../development/platform.md) captures structured output/metadata for an owned foreground host with a deadline. Liveness is 200; readiness remains 503. No financial endpoint, restart supervision, durable recovery or production rotation is delivered. The lifecycle table remains a completion gate.

@@ -16,6 +16,7 @@ Apply, in order: fixed tool/framework filenames; versioned external contracts; t
 | Documentation topic directories | Full, clear lowercase names; kebab-case if multiple words | docs/operations, docs/architecture, docs/development |
 | Automation directories | Short root ops; descriptive children | ops/scripts, ops/config, ops/tests |
 | .NET project/type directories | PascalCase and dot-separated project identity | src/platform/Cinis.Gateway, Features/Orders |
+| .NET application lockfiles | Preserve NuGet filename; commit per project | packages.lock.json |
 | Rust/Python module directories | snake_case according to language | market_data, order_book |
 | Markdown files | kebab-case; one topic per file | state-ownership.md, naming-conventions.md; versioned scope-v0.1.md |
 | ADR files | Four-digit immutable number plus kebab-case decision | 0004-naming-and-automation-layout.md |

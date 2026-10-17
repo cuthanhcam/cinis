@@ -57,8 +57,13 @@ The next functional gate remains M0-04/ARCH-02 before the full M3 gateway. These
 
 | ID | Work item | Dependencies | Acceptance / evidence | Estimate | Status |
 | --- | --- | --- | --- | --- | --- |
-| NET-01 | Define platform patterns, boundaries and evolution plan | ARCH-01, CORE-01/02 | [Platform architecture](../architecture/platform-architecture.md), dependency/flow diagrams, [phase gates](../architecture/platform-implementation-plan.md), Proposed ADR-0007 | Effort not measured | Done (plan only) |
-| NET-02 | Review platform architecture baseline | NET-01 | Close TD-13 explicitly in ADR-0007; agree module/project graph, transaction authority, worker roles and extraction criteria | Refine after review | Todo; gates long-lived .NET solution |
-| NET-03 | Implement actual .NET baseline and architecture checks | NET-02, M0-04, ARCH-02 | P2 evidence: real projects/SDK/dependencies, forbidden-reference tests, host/configuration, actual Linux/Windows CI and logged ops tasks | Refine after protocol spike | Todo |
+| NET-01 | Define platform patterns, boundaries and evolution plan | ARCH-01, CORE-01/02 | [Platform architecture](../architecture/platform-architecture.md), dependency/flow diagrams, [phase gates](../architecture/platform-implementation-plan.md), ADR-0007 | Effort not measured | Done (plan; architecture accepted separately) |
+| NET-02 | Review platform architecture baseline | NET-01 | Close TD-13 explicitly in ADR-0007; agree module/project graph, transaction authority, worker roles and extraction criteria | Refine after review | Done: maintainer authorized solution/modules on 2026-10-17; ADR-0007 accepted |
+| NET-03 | Implement actual .NET baseline and architecture checks | NET-02; bootstrap ordering authorized before M0-04/ARCH-02 | [Platform guide](../development/platform.md), .slnx, 37 tests, locked dependencies, health/smoke/foreground logs, Platform CI | Effort not measured | Done for fail-closed bootstrap; full P2/P3 protocol/auth gates remain open |
 
-P0-P5 describe implementation order and acceptance gates; this table and existing M0/M3/M4 work items remain the single tracker. No .NET source is created until the requested architecture review and relevant contracts are ready.
+P0-P5 describe implementation order and acceptance gates; this table and existing M0/M3/M4 work items remain the single tracker. The maintainer authorized the scaffold first on 2026-10-17; ADR-0008 records this bootstrap ordering without accepting business/wire policies.
+
+| ID | Next implementation | Dependencies | Acceptance | Status |
+| --- | --- | --- | --- | --- |
+| NET-04 | Trusted local grant/cancel slice and experimental bounded codec | NET-03 | Access/Trading/ExecutionClient tests; denied caller never reaches execution; exact intent and transport certainty preserved; no financial HTTP route | Done (in-process only) |
+| NET-05 | Actual Rust transport and authenticated endpoint | M0-04, ARCH-02, NET-04 | Accepted protocol/trust/access contracts, round-trip/disconnect/retry evidence and real credential/account isolation | Todo |

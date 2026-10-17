@@ -40,6 +40,19 @@ class RunnerTests(unittest.TestCase):
         self.work = tempfile.TemporaryDirectory(prefix="cinis ops test ")
         self.addCleanup(self.work.cleanup)
 
+    def test_unsupported_project_task_fails_with_metadata(self):
+        script = MODULE.parent / "Invoke-Cinis.ps1"
+        result = subprocess.run(
+            ["powershell", "-NoProfile", "-File", str(script), "-Project", "Platform", "-Task", "RunMatching"],
+            capture_output=True, text=True, timeout=30,
+        )
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        summary_line = next(line for line in result.stdout.splitlines() if "Summary: " in line)
+        record = json.loads(Path(summary_line.split("Summary: ", 1)[1].strip()).read_text(encoding="utf-8-sig"))
+        self.assertEqual(record["project"], "Platform")
+        self.assertEqual(record["status"], "Failed")
+        self.assertEqual(record["steps"], [])
+
     def test_quoted_arguments_and_streams(self):
         expected = ['literal "quoted" value', "C:\\folder with spaces\\", "", "a'b;$literal"]
         code = "import json,sys; print(json.dumps(sys.argv[1:])); print('diagnostic',file=sys.stderr)"

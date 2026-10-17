@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../Cinis.Access/Cinis.Access.csproj" />
+  </ItemGroup>
+</Project>

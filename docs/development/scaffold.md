@@ -12,17 +12,17 @@ Status: Implemented repository foundation; application expansion gates remain ex
 | Security and support | SECURITY, .github/SUPPORT, private-reporting guidance, safe issue fields |
 | Git/editor hygiene | Annotated .gitignore/.gitattributes/.editorconfig; shared VS Code suggestions without private paths |
 | Reviews and intake | CODEOWNERS, PR evidence checklist, bug/work/question templates |
-| Dependency upkeep | Dependabot for actual Cargo and GitHub Actions dependencies; reviewed action SHAs |
+| Dependency upkeep | Dependabot for actual Cargo, NuGet and GitHub Actions dependencies; reviewed action SHAs |
 | Automation and diagnostics | ops registry/scripts/tests; unique logs, metadata, timeout, failure propagation |
-| CI integrity | Four workflows on all work branches/PRs, actionlint, exact-SHA fail-closed gate |
+| CI integrity | Five workflows on all work branches/PRs, actionlint, exact-SHA fail-closed gate |
 | Reusable documentation | ADR, feature brief, runbook, experiment templates; language-aware naming |
 | Environment reference | .env.example documents currently consumed GH_TOKEN/RUST_BACKTRACE; no automatic dotenv loading |
 
 ## Intentional application gates
 
-No .NET project, global.json, central package list, platform build workflow, container image, cloud resource, or database migration is fabricated for appearance. Introduce each with an actual executable responsibility, supported/pinned version, tests, configuration contract, and reproducible instructions. The current Rust crate remains the only application implementation, now with volatile financial execution.
+Rust execution and the .NET scaffold now exist. .NET has five production/five test projects, locked dependencies and Linux/Windows CI; see [platform guide](platform.md). The health-only host defaults to no grants and no execution connection. Authentication, financial endpoints, PostgreSQL, containers and recovery remain undelivered.
 
-Before .NET gateway scaffolding: choose SDK, define protocol/ownership and independent startup, then add solution/project files, Directory.Build.props and package policy as needed, global.json, tests, and CI together. Financial source work now follows ledger.md and ADR-0005 with numerical/reconciliation tests. Before services: readiness/shutdown/log rotation and local binding policy. Before deploy: real image/manifest, volume/secret ownership, health checks, and cleanup/restore instructions.
+Before financial gateway integration: complete framing/trust/access discovery, then add authenticated endpoints and Rust transport with failure tests. Financial source work now follows ledger.md and ADR-0005 with numerical/reconciliation tests. Before services: readiness/shutdown/log rotation and local binding policy. Before deploy: real image/manifest, volume/secret ownership, health checks, and cleanup/restore instructions.
 
 ## Maintainer checklist
 

@@ -1,9 +1,13 @@
 # .NET platform implementation sequence
 
 Purpose: make architecture review and implementation order explicit before creating the platform solution.
-Status: Proposed plan, 2026-10-16. Owner/approver: project maintainer. No .NET code or infrastructure is created by this document.
+Status: Architecture accepted and P2 bootstrap authorized, 2026-10-17; later capabilities remain planned. Owner/approver: project maintainer. This document tracks order/gates; the current fail-closed scaffold does not complete P1/P3.
 
-The recommended patterns and dependency graph live in [platform architecture](platform-architecture.md). [Backlog](../delivery/backlog.md) remains the only work-item tracker; phase gates here describe order/evidence, not a parallel ticket or estimate system. [ADR-0007](decisions/0007-platform-architecture.md) is Proposed until reviewed.
+The recommended patterns and dependency graph live in [platform architecture](platform-architecture.md). [Backlog](../delivery/backlog.md) remains the only work-item tracker; phase gates here describe order/evidence, not a parallel ticket or estimate system. [ADR-0007](decisions/0007-platform-architecture.md) is accepted for the architecture/project graph; business/protocol choices remain open.
+
+## Authorized bootstrap ordering
+
+On 2026-10-17 the maintainer explicitly requested the solution and module scaffold before sequential implementation. P2 bootstrap therefore proceeds before P1 with empty local grants, a disabled execution adapter and health-only HTTP routes. This does not waive protocol/access gates for financial endpoints. The first application slice is trusted in-process cancel authorization/forwarding plus an experimental bounded framing utility, not authenticated Rust round-trip.
 
 ## Phase dependencies
 

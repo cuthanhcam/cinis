@@ -40,7 +40,7 @@ def validate_path(name):
             continue
         errors.append(f"nonconforming directory: {folder}")
     filename = path.name
-    if (len(parts) == 1 and filename in ROOT_FILES) or filename in TOOL_FILES or filename == "README.md":
+    if (len(parts) == 1 and filename in ROOT_FILES) or filename in TOOL_FILES or filename == "README.md" or (parts[:2] == ("src", "platform") and filename in {"packages.lock.json", "launchSettings.json"}):
         return errors
     if parts[0] == ".github" and filename in GITHUB_FILES:
         return errors

@@ -18,6 +18,11 @@ class CiGateTests(unittest.TestCase):
     def test_all_required_workflows_success(self):
         self.assertEqual(GATE.assess(successful_runs(), REVISION)[0], 0)
 
+    def test_platform_is_mandatory(self):
+        self.assertIn("Platform", GATE.REQUIRED)
+        runs = [r for r in successful_runs() if r["name"] != "Platform"]
+        self.assertEqual(GATE.assess(runs, REVISION)[0], 2)
+
     def test_missing_and_wrong_commit_are_pending(self):
         self.assertEqual(GATE.assess(successful_runs()[:-1], REVISION)[0], 2)
         self.assertEqual(GATE.assess(successful_runs(), "b" * 40)[0], 2)
