@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../Cinis.Access/Cinis.Access.csproj" />
+    <ProjectReference Include="../Cinis.Access.Infrastructure/Cinis.Access.Infrastructure.csproj" />
+    <ProjectReference Include="../Cinis.Trading/Cinis.Trading.csproj" />
+    <ProjectReference Include="../Cinis.ExecutionClient/Cinis.ExecutionClient.csproj" />
+  </ItemGroup>
+</Project>
