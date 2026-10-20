@@ -37,4 +37,4 @@ Verify now also checks workflows and scaffold contracts. First workflow validati
 
 ## Platform tasks
 
-Use Invoke-Cinis.ps1 -Project Platform -Task Verify or Run for locked verification/finite smoke. Serve is bounded foreground debugging at http://127.0.0.1:5080 with captured logs; it is not a supervisor and reaches timeout exit 124 at its configured deadline. Readiness stays 503. See [platform guide](../docs/development/platform.md).
+Use Invoke-Cinis.ps1 -Project Platform -Task Verify or Run for locked verification/finite smoke. Serve is bounded foreground debugging at http://localhost:5080 with captured logs; it is not a supervisor and reaches timeout exit 124 at its configured deadline. Readiness stays 503. See [platform guide](../docs/development/platform.md).
