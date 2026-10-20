@@ -3,7 +3,7 @@
     "Cinis.Platform": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "http://127.0.0.1:5080",
+      "applicationUrl": "http://localhost:5080",
       "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
     }
   }

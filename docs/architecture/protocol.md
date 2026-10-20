@@ -11,3 +11,7 @@ Result: command/account ID, sequence where applicable, status, stable error code
 Events use execution sequence plus event ordinal for stable identity. Include version, command ID, kind, and required financial/order fields. Consumers follow sequence/ordinal. Market-data streams define a separate cursor and consistent snapshot boundary.
 
 Timeout/disconnect gives unknown outcome: retry the same ID/payload. Bound queues and timeouts; overloaded ingress rejects before acceptance. Queries expose applied sequence to show projection lag. Gaps trigger catch-up or snapshot resync.
+
+## Experimental .NET transport evidence
+
+[ADR-0009](decisions/0009-platform-transport-channel.md) records the bounded loopback request channel and its [implementation/test evidence](../development/platform-transport.md). A received frame is raw bytes, not a validated financial acknowledgement. Rust schema, versioning, correlation, peer trust and durable acknowledgement remain open gates.

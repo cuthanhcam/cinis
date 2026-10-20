@@ -63,6 +63,7 @@ node_modules/
 *.tsbuildinfo
 
 # Local logs, diagnostics, generated evidence, runtime state
+# Includes overwritten service logs in artifacts/logs/latest/ and exclusive runner lock files.
 /artifacts/
 /data/
 /temp/

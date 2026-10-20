@@ -6,16 +6,29 @@ namespace Cinis.Trading.Tests;
 
 public sealed class CancelOrderTests
 {
+    [Fact]
+    public void MissingDependency_FailsBeforeHandlingAnIntent()
+    {
+        var gateway = new Gateway(new(SubmissionStatus.UnavailableBeforeSend, null, "test"));
+        Assert.Throws<ArgumentNullException>(() => new CancelOrderHandler(null!, gateway));
+        Assert.Throws<ArgumentNullException>(() => new CancelOrderHandler(new Authorizer(true), null!));
+    }
+
     private sealed class Authorizer(bool allowed) : IAccountAuthorizer
     {
-        public ValueTask<bool> CanTradeAsync(string principalId, ulong accountId, CancellationToken cancellationToken) =>
+        public ValueTask<bool> CanTradeAsync(
+            string principalId,
+            ulong accountId,
+            CancellationToken cancellationToken) =>
             ValueTask.FromResult(allowed);
     }
 
     private sealed class Gateway(ExecutionSubmission result) : IExecutionGateway
     {
         public List<CancelOrderIntent> Received { get; } = [];
-        public Task<ExecutionSubmission> CancelAsync(CancelOrderIntent intent, CancellationToken cancellationToken)
+        public Task<ExecutionSubmission> CancelAsync(
+            CancelOrderIntent intent,
+            CancellationToken cancellationToken)
         {
             Received.Add(intent);
             return Task.FromResult(result);
@@ -26,7 +39,10 @@ public sealed class CancelOrderTests
     [InlineData(0UL, 1UL, 1UL)]
     [InlineData(1UL, 0UL, 1UL)]
     [InlineData(1UL, 1UL, 0UL)]
-    public async Task InvalidIntent_NeverForwards(ulong account, ulong command, ulong order)
+    public async Task InvalidIntent_NeverForwards(
+        ulong account,
+        ulong command,
+        ulong order)
     {
         var gateway = new Gateway(new(SubmissionStatus.KnownResult, 1, "test"));
         var result = await new CancelOrderHandler(new Authorizer(true), gateway).HandleAsync("alice", new(account, command, order));

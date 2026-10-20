@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 
 MODULE = Path(__file__).resolve().parents[1] / "scripts" / "Cinis.Operations.psm1"
@@ -39,6 +40,75 @@ class RunnerTests(unittest.TestCase):
     def setUp(self):
         self.work = tempfile.TemporaryDirectory(prefix="cinis ops test ")
         self.addCleanup(self.work.cleanup)
+
+    def fixture_runner(self, code, task="Run"):
+        """Use the public script with a tiny real child, without starting a financial service."""
+        import shutil
+        directory = Path(self.work.name)
+        scripts = directory / "ops" / "scripts"
+        scripts.mkdir(parents=True)
+        config = directory / "ops" / "config"
+        config.mkdir()
+        for name in ("Cinis.Operations.psm1", "Invoke-Cinis.ps1", "Get-CinisLogs.ps1"):
+            shutil.copyfile(MODULE.parent / name, scripts / name)
+        (config / "projects.psd1").write_text(
+            "@{Engine=@{Kind='Job';Tasks=@{" + task + "=@(@{Tool=" + ps_quote(sys.executable)
+            + ";Arguments=@('-u','-c'," + ps_quote(code) + ")})}}}", encoding="utf-8")
+        return directory, ["powershell", "-NoProfile", "-NonInteractive", "-File",
+                           str(scripts / "Invoke-Cinis.ps1"), "-Project", "Engine", "-Task", task]
+
+    def test_latest_replaces_logs_and_exposes_child_run_identity(self):
+        directory, command = self.fixture_runner(
+            "from pathlib import Path; import os; print(Path('message.txt').read_text()); print(os.environ['CINIS_RUN_ID'])")
+        latest = directory / "artifacts" / "logs" / "latest" / "engine" / "run"
+        identities = []
+        for message in ("first-run-content", "second-run-content"):
+            (directory / "message.txt").write_text(message)
+            result = subprocess.run([*command, "-LogMode", "Latest"], capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            summary = json.loads((latest / "run.json").read_text(encoding="utf-8-sig"))
+            identities.append(summary["runId"])
+            self.assertEqual(summary["logMode"], "Latest")
+            output = (latest / "01-python.stdout.log").read_text()
+            self.assertIn(message, output)
+            self.assertIn(summary["runId"], output)
+        self.assertNotEqual(*identities)
+        self.assertNotIn("first-run-content", output)
+        read = subprocess.run(["powershell", "-NoProfile", "-File",
+                               str(directory / "ops/scripts/Get-CinisLogs.ps1"), "-Latest",
+                               "-Project", "Engine", "-Task", "Run"], capture_output=True, text=True, timeout=15)
+        self.assertEqual(read.returncode, 0, read.stdout + read.stderr)
+        self.assertIn("second-run-content", read.stdout)
+
+    def test_serve_latest_lock_prevents_concurrent_truncation(self):
+        directory, command = self.fixture_runner("import time; print('owned-output',flush=True); time.sleep(30)", "Serve")
+        first = subprocess.Popen([*command, "-TimeoutSeconds", "15"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        latest = directory / "artifacts/logs/latest/engine/serve"
+        output = latest / "01-python.stdout.log"
+        deadline = time.monotonic() + 10
+        while time.monotonic() < deadline:
+            if output.exists() and "owned-output" in output.read_text():
+                break
+            time.sleep(0.05)
+        else:
+            first.communicate(timeout=20)
+            self.fail("Fixture child did not start.")
+        second = subprocess.run(command, capture_output=True, text=True, timeout=15)
+        self.assertNotEqual(second.returncode, 0)
+        self.assertIn("owned-output", output.read_text())
+        first.communicate(timeout=20)
+        self.assertEqual(first.returncode, 124)
+        summary = json.loads((latest / "run.json").read_text(encoding="utf-8-sig"))
+        self.assertEqual(summary["exitCode"], 124)
+
+    def test_serve_archive_opt_in_keeps_distinct_runs(self):
+        directory, command = self.fixture_runner("print('finite fixture')", "Serve")
+        for _ in range(2):
+            result = subprocess.run([*command, "-LogMode", "Archive"], capture_output=True, text=True, timeout=20)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        summaries = list((directory / "artifacts/logs").glob("*/run.json"))
+        self.assertEqual(len(summaries), 2)
+        self.assertFalse((directory / "artifacts/logs/latest").exists())
 
     def test_unsupported_project_task_fails_with_metadata(self):
         script = MODULE.parent / "Invoke-Cinis.ps1"

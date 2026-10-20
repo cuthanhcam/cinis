@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Adopted readability-based C# wrapping with an advisory 120-character target, preserving existing readable layout.
+- Added API-only response security headers and success/error policy tests; reviewed the supplied pipeline strategy and its trust/logging boundaries.
+
+- Standardized multi-parameter C# declarations across platform code/tests and documented the convention; reviewed the enterprise-foundation checklist against actual capabilities and remaining gates.
+
+- Added repeatable Latest service logs with exclusive writer locking, Archive opt-in, child run identity and ignored diagnostic outputs.
+- Added host-owned request middleware, scoped JSON formatter, generic correlated Problem Details, health no-store filter and localhost defaults; expanded to 60 .NET and 21 ops tests.
+
+- Added an experimental bounded single-flight loopback TCP channel with conservative send certainty, deadlines, fresh connections and real socket tests; financial Rust integration remains pending.
+- Enforced public production XML documentation during compilation, documented contracts and failure semantics, added dependency guards and UTC scoped JSON logging.
+
 - Added the .NET 10 platform .slnx with five production/five test projects, central locked package/build policy, 37 tests, health-only host, local grant/cancel application slice and experimental bounded framing.
 - Added Platform Linux/Windows CI as a required fifth workflow, logged platform Verify/Run/Serve tasks, deny-by-default bootstrap documentation and architecture approval scope.
 

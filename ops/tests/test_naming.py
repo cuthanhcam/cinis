@@ -24,6 +24,8 @@ class NamingTests(unittest.TestCase):
                      "ops/scripts/Cinis.Operations.psm1",
                      "src/platform/Cinis.Access/packages.lock.json",
                      "src/platform/Cinis.Platform.slnx",
+                     "src/platform/Cinis.Platform/appsettings.json",
+                     "src/platform/Cinis.Platform/appsettings.Development.json",
                      "src/platform/Cinis.Platform/Properties/launchSettings.json"):
             with self.subTest(path=path):
                 self.assertEqual(POLICY.validate_path(path), [])

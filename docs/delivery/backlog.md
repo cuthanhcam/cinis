@@ -67,3 +67,15 @@ P0-P5 describe implementation order and acceptance gates; this table and existin
 | --- | --- | --- | --- | --- |
 | NET-04 | Trusted local grant/cancel slice and experimental bounded codec | NET-03 | Access/Trading/ExecutionClient tests; denied caller never reaches execution; exact intent and transport certainty preserved; no financial HTTP route | Done (in-process only) |
 | NET-05 | Actual Rust transport and authenticated endpoint | M0-04, ARCH-02, NET-04 | Accepted protocol/trust/access contracts, round-trip/disconnect/retry evidence and real credential/account isolation | Todo |
+
+## Platform transport groundwork
+
+| ID | Work item | Dependencies | Acceptance evidence | Status |
+| --- | --- | --- | --- | --- |
+| NET-06 | Bounded experimental loopback channel | NET-04 | Single-flight admission, bounded frames/deadlines, conservative send certainty, fresh-connection recovery and real socket tests; [guide](../development/platform-transport.md) | Done; does not close NET-05 |
+| NET-07 | Maintainable documented platform contracts | NET-04 | Compiler-enforced production XML documentation, generated-file architecture check, constructor guards and UTC scoped JSON logging | Done |
+
+| NET-08 | HTTP diagnostic foundation | NET-07 | Host middleware/filter/error handling, allowlisted JSON scopes, correlated 500/404/cancellation and no-store tests; [pipeline](../development/platform-http-pipeline.md) | Done for health scaffold |
+| OPS-LOG-01 | Repeatable service logs | Existing runner | Latest overwrite, exclusive locking, Archive opt-in and child run correlation; Windows regression tests | Done for local debugging |
+
+| NET-09 | API-only response security policy | NET-08 | Security headers on health/success/404/500, final header policy resistant to endpoint weakening; [ADR-0011](../architecture/decisions/0011-api-response-security-headers.md) | Done for scaffold |
