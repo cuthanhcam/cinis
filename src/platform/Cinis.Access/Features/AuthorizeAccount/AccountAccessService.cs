@@ -17,7 +17,10 @@ public sealed class AccountAccessService(IAccountGrantStore store)
     /// <returns>False for malformed/absent grants; otherwise the store's current decision.</returns>
     /// <exception cref="OperationCanceledException">Lookup cancellation was requested.</exception>
     /// <remarks>No authorization decision is cached here; future revocation/caching needs an explicit policy.</remarks>
-    public ValueTask<bool> IsAllowedAsync(string principalId, ulong accountId, AccountAction action,
+    public ValueTask<bool> IsAllowedAsync(
+        string principalId,
+        ulong accountId,
+        AccountAction action,
         CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();

@@ -27,7 +27,9 @@ public sealed class InMemoryAccountGrantStore : IAccountGrantStore
     }
 
     /// <inheritdoc />
-    public ValueTask<bool> HasGrantAsync(AccountGrant grant, CancellationToken cancellationToken)
+    public ValueTask<bool> HasGrantAsync(
+        AccountGrant grant,
+        CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(grant);
         cancellationToken.ThrowIfCancellationRequested();

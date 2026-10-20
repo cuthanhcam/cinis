@@ -20,7 +20,8 @@ trim_trailing_whitespace = false
 [*.{cmd,bat}]
 end_of_line = crlf
 
-# C# source rules apply when the first real .NET projects are introduced.
+# C# declaration wrapping is documented in docs/development/csharp-conventions.md.
+# The SDK whitespace formatter preserves it; review enforces parameter-per-line layout.
 [*.cs]
 dotnet_sort_system_directives_first = true
 csharp_style_namespace_declarations = file_scoped:suggestion

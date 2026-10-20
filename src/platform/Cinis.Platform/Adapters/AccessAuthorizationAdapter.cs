@@ -8,6 +8,9 @@ namespace Cinis.Platform.Adapters;
 /// <remarks>Keeping the bridge in the host prevents a Trading-to-Access storage dependency.</remarks>
 internal sealed class AccessAuthorizationAdapter(AccountAccessService access) : IAccountAuthorizer
 {
-    public ValueTask<bool> CanTradeAsync(string principalId, ulong accountId, CancellationToken cancellationToken) =>
+    public ValueTask<bool> CanTradeAsync(
+        string principalId,
+        ulong accountId,
+        CancellationToken cancellationToken) =>
         access.IsAllowedAsync(principalId, accountId, AccountAction.Trade, cancellationToken);
 }

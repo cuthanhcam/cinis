@@ -124,7 +124,10 @@ public sealed class DiagnosticsTests
         Assert.Contains("499", Assert.Single(logs.Events, item => item.Id == 1000).Message);
     }
 
-    private sealed record LogEvent(int Id, string Message, Dictionary<string, object?> Scope);
+    private sealed record LogEvent(
+        int Id,
+        string Message,
+        Dictionary<string, object?> Scope);
 
     private sealed class CaptureProvider : ILoggerProvider, ISupportExternalScope
     {
@@ -138,7 +141,11 @@ public sealed class DiagnosticsTests
         {
             public bool IsEnabled(LogLevel logLevel) => true;
             public IDisposable? BeginScope<TState>(TState state) where TState : notnull => owner._scopes.Push(state);
-            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception,
+            public void Log<TState>(
+                LogLevel logLevel,
+                EventId eventId,
+                TState state,
+                Exception? exception,
                 Func<TState, Exception?, string> formatter)
             {
                 var scope = CinisJsonConsoleFormatter.CaptureScope(owner._scopes);

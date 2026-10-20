@@ -4,7 +4,9 @@ namespace Cinis.Platform.Filters;
 public sealed class NoStoreEndpointFilter : IEndpointFilter
 {
     /// <inheritdoc />
-    public ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+    public ValueTask<object?> InvokeAsync(
+        EndpointFilterInvocationContext context,
+        EndpointFilterDelegate next)
     {
         context.HttpContext.Response.Headers.CacheControl = "no-store";
         return next(context);

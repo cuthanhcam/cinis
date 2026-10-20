@@ -12,5 +12,7 @@ public interface IExecutionGateway
     /// <returns>Known execution evidence, definitely unavailable-before-send, or unknown outcome.</returns>
     /// <exception cref="ArgumentNullException">The intent is absent.</exception>
     /// <remarks>Adapters must preserve post-send uncertainty, including cancellation; callers must not infer rejection from a lost reply.</remarks>
-    Task<ExecutionSubmission> CancelAsync(CancelOrderIntent intent, CancellationToken cancellationToken);
+    Task<ExecutionSubmission> CancelAsync(
+        CancelOrderIntent intent,
+        CancellationToken cancellationToken);
 }

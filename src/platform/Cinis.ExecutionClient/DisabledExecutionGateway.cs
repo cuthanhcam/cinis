@@ -12,7 +12,9 @@ public sealed class DisabledExecutionGateway : IExecutionGateway
     /// <returns>An unavailable-before-send result with no execution sequence.</returns>
     /// <exception cref="ArgumentNullException">The intent is absent.</exception>
     /// <exception cref="OperationCanceledException">Cancellation was requested before any work.</exception>
-    public Task<ExecutionSubmission> CancelAsync(CancelOrderIntent intent, CancellationToken cancellationToken)
+    public Task<ExecutionSubmission> CancelAsync(
+        CancelOrderIntent intent,
+        CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(intent);
         cancellationToken.ThrowIfCancellationRequested();

@@ -9,5 +9,8 @@ public interface IAccountAuthorizer
     /// <param name="cancellationToken">Cancellation of authorization work.</param>
     /// <returns>True only when this account/action is authorized.</returns>
     /// <exception cref="OperationCanceledException">Authorization was cancelled.</exception>
-    ValueTask<bool> CanTradeAsync(string principalId, ulong accountId, CancellationToken cancellationToken);
+    ValueTask<bool> CanTradeAsync(
+        string principalId,
+        ulong accountId,
+        CancellationToken cancellationToken);
 }

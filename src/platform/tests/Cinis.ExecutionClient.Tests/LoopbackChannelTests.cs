@@ -18,13 +18,17 @@ public sealed class LoopbackChannelTests
         public Task Completion { get; }
         public int Port => ((IPEndPoint)_listener.LocalEndpoint).Port;
 
-        public Peer(Func<NetworkStream, CancellationToken, Task> handler, int connections = 1)
+        public Peer(
+            Func<NetworkStream, CancellationToken, Task> handler,
+            int connections = 1)
         {
             _listener.Start();
             Completion = ServeAsync(handler, connections);
         }
 
-        private async Task ServeAsync(Func<NetworkStream, CancellationToken, Task> handler, int connections)
+        private async Task ServeAsync(
+            Func<NetworkStream, CancellationToken, Task> handler,
+            int connections)
         {
             for (var index = 0; index < connections; index++)
             {

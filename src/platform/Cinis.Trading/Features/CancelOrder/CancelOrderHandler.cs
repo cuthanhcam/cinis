@@ -6,7 +6,9 @@ namespace Cinis.Trading.Features.CancelOrder;
 /// <summary>Validates/authorizes a trusted caller and forwards once, preserving command identity.</summary>
 /// <param name="authorizer">Required account/action check, independent from HTTP middleware.</param>
 /// <param name="gateway">Execution adapter responsible for transport certainty.</param>
-public sealed class CancelOrderHandler(IAccountAuthorizer authorizer, IExecutionGateway gateway)
+public sealed class CancelOrderHandler(
+    IAccountAuthorizer authorizer,
+    IExecutionGateway gateway)
 {
     private readonly IAccountAuthorizer _authorizer = authorizer ?? throw new ArgumentNullException(nameof(authorizer));
     private readonly IExecutionGateway _gateway = gateway ?? throw new ArgumentNullException(nameof(gateway));
@@ -19,7 +21,9 @@ public sealed class CancelOrderHandler(IAccountAuthorizer authorizer, IExecution
     /// <exception cref="ArgumentNullException">The intent is absent.</exception>
     /// <exception cref="OperationCanceledException">Cancellation occurs before execution takes ownership, or a dependency violates the outcome contract.</exception>
     /// <remarks>There is no financial mutation, idempotency cache or retry policy in this use case.</remarks>
-    public async Task<CancelOrderResult> HandleAsync(string principalId, CancelOrderIntent intent,
+    public async Task<CancelOrderResult> HandleAsync(
+        string principalId,
+        CancelOrderIntent intent,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(intent);

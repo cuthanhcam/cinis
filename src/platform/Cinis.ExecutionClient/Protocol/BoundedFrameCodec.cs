@@ -27,7 +27,9 @@ public sealed class BoundedFrameCodec
     /// <exception cref="EndOfStreamException">The header or body is incomplete.</exception>
     /// <exception cref="IOException">Stream reading fails.</exception>
     /// <exception cref="OperationCanceledException">The read is cancelled.</exception>
-    public async Task<byte[]> ReadAsync(Stream stream, CancellationToken cancellationToken = default)
+    public async Task<byte[]> ReadAsync(
+        Stream stream,
+        CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(stream);
         var header = new byte[4];
@@ -50,7 +52,9 @@ public sealed class BoundedFrameCodec
     /// <exception cref="InvalidDataException">The body is empty or oversized.</exception>
     /// <exception cref="IOException">A write fails; some bytes may already have been transmitted.</exception>
     /// <exception cref="OperationCanceledException">The write is cancelled; sent bytes are not rolled back.</exception>
-    public async Task WriteAsync(Stream stream, ReadOnlyMemory<byte> payload,
+    public async Task WriteAsync(
+        Stream stream,
+        ReadOnlyMemory<byte> payload,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(stream);

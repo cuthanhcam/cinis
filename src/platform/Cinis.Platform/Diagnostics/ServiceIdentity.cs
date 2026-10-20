@@ -5,4 +5,8 @@ namespace Cinis.Platform.Diagnostics;
 /// <param name="Version">Build identity reported by the host assembly.</param>
 /// <param name="ProcessId">Local process identifier; meaningful together with the run identity.</param>
 /// <param name="RunId">Validated operations run ID, or a generated ID for direct launches.</param>
-public sealed record ServiceIdentity(string EnvironmentName, string Version, int ProcessId, string RunId);
+public sealed record ServiceIdentity(
+    string EnvironmentName,
+    string Version,
+    int ProcessId,
+    string RunId);

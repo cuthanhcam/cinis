@@ -33,7 +33,8 @@ public sealed class LoopbackRequestChannel
     /// malformed replies, EOF and timeout return UnknownOutcome. A complete reply wins a later cancellation race.
     /// Unexpected programming/runtime exceptions are not converted to successful or business-rejected results.
     /// </remarks>
-    public async Task<FrameExchangeResult> ExchangeAsync(ReadOnlyMemory<byte> request,
+    public async Task<FrameExchangeResult> ExchangeAsync(
+        ReadOnlyMemory<byte> request,
         CancellationToken cancellationToken = default)
     {
         if (request.IsEmpty || request.Length > _options.MaxPayloadBytes)

@@ -37,7 +37,9 @@ public sealed class DependencyTests
         throw new InvalidOperationException("Cannot locate the platform solution.");
     }
 
-    private static void ValidateReference(string owner, string dependency)
+    private static void ValidateReference(
+        string owner,
+        string dependency)
     {
         if (!Allowed[owner].Contains(dependency))
             throw new InvalidOperationException($"Forbidden project dependency: {owner} -> {dependency}");
@@ -69,7 +71,9 @@ public sealed class DependencyTests
     [InlineData("Cinis.Access", "Cinis.Access.Infrastructure")]
     [InlineData("Cinis.Trading", "Cinis.ExecutionClient")]
     [InlineData("Cinis.Access.Infrastructure", "Cinis.Trading")]
-    public void ForbiddenReference_IsRejected(string owner, string dependency) =>
+    public void ForbiddenReference_IsRejected(
+        string owner,
+        string dependency) =>
         Assert.Throws<InvalidOperationException>(() => ValidateReference(owner, dependency));
 
     [Theory]

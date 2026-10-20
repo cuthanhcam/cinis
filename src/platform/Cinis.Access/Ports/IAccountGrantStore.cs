@@ -12,5 +12,7 @@ public interface IAccountGrantStore
     /// <exception cref="ArgumentNullException">The grant is absent.</exception>
     /// <exception cref="OperationCanceledException">Lookup cancellation was requested.</exception>
     /// <remarks>Storage errors propagate; implementations must not convert unavailable storage into permission.</remarks>
-    ValueTask<bool> HasGrantAsync(AccountGrant grant, CancellationToken cancellationToken);
+    ValueTask<bool> HasGrantAsync(
+        AccountGrant grant,
+        CancellationToken cancellationToken);
 }

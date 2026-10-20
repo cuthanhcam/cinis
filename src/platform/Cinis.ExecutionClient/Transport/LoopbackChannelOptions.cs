@@ -16,8 +16,12 @@ public sealed class LoopbackChannelOptions
     /// <param name="exchangeTimeout">Positive combined write/read budget, independent of connection time.</param>
     /// <exception cref="ArgumentException">The address is absent or not loopback.</exception>
     /// <exception cref="ArgumentOutOfRangeException">A port, size or time budget is invalid.</exception>
-    public LoopbackChannelOptions(IPAddress address, int port, int maxPayloadBytes,
-        TimeSpan connectTimeout, TimeSpan exchangeTimeout)
+    public LoopbackChannelOptions(
+        IPAddress address,
+        int port,
+        int maxPayloadBytes,
+        TimeSpan connectTimeout,
+        TimeSpan exchangeTimeout)
     {
         ArgumentNullException.ThrowIfNull(address);
         // Snapshot before validation so another owner cannot change a mutable address between checking and storing it.
@@ -46,7 +50,9 @@ public sealed class LoopbackChannelOptions
     /// <summary>Gets the combined request-write and response-read budget.</summary>
     public TimeSpan ExchangeTimeout { get; }
 
-    private static void ValidateTimeout(TimeSpan timeout, string parameter)
+    private static void ValidateTimeout(
+        TimeSpan timeout,
+        string parameter)
     {
         if (timeout.TotalMilliseconds is < 1 or > int.MaxValue)
             throw new ArgumentOutOfRangeException(parameter, "Use a finite budget of at least one millisecond.");

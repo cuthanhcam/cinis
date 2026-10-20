@@ -8,7 +8,9 @@ public sealed class FrameCodecTests
 {
     private sealed class FragmentedStream(byte[] bytes) : MemoryStream(bytes)
     {
-        public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default) =>
+        public override ValueTask<int> ReadAsync(
+            Memory<byte> buffer,
+            CancellationToken cancellationToken = default) =>
             base.ReadAsync(buffer[..Math.Min(buffer.Length, 1)], cancellationToken);
     }
 

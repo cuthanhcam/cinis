@@ -7,7 +7,9 @@ namespace Cinis.Platform.Errors;
 public sealed class PlatformExceptionHandler(ILogger<PlatformExceptionHandler> logger) : IExceptionHandler
 {
     /// <inheritdoc />
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
+    public async ValueTask<bool> TryHandleAsync(
+        HttpContext httpContext,
+        Exception exception,
         CancellationToken cancellationToken)
     {
         // .NET 10 suppresses framework diagnostics for handled exceptions. Emit one explicit event here.

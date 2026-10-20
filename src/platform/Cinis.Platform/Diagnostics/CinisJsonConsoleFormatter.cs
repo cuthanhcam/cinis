@@ -14,7 +14,10 @@ public sealed class CinisJsonConsoleFormatter(ServiceIdentity identity) : Consol
         ["Service", "Environment", "Version", "ProcessId", "RunId", "RequestId", "TraceId", "SpanId", "ParentId"];
 
     /// <inheritdoc />
-    public override void Write<TState>(in LogEntry<TState> logEntry, IExternalScopeProvider? scopeProvider, TextWriter textWriter)
+    public override void Write<TState>(
+        in LogEntry<TState> logEntry,
+        IExternalScopeProvider? scopeProvider,
+        TextWriter textWriter)
     {
         var fields = new Dictionary<string, object?>();
         if (logEntry.State is IEnumerable<KeyValuePair<string, object?>> values)
