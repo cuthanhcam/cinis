@@ -7,7 +7,14 @@ var smokeTest = args.Contains("--smoke-test", StringComparer.Ordinal);
 var builder = WebApplication.CreateBuilder(args.Where(a => a != "--smoke-test").ToArray());
 if (builder.Configuration["urls"] is null) builder.WebHost.UseUrls("http://127.0.0.1:5080");
 builder.Logging.ClearProviders();
-builder.Logging.AddJsonConsole();
+// UTC round-trip timestamps and request scopes let operators correlate records across processes.
+// Never add raw frames, credentials or environment dumps to these scopes.
+builder.Logging.AddJsonConsole(options =>
+{
+    options.TimestampFormat = "O";
+    options.UseUtcTimestamp = true;
+    options.IncludeScopes = true;
+});
 builder.Services.AddPlatformModules();
 var app = builder.Build();
 

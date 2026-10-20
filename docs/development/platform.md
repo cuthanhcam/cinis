@@ -1,7 +1,7 @@
 # Platform scaffold and development
 
 Purpose: run and extend the actual .NET solution without confusing bootstrap behavior with financial integration.
-Status: Implemented scaffold, verified locally on Windows 2026-10-18 (Asia/Saigon). Owner: repository maintainer. Hosted evidence is checked per integration SHA.
+Status: Implemented scaffold, verified locally on Windows 2026-10-20 (Asia/Saigon). Owner: repository maintainer. Hosted evidence is checked per integration SHA.
 
 ## Delivered baseline
 
@@ -13,7 +13,7 @@ Open [Cinis.Platform.slnx](../../src/platform/Cinis.Platform.slnx). It contains 
 | Cinis.Access | Pure account/action grant-check use case and owned store port |
 | Cinis.Access.Infrastructure | Immutable in-memory trusted grant store, empty in default composition; no database or API-key verifier |
 | Cinis.Trading | Cancel intent validation, account authorization port, single forwarding call and transport-outcome propagation |
-| Cinis.ExecutionClient | Explicit disabled gateway plus experimental bounded stream-frame codec; no TCP client or Rust protocol yet |
+| Cinis.ExecutionClient | Disabled gateway plus experimental bounded framing and loopback TCP channel; no Rust financial protocol yet |
 
 The first slice is in-process application behavior tested with ports. It is not FR-004 authentication or an end-to-end trading gateway. No client can submit financial commands through HTTP in this baseline. A principal string supplied in a unit test is not proof of identity.
 
@@ -23,7 +23,7 @@ The disabled gateway always returns UnavailableBeforeSend and never reports a fi
 
 The root global.json selects SDK 10.0.301 with latestPatch roll-forward inside that feature band and no preview SDKs. This is the installed/tested baseline, not a claim to use the latest SDK. CI installs the declared SDK. Record the resolved SDK/runtime when reporting measurements, and upgrade through normal reviewed checks.
 
-Directory.Build.props owns net10.0/C# 14, nullable analysis, implicit usings, deterministic builds, warnings-as-errors, NuGet audit of all dependencies, and restore lockfile generation. Directory.Packages.props owns exact central package versions. NuGet.config clears inherited feeds and uses nuget.org. Commit every project packages.lock.json, and use locked restore in CI/verification. Refresh locks deliberately when package dependencies change; never disable warnings/audit to bypass a failure.
+Directory.Build.props owns net10.0/C# 14, nullable analysis, implicit usings, deterministic builds, warnings-as-errors, NuGet audit of all dependencies, restore lockfile generation, and compiler-validated public XML documentation. Test projects opt out of XML generation. Directory.Packages.props owns exact central package versions. NuGet.config clears inherited feeds and uses nuget.org. Commit every project packages.lock.json, and use locked restore in CI/verification. Refresh locks deliberately when package dependencies change; never disable warnings/audit to bypass a failure.
 
 The test baseline uses stable xUnit 2.9.3, Visual Studio runner 4.0.1, Microsoft.NET.Test.Sdk 18.11.0 and ASP.NET Core integration hosting 10.0.13. No EF Core or Npgsql dependency is added before database work exists. The package family may evolve independently of application architecture; exact package compatibility is validated by restore/build/test on each supported CI host.
 
@@ -79,11 +79,11 @@ Verified with a real loopback HTTP process on 2026-10-18: live returned 200, rea
 
 ## Current test evidence
 
-37 .NET cases: Access 8, Trading 7, ExecutionClient 11, host integration 5, architecture 6. Access checks exact principal/account/action matching, empty/default deny, malformed grants, immutable input copy and cancellation. Trading checks invalid/unauthorized intents never contact execution, preserves full u64 identities, and propagates known/unknown/unavailable outcomes without generating a new intent or retrying.
+54 .NET cases: Access 9, Trading 8, ExecutionClient 25, host integration 5, architecture 7. Access checks exact principal/account/action matching, empty/default deny, malformed grants, immutable input copy and cancellation. Trading checks invalid/unauthorized intents never contact execution, preserves full u64 identities, and propagates known/unknown/unavailable outcomes without generating a new intent or retrying.
 
 Codec checks big-endian lengths, fragmented reads, exact u64 payload bytes, zero/oversized lengths rejected before payload allocation, truncated frames, rejected writes without a header and consecutive frame boundaries. It is an experiment with four-byte length headers only; version/message schema, connection/correlation, trust and actual Rust interop are still TD-01/02/03/04 work. Do not treat the generic byte codec as a frozen financial wire protocol.
 
-Architecture tests inspect the actual .slnx and project-reference allowlist, prove forbidden-reference fixtures fail, and verify core assemblies/projects lack framework/adapter dependencies. They do not yet implement every proposed future Domain/Features namespace rule; add those rules with the corresponding code. Integration tests use the actual host/DI graph and verify readiness denial and absent financial endpoints. No database, authentication/revocation, crash recovery or TCP round-trip test is claimed.
+Architecture tests inspect the actual .slnx and project-reference allowlist, prove forbidden-reference fixtures fail, and verify core assemblies/projects lack framework/adapter dependencies. They do not yet implement every proposed future Domain/Features namespace rule; add those rules with the corresponding code. Integration tests use the actual host/DI graph and verify readiness denial and absent financial endpoints. Architecture tests also verify generated production XML documentation. Real loopback TCP tests cover fragmentation, refusal, cancellation, busy admission, timeout, disconnect and a fresh connection after malformed replies. No database, authentication/revocation, crash recovery or Rust TCP round-trip test is claimed. See the [transport and documentation guide](platform-transport.md).
 
 ## Continue in order
 

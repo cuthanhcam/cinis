@@ -10,5 +10,7 @@
     <NuGetAudit>true</NuGetAudit>
     <NuGetAuditMode>all</NuGetAuditMode>
     <Deterministic>true</Deterministic>
+    <!-- Public production APIs are documented; compiler XML/cref/missing-comment warnings remain errors. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 </Project>
