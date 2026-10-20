@@ -7,6 +7,10 @@ namespace Cinis.Access.Tests;
 public sealed class AccountAccessTests
 {
     [Fact]
+    public void MissingStore_FailsAtCompositionBoundary() =>
+        Assert.Throws<ArgumentNullException>(() => new AccountAccessService(null!));
+
+    [Fact]
     public async Task ExplicitGrant_DifferentPrincipalAccountOrAction_Denies()
     {
         var access = new AccountAccessService(new InMemoryAccountGrantStore([new("alice", 1, AccountAction.Read)]));

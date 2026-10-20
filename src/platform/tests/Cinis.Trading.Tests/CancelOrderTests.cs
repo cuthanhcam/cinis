@@ -6,6 +6,14 @@ namespace Cinis.Trading.Tests;
 
 public sealed class CancelOrderTests
 {
+    [Fact]
+    public void MissingDependency_FailsBeforeHandlingAnIntent()
+    {
+        var gateway = new Gateway(new(SubmissionStatus.UnavailableBeforeSend, null, "test"));
+        Assert.Throws<ArgumentNullException>(() => new CancelOrderHandler(null!, gateway));
+        Assert.Throws<ArgumentNullException>(() => new CancelOrderHandler(new Authorizer(true), null!));
+    }
+
     private sealed class Authorizer(bool allowed) : IAccountAuthorizer
     {
         public ValueTask<bool> CanTradeAsync(string principalId, ulong accountId, CancellationToken cancellationToken) =>

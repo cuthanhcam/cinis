@@ -5,6 +5,19 @@ namespace Cinis.Platform.ArchitectureTests;
 
 public sealed class DependencyTests
 {
+    [Fact]
+    public void ProductionAssemblies_ExportCompilerValidatedXmlDocumentation()
+    {
+        foreach (var name in Allowed.Keys)
+        {
+            var path = Path.ChangeExtension(Assembly.Load(name).Location, ".xml");
+            Assert.True(File.Exists(path), $"Missing production XML documentation: {name}");
+            var documentation = XDocument.Load(path);
+            Assert.Equal(name, documentation.Root!.Element("assembly")!.Element("name")!.Value);
+            Assert.NotEmpty(documentation.Descendants("member"));
+        }
+    }
+
     private static readonly Dictionary<string, string[]> Allowed = new()
     {
         ["Cinis.Platform"] = ["Cinis.Access", "Cinis.Access.Infrastructure", "Cinis.Trading", "Cinis.ExecutionClient"],
