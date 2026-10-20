@@ -34,6 +34,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Benchmarks](verification/benchmarks.md)
 - [Rust engine development architecture](development/rust-engine.md) and [ADR-0006](architecture/decisions/0006-rust-module-boundaries.md)
 - [Platform scaffold and run guide](development/platform.md), [solution](../src/platform/Cinis.Platform.slnx), and [bootstrap ADR-0008](architecture/decisions/0008-platform-bootstrap.md)
+- [Platform transport and source documentation](development/platform-transport.md) and [ADR-0009](architecture/decisions/0009-platform-transport-channel.md)
 - [Core API](development/core-api.md)
 - [Setup](development/setup.md), [testing](development/testing.md), [CI/integration](development/ci.md), and [scaffold readiness](development/scaffold.md)
 - [Ops and runbooks](operations/README.md)

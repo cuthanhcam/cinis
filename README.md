@@ -18,7 +18,7 @@ The project serves developers who want to study one coherent execution system, i
 | Verification | 61 Rust tests plus one doctest; matching reference corpus of 8,192 commands; financial corpus of 1,024 fresh attempts plus retries/conflicts | Network, persistence, and recovery evidence |
 | Developer operations | Windows task runner, unique-run logs/metadata, timeout/owned-process cleanup, portable repository checks | Persistent-service lifecycle with real gateway |
 | CI | Linux/Windows engine checks, Windows ops tests, documentation/naming, pinned workflow validation, exact-SHA integration gate | Hosting protections must be configured separately |
-| Platform | .slnx with five production/five test projects; trusted local grant/cancel use cases, experimental framing, health host, 37 .NET tests | API-key authentication, Rust transport, database/projections and financial HTTP endpoints |
+| Platform | .slnx with five production/five test projects; trusted local grant/cancel use cases, experimental framing/TCP channel, health host, 54 .NET tests | API-key authentication, Rust transport, database/projections and financial HTTP endpoints |
 
 The current CLI executes synthetic financial state in memory, with retained command results and reconciled balances/ledger. Permissions are a trusted local API contract, not network authentication. Restart loses everything; no persisted retry or recovery guarantee exists. No release, throughput, latency, or zero-allocation claim is made.
 

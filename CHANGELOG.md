@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added an experimental bounded single-flight loopback TCP channel with conservative send certainty, deadlines, fresh connections and real socket tests; financial Rust integration remains pending.
+- Enforced public production XML documentation during compilation, documented contracts and failure semantics, added dependency guards and UTC scoped JSON logging.
+
 - Added the .NET 10 platform .slnx with five production/five test projects, central locked package/build policy, 37 tests, health-only host, local grant/cancel application slice and experimental bounded framing.
 - Added Platform Linux/Windows CI as a required fifth workflow, logged platform Verify/Run/Serve tasks, deny-by-default bootstrap documentation and architecture approval scope.
 
