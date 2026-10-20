@@ -21,7 +21,8 @@ trim_trailing_whitespace = false
 end_of_line = crlf
 
 # C# declaration wrapping is documented in docs/development/csharp-conventions.md.
-# The SDK whitespace formatter preserves it; review enforces parameter-per-line layout.
+# Wrapping follows readability; max_line_length is an editor hint, not Roslyn auto-wrapping.
 [*.cs]
+max_line_length = 120
 dotnet_sort_system_directives_first = true
 csharp_style_namespace_declarations = file_scoped:suggestion

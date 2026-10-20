@@ -18,6 +18,8 @@ public sealed class HostTests : IClassFixture<WebApplicationFactory<Program>>
         {
             using var response = await client.GetAsync(route);
             Assert.True(response.Headers.CacheControl?.NoStore);
+            Assert.Equal("nosniff", response.Headers.GetValues("X-Content-Type-Options").Single());
+            Assert.Equal("DENY", response.Headers.GetValues("X-Frame-Options").Single());
             Assert.True(Guid.TryParseExact(response.Headers.GetValues("X-Request-ID").Single(), "N", out _));
         }
     }

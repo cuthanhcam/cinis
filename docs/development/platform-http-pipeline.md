@@ -10,7 +10,7 @@ The host owns HTTP concerns. Access and Trading remain framework-independent; mi
 | --- | --- |
 | Composition | Explicit service registration and ordered pipeline assembly |
 | Endpoints | Route groups and HTTP result mapping; health routes currently exist |
-| Middleware | Request-wide identity, diagnostic scope and completion timing |
+| Middleware | Response security policy; request-wide identity, diagnostic scope and completion timing |
 | Errors | Unexpected-exception translation using IExceptionHandler |
 | Filters | Endpoint-specific policies; NoStoreEndpointFilter protects health responses |
 | Diagnostics | Immutable process identity and the JSON console formatter |
@@ -21,7 +21,8 @@ Do not create a shared framework project for host-only code. Introduce a reusabl
 
 ```mermaid
 flowchart LR
-    A[Host filtering / server] --> B[Routing]
+    A[Host filtering / server] --> S[Security headers callback]
+    S --> B[Routing]
     B --> C[Request diagnostics scope]
     C --> D[Exception handler]
     D --> E[Status code pages]
@@ -31,6 +32,8 @@ flowchart LR
 ```
 
 Routing resolves a template before diagnostics. Diagnostics wraps exception/status translation so completion sees the final status. The no-store filter applies only to the health group. Problem Details supplies a consistent response for otherwise empty error responses such as unknown routes; it does not replace existing readiness JSON or business outcomes. Low-level server/host-filtering rejections can occur before this application pipeline and need not have application correlation headers.
+
+SecurityHeadersMiddleware registers an OnStarting callback before routing and diagnostics. Callbacks execute in reverse registration order, so the host's final response policy also covers translated errors and overrides accidental endpoint weakening. It adds X-Content-Type-Options=nosniff, Referrer-Policy=no-referrer, X-Frame-Options=DENY and Content-Security-Policy with default-src 'none'; frame-ancestors 'none'. These are browser response policies, not authentication or financial access controls. Frame restrictions have little practical effect on JSON responses; the API-only host nevertheless keeps a consistent restrictive browser policy for any rendered response. Future HTML/Swagger/UI routes require a reviewed content policy before introduction. No HSTS, HTTPS redirect, CORS allowance or forwarded-header trust is inferred from a local HTTP host. A future edge/proxy must have explicitly configured TLS/trust policy. Low-level responses that bypass application middleware are outside this header guarantee.
 
 Every application request receives a newly generated X-Request-ID. Incoming X-Request-ID values are ignored. X-Trace-ID exposes the current W3C trace ID, with a generated fallback outside an Activity. ASP.NET Core can continue an incoming traceparent; it is untrusted correlation, never identity, authorization or idempotency. Request IDs and trace IDs must not become trading command IDs.
 
@@ -68,3 +71,4 @@ This is a local diagnostic foundation. Export to an OpenTelemetry collector, sam
 - [ASP.NET Core logging and scopes](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-10.0)
 - [Error handling and .NET 10 handled-exception diagnostics](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-10.0)
 - [Minimal API endpoint filters](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-10.0)
+- [OWASP HTTP response headers guidance](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html)

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Adopted readability-based C# wrapping with an advisory 120-character target, preserving existing readable layout.
+- Added API-only response security headers and success/error policy tests; reviewed the supplied pipeline strategy and its trust/logging boundaries.
+
 - Standardized multi-parameter C# declarations across platform code/tests and documented the convention; reviewed the enterprise-foundation checklist against actual capabilities and remaining gates.
 
 - Added repeatable Latest service logs with exclusive writer locking, Archive opt-in, child run identity and ignored diagnostic outputs.
