@@ -3,7 +3,7 @@
 Read README.md, docs/README.md, and relevant specifications before editing.
 
 - Use English for maintained docs, code, comments, and commits.
-- Follow docs/development/csharp-conventions.md: C# declarations with two or more parameters use one parameter per line, including records, constructors and tests.
+- Follow docs/development/csharp-conventions.md: keep short C# signatures readable; prefer multiline for four or more parameters, long/attributed parameters, or lines over the 120-character target. Preserve readable existing layout.
 - Preserve init.md as ignored local history; do not stage or modify it.
 - Keep financial state under one execution owner; projections cannot approve spending.
 - Use checked integer arithmetic for ticks, lots, and asset atoms.
