@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <ItemGroup>
+    <InternalsVisibleTo Include="Cinis.Platform.IntegrationTests" />
     <ProjectReference Include="../Cinis.Access/Cinis.Access.csproj" />
     <ProjectReference Include="../Cinis.Access.Infrastructure/Cinis.Access.Infrastructure.csproj" />
     <ProjectReference Include="../Cinis.Trading/Cinis.Trading.csproj" />

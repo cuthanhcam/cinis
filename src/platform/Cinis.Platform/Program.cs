@@ -1,25 +1,18 @@
 using Cinis.Platform.Composition;
+using Cinis.Platform.Endpoints;
 using Cinis.Trading.Contracts;
 using Cinis.Trading.Features.CancelOrder;
 using Cinis.Trading.Ports;
 
 var smokeTest = args.Contains("--smoke-test", StringComparer.Ordinal);
 var builder = WebApplication.CreateBuilder(args.Where(a => a != "--smoke-test").ToArray());
-if (builder.Configuration["urls"] is null) builder.WebHost.UseUrls("http://127.0.0.1:5080");
-builder.Logging.ClearProviders();
-// UTC round-trip timestamps and request scopes let operators correlate records across processes.
-// Never add raw frames, credentials or environment dumps to these scopes.
-builder.Logging.AddJsonConsole(options =>
-{
-    options.TimestampFormat = "O";
-    options.UseUtcTimestamp = true;
-    options.IncludeScopes = true;
-});
+if (builder.Configuration["urls"] is null) builder.WebHost.UseUrls("http://localhost:5080");
+builder.AddPlatformHttp();
 builder.Services.AddPlatformModules();
 var app = builder.Build();
 
-app.MapGet("/health/live", () => Results.Ok(new { status = "alive", mode = "scaffold" }));
-app.MapGet("/health/ready", () => Results.Json(new { status = "not_ready", reason = "execution_not_configured" }, statusCode: 503));
+app.UsePlatformHttp();
+app.MapPlatformHealth();
 // No financial or management endpoints until authentication and the wire contract are implemented.
 
 if (smokeTest)
