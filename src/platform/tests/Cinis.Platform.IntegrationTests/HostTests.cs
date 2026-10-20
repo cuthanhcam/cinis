@@ -11,6 +11,18 @@ public sealed class HostTests : IClassFixture<WebApplicationFactory<Program>>
     public HostTests(WebApplicationFactory<Program> factory) => _factory = factory;
 
     [Fact]
+    public async Task HealthResponses_AreNeverCachedAndExposeRequestIdentity()
+    {
+        using var client = _factory.CreateClient();
+        foreach (var route in new[] { "/health/live", "/health/ready" })
+        {
+            using var response = await client.GetAsync(route);
+            Assert.True(response.Headers.CacheControl?.NoStore);
+            Assert.True(Guid.TryParseExact(response.Headers.GetValues("X-Request-ID").Single(), "N", out _));
+        }
+    }
+
+    [Fact]
     public async Task Liveness_DoesNotImplyTradingReadiness()
     {
         using var client = _factory.CreateClient();

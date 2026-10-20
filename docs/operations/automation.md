@@ -4,7 +4,7 @@ Status: Implemented runner contract. Updated: 2026-10-15.
 
 ## Invocation and failure semantics
 
-Invoke-Cinis.ps1 accepts a known project/task and a bounded timeout. It loads trusted projects.psd1 through Import-PowerShellDataFile, creates one run directory, resolves executables from PATH, and invokes them directly through Start-Process without cmd /c, Invoke-Expression, or another shell. The child working directory is always the repository root. Windows argument quoting preserves spaces, embedded quotes, empty values, and trailing backslashes.
+Invoke-Cinis.ps1 accepts a known project/task and a bounded timeout. It loads trusted projects.psd1 through Import-PowerShellDataFile, selects an archived run directory or an exclusively locked latest project/task directory, resolves executables from PATH, and invokes them directly through Start-Process without cmd /c, Invoke-Expression, or another shell. The child working directory is always the repository root. Windows argument quoting preserves spaces, embedded quotes, empty values, and trailing backslashes.
 
 Child stdout/stderr are redirected to separate files. The runner waits in short intervals to enforce timeout. It caches the child process handle for reliable exit-code retrieval under Windows PowerShell 5.1. On timeout it terminates that owned PID and descendants with taskkill /T; no process-name matching is used. This is a developer-job mechanism, not a production supervisor. A child that deliberately detaches or a hard-killed runner is outside lifecycle guarantees.
 
@@ -37,3 +37,7 @@ Local precedents inspected: Aegis/eng/verify-backend.ps1, Aegis/eng/migrate-data
 ## Hosted Windows compatibility regression
 
 Built-ins are imported from the current PSHOME in public scripts and the process module. This avoids inherited PowerShell 7 module paths shadowing Windows PowerShell 5.1 modules. The public fail-fast test injects an incompatible Utility module into PSModulePath. Verify additionally validates workflows and scaffold contracts; exact-commit hosted success is a separate publication gate. See [CI procedure](../development/ci.md).
+
+## Log modes and diagnostic identity
+
+-LogMode Auto selects Latest for Serve and Archive for other tasks. Latest rejects a concurrent writer before changing outputs; -LogMode Archive preserves each invocation. The runner passes only its non-secret CINIS_RUN_ID during process creation and immediately restores the parent value. See [logging](logging.md). Windows tests include overwrite, child identity, exclusive locking and archive opt-in.

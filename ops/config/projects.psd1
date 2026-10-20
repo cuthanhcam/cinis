@@ -37,7 +37,7 @@
             )
             Test = @(@{ Tool = 'dotnet'; Arguments = @('test', 'src/platform/Cinis.Platform.slnx', '--no-restore', '-c', 'Release') })
             Run = @(@{ Tool = 'dotnet'; Arguments = @('run', '--project', 'src/platform/Cinis.Platform', '--no-launch-profile', '-c', 'Release', '--', '--smoke-test') })
-            Serve = @(@{ Tool = 'dotnet'; Arguments = @('run', '--project', 'src/platform/Cinis.Platform', '--no-launch-profile', '-c', 'Release', '--', '--urls', 'http://127.0.0.1:5080') })
+            Serve = @(@{ Tool = 'dotnet'; Arguments = @('run', '--project', 'src/platform/Cinis.Platform', '--no-launch-profile', '-c', 'Release', '--', '--urls', 'http://localhost:5080') })
             Format = @(@{ Tool = 'dotnet'; Arguments = @('format', 'src/platform/Cinis.Platform.slnx', 'whitespace', '--no-restore', '--verify-no-changes') })
             Lint = @(@{ Tool = 'dotnet'; Arguments = @('build', 'src/platform/Cinis.Platform.slnx', '--no-restore', '-c', 'Release') })
             Docs = @(

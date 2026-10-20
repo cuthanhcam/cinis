@@ -95,3 +95,5 @@ Read this page before adding a language or project. Review semantic names and un
 check_naming.py checks maintained path spelling and case collisions against the supported current layout, not every source identifier or future external contract. It reads Git's tracked/unignored inventory and excludes generated logs/builds through .gitignore. Root/community/tool filenames and language-specific paths are explicit exceptions. When adding a new language, extend the checker and document its rules together rather than enforcing an unrelated language's casing.
 
 A directory/script migration updates CI, task registry, docs, relative roots, tests, and contributors' commands together. No silent compatibility wrappers or duplicate document trees. Historical ADR decisions remain historical; superseding decisions explain the current contract.
+
+ASP.NET Core keeps framework configuration names: appsettings.json and appsettings.<Environment>.json (for example appsettings.Development.json). Personal appsettings.Local.json overrides remain ignored; Program does not automatically load that custom suffix. Use standard environment configuration or user secrets deliberately.

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added repeatable Latest service logs with exclusive writer locking, Archive opt-in, child run identity and ignored diagnostic outputs.
+- Added host-owned request middleware, scoped JSON formatter, generic correlated Problem Details, health no-store filter and localhost defaults; expanded to 60 .NET and 21 ops tests.
+
 - Added an experimental bounded single-flight loopback TCP channel with conservative send certainty, deadlines, fresh connections and real socket tests; financial Rust integration remains pending.
 - Enforced public production XML documentation during compilation, documented contracts and failure semantics, added dependency guards and UTC scoped JSON logging.
 

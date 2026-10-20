@@ -2,6 +2,9 @@
 [CmdletBinding()]
 param(
     [ValidatePattern('^\d{8}T\d{9}Z-[a-f0-9]{8}$')][string]$RunId,
+    [switch]$Latest,
+    [ValidateSet('Engine', 'Platform')][string]$Project = 'Platform',
+    [ValidateSet('Build', 'Test', 'Run', 'Serve', 'RunMatching', 'Format', 'Lint', 'Docs', 'Workflows', 'Verify')][string]$Task = 'Serve',
     [ValidateRange(1, 10000)][int]$Tail = 50,
     [ValidateSet('All', 'stdout', 'stderr')][string]$Stream = 'All'
 )
@@ -13,11 +16,14 @@ foreach ($moduleName in @('Microsoft.PowerShell.Utility', 'Microsoft.PowerShell.
 
 $repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $logRoot = Join-Path $repositoryRoot 'artifacts/logs'
-if ($RunId) { $directory = Join-Path $logRoot $RunId }
+if ($Latest -and $RunId) { throw 'Choose Latest or RunId, not both.' }
+if ($Latest) { $directory = Join-Path $logRoot ('latest/' + $Project.ToLowerInvariant() + '/' + $Task.ToLowerInvariant()) }
+elseif ($RunId) { $directory = Join-Path $logRoot $RunId }
 else {
-    $latest = Get-ChildItem -LiteralPath $logRoot -Directory | Sort-Object Name -Descending | Select-Object -First 1
+    $latest = Get-ChildItem -LiteralPath $logRoot -Filter run.json -File -Recurse |
+        Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
     if ($null -eq $latest) { throw 'No operations runs found.' }
-    $directory = $latest.FullName
+    $directory = $latest.DirectoryName
 }
 Get-Content -LiteralPath (Join-Path $directory 'run.json')
 $filter = if ($Stream -eq 'All') { '*.log' } else { '*.' + $Stream + '.log' }

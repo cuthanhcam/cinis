@@ -18,3 +18,5 @@ dotnet run --project src/platform/Cinis.Platform --no-build --no-restore -c Rele
 Commands start at repository root. Windows logged tasks use Invoke-Cinis.ps1 -Project Platform with Verify, Run (finite smoke), or Serve (bounded foreground health host). Tests live under tests/ here; cross-language fixtures stay under repository tests/fixtures/. ReadModels/MarketData arrive with actual capabilities. Commit all package locks; Platform CI runs on Linux/Windows.
 
 See [transport and XML documentation standards](../../docs/development/platform-transport.md) for resource bounds, outcome semantics, test evidence and maintenance guidance. The channel is not registered as a financial gateway.
+
+Host HTTP conventions and extension points: [pipeline and logging](../../docs/development/platform-http-pipeline.md).

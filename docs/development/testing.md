@@ -28,7 +28,7 @@ python ops/scripts/check_scaffold.py
 git diff --check
 ```
 
-Ops has 18 tests on Windows: eight process/public-runner tests, four path policy tests, six hosted gate tests. Non-Windows discovery explicitly skips the Windows process class. Process coverage includes spaces/quotes/empty arguments, nonzero exit, missing tool, large dual streams, timeout of owned process/descendants, unsupported task metadata, and public fail-fast with shadowed PowerShell modules.
+Ops has 21 tests on Windows: eleven process/public-runner tests, four path policy tests, six hosted gate tests. Non-Windows discovery explicitly skips the Windows process class. Process coverage includes spaces/quotes/empty arguments, nonzero exit, missing tool, large dual streams, timeout of owned process/descendants, unsupported task metadata, and public fail-fast with shadowed PowerShell modules.
 
 Windows public runner Verify executes format, lint, build, full Rust tests, documentation/naming, pinned actionlint, and scaffold/ignore checks with logs. Run uses the funded demo; RunMatching preserves the raw matcher. See [runbook](../operations/local-development.md).
 
@@ -40,4 +40,4 @@ Financial API tests use trusted in-process Permissions, not API-key authenticati
 
 ## .NET baseline
 
-The [platform guide](platform.md) documents locked restore, Release build, format, tests and finite smoke. Current suite: 54 cases across Access (9), Trading (8), ExecutionClient (25), host integration (5), and architecture (7). Both Platform matrix jobs and Windows ops verification must pass. These tests do not establish real authentication, TCP Rust interop or database guarantees.
+The [platform guide](platform.md) documents locked restore, Release build, format, tests and finite smoke. Current suite: 60 cases across Access (9), Trading (8), ExecutionClient (25), host integration (11), and architecture (7). Both Platform matrix jobs and Windows ops verification must pass. These tests do not establish real authentication, TCP Rust interop or database guarantees.

@@ -57,7 +57,7 @@ Platform Verify performs locked restore, format check, Release build, tests, smo
 powershell -NoProfile -File ops/scripts/Invoke-Cinis.ps1 -Project Platform -Task Serve -TimeoutSeconds 300
 ```
 
-Serve binds http://127.0.0.1:5080 through fixed non-secret task arguments. JSON console records, stderr and run/step metadata are captured under ignored artifacts/logs/<run-id>/. Use a second terminal to read the reported files or Get-CinisLogs. This is bounded foreground debugging, not background supervision, restart policy or production service management. At the deadline the runner stops only its owned process tree and returns 124; a timeout is not reported as a successful service completion. Existing process-runner tests cover owned-tree cleanup. Shutdown cooperation/rotation for production hosting remains a later service-lifecycle gate.
+Serve binds http://localhost:5080 through fixed non-secret task arguments. JSON console records, stderr and run/step metadata are captured under ignored artifacts/logs/latest/platform/serve/ by default; use -LogMode Archive for artifacts/logs/<run-id>/. Use a second terminal to read the reported files or Get-CinisLogs. This is bounded foreground debugging, not background supervision, restart policy or production service management. At the deadline the runner stops only its owned process tree and returns 124; a timeout is not reported as a successful service completion. Existing process-runner tests cover owned-tree cleanup. Shutdown cooperation/rotation for production hosting remains a later service-lifecycle gate.
 
 For interactive development with Ctrl+C:
 
@@ -79,7 +79,7 @@ Verified with a real loopback HTTP process on 2026-10-18: live returned 200, rea
 
 ## Current test evidence
 
-54 .NET cases: Access 9, Trading 8, ExecutionClient 25, host integration 5, architecture 7. Access checks exact principal/account/action matching, empty/default deny, malformed grants, immutable input copy and cancellation. Trading checks invalid/unauthorized intents never contact execution, preserves full u64 identities, and propagates known/unknown/unavailable outcomes without generating a new intent or retrying.
+60 .NET cases: Access 9, Trading 8, ExecutionClient 25, host integration 11, architecture 7. Access checks exact principal/account/action matching, empty/default deny, malformed grants, immutable input copy and cancellation. Trading checks invalid/unauthorized intents never contact execution, preserves full u64 identities, and propagates known/unknown/unavailable outcomes without generating a new intent or retrying.
 
 Codec checks big-endian lengths, fragmented reads, exact u64 payload bytes, zero/oversized lengths rejected before payload allocation, truncated frames, rejected writes without a header and consecutive frame boundaries. It is an experiment with four-byte length headers only; version/message schema, connection/correlation, trust and actual Rust interop are still TD-01/02/03/04 work. Do not treat the generic byte codec as a frozen financial wire protocol.
 
@@ -93,3 +93,5 @@ Architecture tests inspect the actual .slnx and project-reference allowlist, pro
 4. Implement durable journal/replay and service lifecycle evidence before durable results and full restart acceptance.
 
 Use the [architecture](../architecture/platform-architecture.md), [implementation plan](../architecture/platform-implementation-plan.md), [backlog](../delivery/backlog.md) and [protocol draft](../architecture/protocol.md) as the canonical references. Schema/wire representations remain separate from these application contracts.
+
+The [HTTP pipeline guide](platform-http-pipeline.md) defines middleware/filter responsibilities, correlated Problem Details, safe JSON fields, default category levels and tests. The host defaults to localhost and restricts allowed hosts to local names/addresses.

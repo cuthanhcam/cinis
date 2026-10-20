@@ -34,7 +34,8 @@ function Invoke-CinisLoggedProcess {
         [Parameter(Mandatory)][string]$WorkingDirectory,
         [Parameter(Mandatory)][string]$LogDirectory,
         [Parameter(Mandatory)][string]$StepName,
-        [ValidateRange(1, 86400)][int]$TimeoutSeconds = 600
+        [ValidateRange(1, 86400)][int]$TimeoutSeconds = 600,
+        [ValidatePattern('^\d{8}T\d{9}Z-[a-f0-9]{8}$')][string]$RunId
     )
     if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
         throw 'This operations runner currently supports Windows PowerShell 5.1+ on Windows.'
@@ -50,6 +51,9 @@ function Invoke-CinisLoggedProcess {
     }
     $process = $null
     try {
+        # Truncate both streams even if executable resolution fails; stale content must not resemble this run.
+        [IO.File]::WriteAllText($stdout, '')
+        [IO.File]::WriteAllText($stderr, '')
         $application = Get-Command $Tool -CommandType Application -ErrorAction Stop | Select-Object -First 1
         $parameters = @{
             FilePath = $application.Source
@@ -60,7 +64,14 @@ function Invoke-CinisLoggedProcess {
             WindowStyle = 'Hidden'
             PassThru = $true
         }
-        $process = Start-Process @parameters
+        # WinPS 5.1 has no Start-Process -Environment. Set only the non-secret run ID during child creation,
+        # then restore the caller's environment immediately, including failed starts.
+        $previousRunId = [Environment]::GetEnvironmentVariable('CINIS_RUN_ID', 'Process')
+        try {
+            if ($RunId) { [Environment]::SetEnvironmentVariable('CINIS_RUN_ID', $RunId, 'Process') }
+            $process = Start-Process @parameters
+        }
+        finally { [Environment]::SetEnvironmentVariable('CINIS_RUN_ID', $previousRunId, 'Process') }
         # Cache the handle before a fast child exits (Windows PowerShell 5.1).
         $null = $process.Handle
         $record.processId = $process.Id
