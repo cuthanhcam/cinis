@@ -33,7 +33,10 @@ public sealed class AccountAccessTests
     [InlineData(" ", 1UL, AccountAction.Read)]
     [InlineData("alice", 0UL, AccountAction.Read)]
     [InlineData("alice", 1UL, (AccountAction)999)]
-    public async Task InvalidRequest_Denies(string principal, ulong account, AccountAction action)
+    public async Task InvalidRequest_Denies(
+        string principal,
+        ulong account,
+        AccountAction action)
     {
         var access = new AccountAccessService(new InMemoryAccountGrantStore([]));
         Assert.False(await access.IsAllowedAsync(principal, account, action));

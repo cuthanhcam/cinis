@@ -15,4 +15,7 @@ public enum SubmissionStatus
 /// <param name="Status">Evidence about the submission; this alone does not mean financial success.</param>
 /// <param name="Sequence">Known admitted decision sequence, or null when none is established.</param>
 /// <param name="Code">Local application diagnostic code; not a public wire schema.</param>
-public sealed record ExecutionSubmission(SubmissionStatus Status, ulong? Sequence, string Code);
+public sealed record ExecutionSubmission(
+    SubmissionStatus Status,
+    ulong? Sequence,
+    string Code);

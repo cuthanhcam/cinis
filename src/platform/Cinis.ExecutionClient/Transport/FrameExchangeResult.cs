@@ -4,7 +4,10 @@ namespace Cinis.ExecutionClient.Transport;
 /// <remarks>A received body still needs version, identity and semantic validation before it is an execution result.</remarks>
 public sealed class FrameExchangeResult
 {
-    internal FrameExchangeResult(FrameExchangeStatus status, FrameExchangeFailure failure, byte[]? reply = null)
+    internal FrameExchangeResult(
+        FrameExchangeStatus status,
+        FrameExchangeFailure failure,
+        byte[]? reply = null)
     {
         Status = status;
         Failure = failure;

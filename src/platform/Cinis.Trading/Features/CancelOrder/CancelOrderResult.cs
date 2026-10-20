@@ -16,4 +16,6 @@ public enum CancelOrderStatus
 /// <summary>Combines local validation/authorization with optional execution evidence.</summary>
 /// <param name="Status">Local handling classification.</param>
 /// <param name="Submission">Adapter evidence only when execution was invoked; otherwise null.</param>
-public sealed record CancelOrderResult(CancelOrderStatus Status, ExecutionSubmission? Submission);
+public sealed record CancelOrderResult(
+    CancelOrderStatus Status,
+    ExecutionSubmission? Submission);

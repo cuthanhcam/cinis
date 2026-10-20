@@ -8,8 +8,10 @@ namespace Cinis.Platform.Middleware;
 /// <param name="next">Remaining pipeline, including exception handling.</param>
 /// <param name="logger">Structured request-event sink.</param>
 /// <param name="identity">Immutable host/run identity.</param>
-public sealed class RequestDiagnosticsMiddleware(RequestDelegate next,
-    ILogger<RequestDiagnosticsMiddleware> logger, ServiceIdentity identity)
+public sealed class RequestDiagnosticsMiddleware(
+    RequestDelegate next,
+    ILogger<RequestDiagnosticsMiddleware> logger,
+    ServiceIdentity identity)
 {
     /// <summary>Assigns a local request ID and records the final outcome under a diagnostic scope.</summary>
     /// <param name="context">Current request; incoming request-ID headers are not trusted or echoed.</param>
