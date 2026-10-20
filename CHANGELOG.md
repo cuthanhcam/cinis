@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Standardized multi-parameter C# declarations across platform code/tests and documented the convention; reviewed the enterprise-foundation checklist against actual capabilities and remaining gates.
+
 - Added repeatable Latest service logs with exclusive writer locking, Archive opt-in, child run identity and ignored diagnostic outputs.
 - Added host-owned request middleware, scoped JSON formatter, generic correlated Problem Details, health no-store filter and localhost defaults; expanded to 60 .NET and 21 ops tests.
 

@@ -37,6 +37,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Platform transport and source documentation](development/platform-transport.md) and [ADR-0009](architecture/decisions/0009-platform-transport-channel.md)
 - [HTTP middleware, filters and logging](development/platform-http-pipeline.md), [ADR-0010](architecture/decisions/0010-platform-http-diagnostics.md)
 - [Core API](development/core-api.md)
+- [C# coding conventions](development/csharp-conventions.md) and [enterprise-foundation checklist review](architecture/platform-foundation-review.md)
 - [Setup](development/setup.md), [testing](development/testing.md), [CI/integration](development/ci.md), and [scaffold readiness](development/scaffold.md)
 - [Ops and runbooks](operations/README.md)
 - [Repository layout](development/repository-layout.md) and [documentation standard](development/documentation-guide.md), and [naming conventions](development/naming-conventions.md)
