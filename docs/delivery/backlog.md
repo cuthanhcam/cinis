@@ -77,3 +77,5 @@ P0-P5 describe implementation order and acceptance gates; this table and existin
 
 | NET-08 | HTTP diagnostic foundation | NET-07 | Host middleware/filter/error handling, allowlisted JSON scopes, correlated 500/404/cancellation and no-store tests; [pipeline](../development/platform-http-pipeline.md) | Done for health scaffold |
 | OPS-LOG-01 | Repeatable service logs | Existing runner | Latest overwrite, exclusive locking, Archive opt-in and child run correlation; Windows regression tests | Done for local debugging |
+
+| NET-09 | API-only response security policy | NET-08 | Security headers on health/success/404/500, final header policy resistant to endpoint weakening; [ADR-0011](../architecture/decisions/0011-api-response-security-headers.md) | Done for scaffold |

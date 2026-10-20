@@ -40,4 +40,4 @@ Financial API tests use trusted in-process Permissions, not API-key authenticati
 
 ## .NET baseline
 
-The [platform guide](platform.md) documents locked restore, Release build, format, tests and finite smoke. Current suite: 60 cases across Access (9), Trading (8), ExecutionClient (25), host integration (11), and architecture (7). Both Platform matrix jobs and Windows ops verification must pass. These tests do not establish real authentication, TCP Rust interop or database guarantees.
+The [platform guide](platform.md) documents locked restore, Release build, format, tests and finite smoke. Current suite: 61 cases across Access (9), Trading (8), ExecutionClient (25), host integration (12), and architecture (7). Both Platform matrix jobs and Windows ops verification must pass. These tests do not establish real authentication, TCP Rust interop or database guarantees.

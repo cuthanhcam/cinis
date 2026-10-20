@@ -79,7 +79,7 @@ Verified with a real loopback HTTP process on 2026-10-18: live returned 200, rea
 
 ## Current test evidence
 
-60 .NET cases: Access 9, Trading 8, ExecutionClient 25, host integration 11, architecture 7. Access checks exact principal/account/action matching, empty/default deny, malformed grants, immutable input copy and cancellation. Trading checks invalid/unauthorized intents never contact execution, preserves full u64 identities, and propagates known/unknown/unavailable outcomes without generating a new intent or retrying.
+61 .NET cases: Access 9, Trading 8, ExecutionClient 25, host integration 12, architecture 7. Access checks exact principal/account/action matching, empty/default deny, malformed grants, immutable input copy and cancellation. Trading checks invalid/unauthorized intents never contact execution, preserves full u64 identities, and propagates known/unknown/unavailable outcomes without generating a new intent or retrying.
 
 Codec checks big-endian lengths, fragmented reads, exact u64 payload bytes, zero/oversized lengths rejected before payload allocation, truncated frames, rejected writes without a header and consecutive frame boundaries. It is an experiment with four-byte length headers only; version/message schema, connection/correlation, trust and actual Rust interop are still TD-01/02/03/04 work. Do not treat the generic byte codec as a frozen financial wire protocol.
 

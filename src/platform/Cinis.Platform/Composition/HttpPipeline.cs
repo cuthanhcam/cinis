@@ -33,6 +33,7 @@ internal static class HttpPipeline
 
     internal static void UsePlatformHttp(this WebApplication app)
     {
+        app.UseMiddleware<SecurityHeadersMiddleware>();
         // Routing precedes diagnostics so events use route templates. Diagnostics wraps error handling so completion
         // sees the translated status; the exception handler and problem writer share the same request scope.
         app.UseRouting();

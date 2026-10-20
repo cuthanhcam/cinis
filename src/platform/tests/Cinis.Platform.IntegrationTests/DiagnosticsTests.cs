@@ -48,6 +48,12 @@ public sealed class DiagnosticsTests
         app.UsePlatformHttp();
         app.MapGet("/items/{id}", () => "ok");
         app.MapGet("/failure", () => Task.FromException<string>(new InvalidOperationException("secret-exception-message")));
+        app.MapGet("/weaken-headers", (HttpContext context) =>
+        {
+            context.Response.Headers.XFrameOptions = "SAMEORIGIN";
+            context.Response.Headers.XContentTypeOptions = "unsafe";
+            return "ok";
+        });
         app.MapGet("/abort", (HttpContext context) =>
         {
             context.RequestAborted = new CancellationToken(true);
@@ -55,6 +61,23 @@ public sealed class DiagnosticsTests
         });
         await app.StartAsync();
         return app;
+    }
+
+    [Fact]
+    public async Task SecurityHeaders_CoverSuccessErrorsAndPreventEndpointWeakening()
+    {
+        await using var app = await StartAsync(new CaptureProvider());
+        using var client = app.GetTestClient();
+        foreach (var (route, status) in new[] { ("/items/1", 200), ("/unknown", 404), ("/failure", 500), ("/weaken-headers", 200) })
+        {
+            using var response = await client.GetAsync(route);
+            Assert.Equal(status, (int)response.StatusCode);
+            Assert.Equal("nosniff", response.Headers.GetValues("X-Content-Type-Options").Single());
+            Assert.Equal("DENY", response.Headers.GetValues("X-Frame-Options").Single());
+            Assert.Equal("no-referrer", response.Headers.GetValues("Referrer-Policy").Single());
+            Assert.Equal("default-src 'none'; frame-ancestors 'none'", response.Headers.GetValues("Content-Security-Policy").Single());
+            Assert.False(response.Headers.Contains("Strict-Transport-Security"));
+        }
     }
 
     [Fact]
