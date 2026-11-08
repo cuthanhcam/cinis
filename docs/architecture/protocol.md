@@ -15,3 +15,7 @@ Timeout/disconnect gives unknown outcome: retry the same ID/payload. Bound queue
 ## Experimental .NET transport evidence
 
 [ADR-0009](decisions/0009-platform-transport-channel.md) records the bounded loopback request channel and its [implementation/test evidence](../development/platform-transport.md). A received frame is raw bytes, not a validated financial acknowledgement. Rust schema, versioning, correlation, peer trust and durable acknowledgement remain open gates.
+
+## Owned-process serialization experiment
+
+The [funding probe](../../research/protocol-spike/README.md) implements a private fixed-width binary candidate over parent-owned stdio, with shared golden bytes and actual ExecutionCore decisions. It verifies exact u64 identities, admission/business/retained distinctions and explicit retry after an omitted reply without exposing a funding listener. It is not a frozen network schema, full event feed, authenticated engine service or production ExecutionClient adapter; M0-04/ARCH-02 remain open.

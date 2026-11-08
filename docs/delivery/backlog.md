@@ -7,7 +7,7 @@ This file is the single work-item source. GitHub Issues are not maintained in pa
 | M0-01 | Review definition and decisions | none | M0 decision register and ADR-0002 | 2-4 h | Done (specification) |
 | M0-02 | Requirements and ownership | M0-01 | FR/QR acceptance and sole state owners | 3-6 h | Done (specification) |
 | M0-03 | Structured matching examples | M0-01 | Initial state, commands, events, final state in shared fixtures | 3-6 h | Done: 17 shared MC fixtures |
-| M0-04 | Cross-language spike | M0-01 | Framing/disconnect/correlation report; resolve protocol questions | 4-8 h | Todo |
+| M0-04 | Cross-language spike | M0-01 | [Owned-process funding evidence](../../research/protocol-spike/README.md); real TCP/trust/full-command evidence still required | 4-8 h | In progress: serialization/process step implemented |
 | M1-01 | Rust crate and pinned toolchain | M0-01 | Build, rustfmt, Clippy, tests, CI workflow | 2-4 h | Done: crate, pin, lockfile, workflow; local checks pass |
 | M1-02 | First matching flow | M1-01, M0-03 | Sell 10, buy 4, cancel 6; demo and invariant checks | 4-8 h | Done: fixture tests and CLI verified locally |
 | M1-03 | Matching edge cases | M1-02 | Priority/FIFO/multifill/cancel/invalid/self-trade/capacity fixtures | 4-8 h | Done: fixture tests and CLI verified locally |
