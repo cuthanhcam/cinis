@@ -14,6 +14,10 @@ path = "src/main.rs"
 name = "cinis-matching-demo"
 path = "src/bin/matching_demo.rs"
 
+[[bin]]
+name = "cinis-wire-probe"
+path = "src/bin/wire_probe.rs"
+
 [lints.rust]
 unsafe_code = "forbid"
 

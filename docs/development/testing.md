@@ -13,7 +13,7 @@ cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-demo
 cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-matching-demo
 ```
 
-Current suite: 61 unit/integration Rust tests plus one compiled Rustdoc example, comprising 17 shared matching fixtures, nine independent matching tests, 24 financial scenarios, four generated financial seed tests, five outcome contract tests, and two execution boundary unit tests. All language/toolchain checks and both demos must pass. The default demo is funded; matching-only mode intentionally bypasses financial state.
+Current suite: 64 unit/integration Rust tests plus one compiled Rustdoc example, comprising 17 shared matching fixtures, nine independent matching tests, 24 financial scenarios, four generated financial seed tests, five outcome contract tests, two execution boundary unit tests, and three private research-protocol tests. All language/toolchain checks and both demos must pass. The default demo is funded; matching-only mode intentionally bypasses financial state.
 
 [Matching fixtures](../../tests/fixtures/matching/README.md) define exact events/final state. The matching oracle covers 8,192 generated commands. [Financial verification](../verification/financial-testing.md) covers numeric holds/settlement/retries/capacity and 1,024 fresh generated financial attempts plus initialization, retries, and conflicts. Seeds and reproduction commands are in the respective reports. This is bounded deterministic generation, not exhaustive fuzzing/shrinking.
 
@@ -41,3 +41,7 @@ Financial API tests use trusted in-process Permissions, not API-key authenticati
 ## .NET baseline
 
 The [platform guide](platform.md) documents locked restore, Release build, format, tests and finite smoke. Current suite: 61 cases across Access (9), Trading (8), ExecutionClient (25), host integration (12), and architecture (7). Both Platform matrix jobs and Windows ops verification must pass. These tests do not establish real authentication, TCP Rust interop or database guarantees.
+
+## Cross-language research
+
+The [funding probe](../../research/protocol-spike/README.md) runs an independent .NET harness against the actual owned Rust process. Shared golden frames and 35 assertions cover identity/numeric boundaries, retained decisions, protocol validation, lost reply, bounded silent-session expiry, restart and fatal framing. This executable is outside the production .slnx and its assertions are reported separately from 61 platform .NET tests. Platform CI restores/formats/builds/runs it on both supported hosts. Rust Engine CI includes the three protocol unit tests; normal core guarantees remain volatile.

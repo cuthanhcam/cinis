@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added an isolated .NET/Rust synthetic-funding protocol experiment with shared golden frames, exact u64 identities, retained/rejected decisions and lost-reply retry evidence over owned process pipes.
+- Added bounded research-peer lifecycle/framing tests and Linux/Windows hosted execution; production wire/trust and durability gates remain open.
+
 - Adopted readability-based C# wrapping with an advisory 120-character target, preserving existing readable layout.
 - Added API-only response security headers and success/error policy tests; reviewed the supplied pipeline strategy and its trust/logging boundaries.
 

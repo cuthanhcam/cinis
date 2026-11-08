@@ -135,3 +135,7 @@ cargo run --locked --manifest-path src/engine/Cargo.toml --bin cinis-matching-de
 The engine workflow runs these checks on Linux/Windows, including doctests and Rustdoc generation. Verify logs the existing format/lint/build/test/repository checks; cargo doc is also a direct documented check. Hosted five-workflow integration gating remains mandatory.
 
 When a real boundary warrants more crates, follow [Cargo workspace guidance](https://doc.rust-lang.org/cargo/reference/workspaces.html): keep dependency flow explicit, shared toolchain/lock decisions deliberate, and CI/tasks updated together. Do not move the manifest merely to create a workspace-shaped scaffold. The next planned functional step remains the cross-language spike and business/protocol decisions in the [architecture register](../architecture/blueprint/decision-register.md).
+
+## Isolated protocol research binary
+
+cinis-wire-probe and its private wire_probe/protocol.rs module adapt only synthetic funding through the public ExecutionCore API. They live at the binary boundary, outside matching/ledger/execution ownership, and expose no listener. The [experiment report](../../research/protocol-spike/README.md) documents bounds, framing, process cleanup and provisional schema. They are not the engine service or a stable public wire API.

@@ -31,3 +31,12 @@ jobs:
       - run: dotnet build src/platform/Cinis.Platform.slnx --no-restore -c Release
       - run: dotnet test src/platform/Cinis.Platform.slnx --no-build --no-restore -c Release
       - run: dotnet run --project src/platform/Cinis.Platform --no-build --no-restore -c Release -- --smoke-test
+      - name: Install pinned Rust research toolchain
+        run: rustup show
+      - name: Build isolated Rust research peer
+        run: cargo build --locked --manifest-path src/engine/Cargo.toml --bin cinis-wire-probe
+      - run: dotnet restore research/protocol-spike/Cinis.ProtocolProbe.csproj --locked-mode
+      - run: dotnet format research/protocol-spike/Cinis.ProtocolProbe.csproj whitespace --no-restore --verify-no-changes
+      - run: dotnet build research/protocol-spike/Cinis.ProtocolProbe.csproj --no-restore -c Release
+      - name: Run real cross-language funding experiment
+        run: dotnet run --project research/protocol-spike/Cinis.ProtocolProbe.csproj --no-build --no-restore -c Release -- . src/engine/target/debug/cinis-wire-probe

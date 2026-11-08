@@ -43,6 +43,7 @@ Maintained specifications use Cinis. Historical conversation input is local-only
 - [Ops and runbooks](operations/README.md)
 - [Repository layout](development/repository-layout.md) and [documentation standard](development/documentation-guide.md), and [naming conventions](development/naming-conventions.md)
 - [Document templates](templates/README.md)
+- [Cross-language funding probe and provisional schema](../research/protocol-spike/README.md)
 - [Spikes](../research/README.md) and [experiment template](../research/experiment-template.md)
 
 ## Review queue

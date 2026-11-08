@@ -12,4 +12,4 @@ One framed TCP loopback command/result. Test split/multiple frames, invalid leng
 
 ## Completed evidence
 
-[First matching baseline](matching-baseline.md) records the implemented flow and local checks. [Experiment template](experiment-template.md) is available for subsequent spikes. The cross-language spike remains pending.
+[First matching baseline](matching-baseline.md) records the implemented flow and local checks. [Experiment template](experiment-template.md) is available for subsequent spikes. The [owned-process funding probe](protocol-spike/README.md) implements the first cross-language serialization/process step. Full loopback TCP/trust and command/feed evidence remains pending.

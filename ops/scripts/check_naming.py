@@ -15,7 +15,7 @@ ROOT_FILES = {
     ".editorconfig", ".gitattributes", ".gitignore", ".env.example", "global.json", "NuGet.config",
     "Directory.Build.props", "Directory.Build.targets", "Directory.Packages.props",
 }
-TOOL_FILES = {"Cargo.toml", "Cargo.lock", "lib.rs", "main.rs", "mod.rs", "__init__.py", "Dockerfile", "Makefile"}
+TOOL_FILES = {"Cargo.toml", "Cargo.lock", "packages.lock.json", "lib.rs", "main.rs", "mod.rs", "__init__.py", "Dockerfile", "Makefile"}
 GITHUB_FILES = {"CODEOWNERS", "SUPPORT.md", "pull_request_template.md", "bug_report.md", "work_item.md"}
 
 
